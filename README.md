@@ -110,7 +110,7 @@ and the demo runs with no network.
 cd backend
 python3 -m venv .venv && ./.venv/bin/python -m pip install -r requirements.txt
 ./.venv/bin/python train.py                 # ~1s, writes models/
-./.venv/bin/python -m uvicorn app.main:app --reload --port 8000
+./.venv/bin/python -m uvicorn app.main:app --reload --port 8010
 
 # Frontend
 cd frontend && npm install && npm run dev    # http://localhost:5173

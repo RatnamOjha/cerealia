@@ -113,6 +113,34 @@ def recommend_custom(req: SiteRequest) -> dict[str, Any]:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
+@app.get("/api/overview")
+def overview() -> dict[str, Any]:
+    """Top recommendation for every state, in one call.
+
+    The map needs a fill colour per state on load. Doing that as 36 separate
+    round trips is wasteful when the model is already resident in memory.
+    """
+    out = {}
+    for state in list_states():
+        try:
+            result = recommend_for_state(state["id"], top_n=1)
+        except (KeyError, FileNotFoundError):
+            continue
+        if not result["recommendations"]:
+            continue
+        top = result["recommendations"][0]
+        out[state["id"]] = {
+            "crop": top["crop"],
+            "display": top["display"],
+            "category": top["category"],
+            "confidence": top["confidence"],
+            "fitness_pct": top["agro_fit_pct"],
+            "net": top["economics"]["net_profit_per_ha_year"],
+            "expected": top["economics"]["expected_profit_per_ha_year"],
+        }
+    return {"top_by_state": out}
+
+
 @app.get("/api/schemes")
 def schemes() -> dict[str, Any]:
     return {"schemes": chatbot.list_schemes()}
