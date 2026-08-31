@@ -6,8 +6,8 @@ crop *can* grow there, but on what it is actually worth growing, given soil,
 climate, water availability, market price and risk. A grounded AI assistant then
 answers questions about the government schemes that apply.
 
-> Minor project. Status: backend and recommendation engine working end to end;
-> frontend in progress.
+> Minor project. Status: working end to end — model, ranking engine, REST API,
+> React interface and scheme chatbot. Runs fully offline. See [RUN_DEMO.md](RUN_DEMO.md).
 
 ---
 
