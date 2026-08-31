@@ -22,13 +22,15 @@ Opens <http://localhost:5173>
 
 1. **Globe** — spinning, India highlighted. Click **Explore India**.
 2. **Map** — 36 states coloured by their top crop type. Hover a few.
-3. **Click Maharashtra** — Mango, Papaya, Tur. Point out the MSP badge and
-   the "moderate confidence" label.
-4. **Expand the top card** — ideal-band comparison, cost breakdown,
-   fertiliser plan in bags and rupees.
+3. **Click Maharashtra** — Mango, Orange, Banana: Konkan, Nagpur and Jalgaon.
+   Point out the MSP badge and the "moderate confidence" label.
+4. **Expand the top card** — ideal-band comparison, cost breakdown, fertiliser
+   plan in bags and rupees, and the **Data sources** block showing which yield
+   figure was used and the crop's share of sown area. This is the slide-worthy
+   detail: every number is traceable.
 5. **Drag the farm-size slider** — every rupee figure rescales.
-6. **Click Kerala** — completely different answer: banana, rice, coconut,
-   coffee. Shows it is regional, not one global ranking.
+6. **Click Kerala** — completely different answer: rice, banana, coconut.
+   Coconut is 72% of Kerala's sown area in the official data.
 7. **Click Punjab** — paddy scores 0.39 fitness with a 346 mm irrigation
    gap. This is the water-crisis finding; it is the strongest talking point.
 8. **Chat** — "How do I insure my crop against drought?" → retrieves PMFBY.
@@ -48,7 +50,8 @@ Opens <http://localhost:5173>
 
 | | |
 |---|---|
-| Dataset | 2,200 rows · 22 crops · exactly 100 each |
+| Official GoI data | 246,091 records · 646 districts · 33 states · 19 years |
+| Fitness dataset | 2,200 rows · 22 crops · exactly 100 each |
 | Model | RandomForest, 300 trees |
 | Hold-out accuracy | 99.55% |
 | 5-fold CV | 99.50% ± 0.27% |
@@ -57,3 +60,5 @@ Opens <http://localhost:5173>
 | States covered | 36 |
 | Schemes indexed | 12 |
 | India map | 4 MB → 85 KB, bundled offline |
+| Punjab paddy yield | 3.73 t/ha (vs Jharkhand 0.97 t/ha) |
+| Kerala coconut | 72% of state sown area |
