@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "description": "Government of India agricultural schemes, used to ground the advisory chatbot. Figures current as of the 2024-25 cycle; always verify against the official portal before advising a farmer.",
+    "source_note": "Compiled from Ministry of Agriculture & Farmers Welfare scheme guidelines and official scheme portals."
+  },
+  "schemes": [
+    {
+      "id": "pm-kisan",
+      "name": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+      "category": "Income support",
+      "benefit": "Rs 6,000 per year paid directly to the bank account in three equal instalments of Rs 2,000, every four months.",
+      "eligibility": "All landholding farmer families with cultivable land in their name. Excludes institutional landholders, income-tax payers, serving/retired government employees above Group D, and professionals such as doctors and lawyers.",
+      "how_to_apply": "Register at pmkisan.gov.in or through the nearest Common Service Centre (CSC). Aadhaar, land records and a bank account seeded with Aadhaar are mandatory. e-KYC must be completed to receive instalments.",
+      "portal": "https://pmkisan.gov.in",
+      "keywords": ["income", "6000", "samman nidhi", "direct benefit", "dbt", "instalment", "cash support"]
+    },
+    {
+      "id": "pmfby",
+      "name": "PMFBY (Pradhan Mantri Fasal Bima Yojana)",
+      "category": "Crop insurance",
+      "benefit": "Insurance against crop loss from natural calamity, pest attack and disease. Farmer pays a capped premium of 2% of sum insured for kharif crops, 1.5% for rabi crops, and 5% for commercial and horticultural crops; the remainder is subsidised by central and state governments.",
+      "eligibility": "All farmers growing notified crops in notified areas, including sharecroppers and tenant farmers. Voluntary for all farmers since 2020.",
+      "how_to_apply": "Apply through pmfby.gov.in, a bank branch, a CSC, or an authorised insurance intermediary. Enrolment must be completed before the cut-off date for the season, typically 31 July for kharif and 31 December for rabi.",
+      "portal": "https://pmfby.gov.in",
+      "keywords": ["insurance", "bima", "crop loss", "premium", "claim", "drought", "flood", "hailstorm", "calamity"]
+    },
+    {
+      "id": "kcc",
+      "name": "Kisan Credit Card (KCC)",
+      "category": "Credit",
+      "benefit": "Short-term crop loan up to Rs 3 lakh at 7% interest. Prompt repayment earns a 3% subvention, bringing the effective rate to 4%. Also covers post-harvest expenses, allied activities such as dairy and fisheries, and carries accident insurance cover.",
+      "eligibility": "All farmers - owner cultivators, tenant farmers, oral lessees, sharecroppers, and Self Help Group or Joint Liability Group members.",
+      "how_to_apply": "Apply at any commercial bank, regional rural bank or co-operative bank, or online through the bank's portal. Requires identity proof, address proof and land documents. Loans up to Rs 1.6 lakh are collateral-free.",
+      "portal": "https://www.myscheme.gov.in/schemes/kcc",
+      "keywords": ["loan", "credit", "karz", "interest", "subvention", "collateral", "borrow", "finance", "working capital"]
+    },
+    {
+      "id": "soil-health-card",
+      "name": "Soil Health Card Scheme",
+      "category": "Advisory",
+      "benefit": "Free soil testing report covering 12 parameters including N, P, K, pH, organic carbon, sulphur and micronutrients, along with crop-wise fertiliser recommendations. Issued once every two years per landholding.",
+      "eligibility": "All farmers, free of cost.",
+      "how_to_apply": "Contact the district or block agriculture office, or a Krishi Vigyan Kendra, to have soil samples collected. Reports can be downloaded from soilhealth.dac.gov.in.",
+      "portal": "https://soilhealth.dac.gov.in",
+      "keywords": ["soil", "test", "npk", "ph", "nutrient", "fertiliser", "fertilizer", "organic carbon", "mitti"]
+    },
+    {
+      "id": "pmksy",
+      "name": "PMKSY - Per Drop More Crop (Pradhan Mantri Krishi Sinchayee Yojana)",
+      "category": "Irrigation",
+      "benefit": "Subsidy on micro-irrigation systems - drip and sprinkler. Small and marginal farmers receive 55% of system cost; other farmers receive 45%. Many states top this up further.",
+      "eligibility": "All farmers with a assured water source. Priority to small, marginal, SC and ST farmers, and to water-stressed blocks.",
+      "how_to_apply": "Apply through the state agriculture or horticulture department, or the PMKSY portal. Requires land records, a water source certificate and a bank account.",
+      "portal": "https://pmksy.gov.in",
+      "keywords": ["irrigation", "drip", "sprinkler", "water", "micro irrigation", "sinchai", "subsidy", "water saving"]
+    },
+    {
+      "id": "pm-kusum",
+      "name": "PM-KUSUM (Kisan Urja Suraksha evam Utthaan Mahabhiyan)",
+      "category": "Energy",
+      "benefit": "Subsidy for standalone solar agricultural pumps and for solarising existing grid-connected pumps. Central and state subsidy together typically covers about 60% of cost, with 30% available as loan, so the farmer contributes roughly 10%. Surplus power can be sold to the grid.",
+      "eligibility": "Individual farmers, groups of farmers, FPOs, panchayats and water user associations.",
+      "how_to_apply": "Apply through the state nodal agency listed on the PM-KUSUM portal or the state renewable energy development agency.",
+      "portal": "https://pmkusum.mnre.gov.in",
+      "keywords": ["solar", "pump", "electricity", "energy", "diesel", "power", "bijli", "renewable"]
+    },
+    {
+      "id": "enam",
+      "name": "e-NAM (National Agriculture Market)",
+      "category": "Marketing",
+      "benefit": "Online trading platform linking over 1,000 mandis nationwide, letting farmers discover prices across markets and sell beyond their local mandi. Includes assaying facilities and direct online payment.",
+      "eligibility": "All farmers, traders and FPOs. Registration is free.",
+      "how_to_apply": "Register at enam.gov.in or at the e-NAM counter of a participating APMC mandi, using Aadhaar and bank details.",
+      "portal": "https://enam.gov.in",
+      "keywords": ["market", "mandi", "price", "sell", "trading", "apmc", "buyer", "bhav", "rate"]
+    },
+    {
+      "id": "msp",
+      "name": "MSP (Minimum Support Price) and Procurement",
+      "category": "Price support",
+      "benefit": "Government-announced floor price for 22 mandated crops, plus fair and remunerative price for sugarcane. Procurement at MSP is carried out by FCI, NAFED and state agencies. Under PM-AASHA, price deficiency payment and procurement schemes cover pulses and oilseeds.",
+      "eligibility": "Farmers selling notified crops at designated procurement centres, subject to prescribed quality (Fair Average Quality) norms.",
+      "how_to_apply": "Register on the state procurement portal before the season, then bring produce to a designated procurement centre with land records and a bank account.",
+      "portal": "https://cacp.dacnet.nic.in",
+      "keywords": ["msp", "support price", "procurement", "fci", "nafed", "guaranteed price", "floor price"]
+    },
+    {
+      "id": "midh",
+      "name": "MIDH (Mission for Integrated Development of Horticulture)",
+      "category": "Horticulture",
+      "benefit": "Assistance for establishing orchards and plantations, protected cultivation such as polyhouses and shade nets, post-harvest infrastructure including cold storage and pack houses, and nursery development. Typically 40-50% of cost, higher in hilly and scheduled areas.",
+      "eligibility": "Farmers, FPOs, co-operatives and entrepreneurs taking up horticulture activities.",
+      "how_to_apply": "Apply to the state horticulture mission or district horticulture officer with a project proposal, land records and bank details.",
+      "portal": "https://midh.gov.in",
+      "keywords": ["horticulture", "orchard", "fruit", "polyhouse", "greenhouse", "cold storage", "plantation", "nursery", "mango", "banana", "grapes"]
+    },
+    {
+      "id": "fpo",
+      "name": "Formation and Promotion of 10,000 FPOs",
+      "category": "Collectivisation",
+      "benefit": "Financial support of up to Rs 18 lakh per FPO over three years, a matching equity grant of up to Rs 2,000 per farmer member capped at Rs 15 lakh, and a credit guarantee facility up to Rs 2 crore. Enables collective input purchase and bulk marketing.",
+      "eligibility": "Groups of farmers, minimum 300 members in plains and 100 in hilly and north-eastern regions.",
+      "how_to_apply": "Approach an implementing agency such as SFAC, NABARD or NCDC, or the state agriculture department.",
+      "portal": "https://sfacindia.com",
+      "keywords": ["fpo", "farmer producer", "collective", "group", "cooperative", "bulk", "aggregation", "society"]
+    },
+    {
+      "id": "aif",
+      "name": "Agriculture Infrastructure Fund (AIF)",
+      "category": "Infrastructure",
+      "benefit": "Rs 1 lakh crore financing facility for post-harvest infrastructure - warehouses, cold chains, grading and sorting units, primary processing. Offers 3% interest subvention on loans up to Rs 2 crore for up to seven years, plus credit guarantee.",
+      "eligibility": "Farmers, FPOs, PACS, agri-entrepreneurs, startups, co-operatives and state agencies.",
+      "how_to_apply": "Apply on agriinfra.dac.gov.in and select a participating lending institution.",
+      "portal": "https://agriinfra.dac.gov.in",
+      "keywords": ["infrastructure", "warehouse", "cold chain", "storage", "processing", "post harvest", "godown", "grading"]
+    },
+    {
+      "id": "natural-farming",
+      "name": "National Mission on Natural Farming (NMNF)",
+      "category": "Sustainability",
+      "benefit": "Support for chemical-free farming based on cow-derived inputs and on-farm biomass. Assistance of about Rs 15,000 per hectare over three years, plus support for bio-input resource centres, farmer training and certification.",
+      "eligibility": "Farmers willing to adopt natural farming practices, preferably in clusters along river corridors and in identified districts.",
+      "how_to_apply": "Enrol through the state agriculture department or a Krishi Vigyan Kendra; cluster-based enrolment is preferred.",
+      "portal": "https://naturalfarming.dac.gov.in",
+      "keywords": ["natural farming", "organic", "chemical free", "zbnf", "jaivik", "bio input", "sustainable", "desi"]
+    }
+  ]
+}

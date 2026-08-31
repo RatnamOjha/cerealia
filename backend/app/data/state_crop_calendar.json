@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "description": "Regional cultivation prior: which of the 22 modelled crops are actually cultivated in each state/UT, and at what scale. Compiled from Ministry of Agriculture & Farmers Welfare 'Agricultural Statistics at a Glance', APEDA/NHB horticulture area statistics, and state agriculture department cropping-pattern reports.",
+    "why_this_exists": "The Kaggle crop-recommendation dataset is synthetic. Its feature envelopes are internally consistent but carry no geography, so a purely model-driven score will happily suggest mango for Ladakh or watermelon over coconut for Kerala. This layer supplies the geography the dataset lacks: the model scores agro-climatic fitness, this prior constrains the candidate set to crops the region demonstrably supports.",
+    "tiers": {
+      "major": "Significant cultivated area; established supply chain, mandi presence and extension support. Prior weight 1.0.",
+      "minor": "Grown but on limited area, or confined to specific districts/agro-pockets. Prior weight 0.6.",
+      "absent": "Not listed = not commercially cultivated in this state. Excluded from recommendation."
+    },
+    "limitation": "State-level granularity. A district-level prior (e.g. Nashik vs Vidarbha within Maharashtra) is the natural next iteration and is on the roadmap."
+  },
+  "states": {
+    "AP": { "major": ["rice", "cotton", "maize", "pigeonpeas", "chickpea", "banana", "mango", "coconut", "papaya", "blackgram", "mungbean"], "minor": ["watermelon", "muskmelon", "lentil"] },
+    "AR": { "major": ["rice", "maize", "orange"], "minor": ["banana", "apple", "pigeonpeas", "papaya"] },
+    "AS": { "major": ["rice", "jute"], "minor": ["banana", "coconut", "mango", "orange", "blackgram", "coffee", "papaya"] },
+    "BR": { "major": ["rice", "maize", "lentil", "mango", "banana"], "minor": ["chickpea", "pigeonpeas", "blackgram", "mungbean", "papaya", "watermelon"] },
+    "CT": { "major": ["rice", "chickpea"], "minor": ["maize", "pigeonpeas", "lentil", "blackgram", "mango", "banana"] },
+    "GA": { "major": ["coconut", "rice", "mango"], "minor": ["banana", "coffee", "papaya"] },
+    "GJ": { "major": ["cotton", "mango", "banana", "papaya"], "minor": ["chickpea", "pigeonpeas", "coconut", "rice", "maize", "mungbean", "mothbeans", "watermelon", "pomegranate"] },
+    "HR": { "major": ["rice", "cotton"], "minor": ["maize", "chickpea", "mungbean", "watermelon", "muskmelon", "orange"] },
+    "HP": { "major": ["apple", "maize", "kidneybeans"], "minor": ["rice", "chickpea", "mango", "orange"] },
+    "JH": { "major": ["rice", "maize", "mango"], "minor": ["pigeonpeas", "chickpea", "lentil", "blackgram"] },
+    "KA": { "major": ["coffee", "maize", "rice", "pigeonpeas", "chickpea", "grapes", "pomegranate", "banana", "mango", "coconut"], "minor": ["cotton", "papaya", "watermelon", "blackgram", "mungbean"] },
+    "KL": { "major": ["coconut", "rice", "banana", "coffee"], "minor": ["mango", "papaya", "blackgram", "pigeonpeas"] },
+    "MP": { "major": ["chickpea", "lentil", "pigeonpeas", "maize", "blackgram", "orange"], "minor": ["cotton", "rice", "mungbean", "banana", "papaya"] },
+    "MH": { "major": ["cotton", "pigeonpeas", "chickpea", "grapes", "pomegranate", "banana", "orange", "mango"], "minor": ["rice", "maize", "blackgram", "mungbean", "papaya", "watermelon"] },
+    "MN": { "major": ["rice", "maize"], "minor": ["banana", "orange", "papaya", "pigeonpeas"] },
+    "ML": { "major": ["rice", "maize", "orange", "banana"], "minor": ["papaya", "coffee", "pigeonpeas"] },
+    "MZ": { "major": ["rice", "maize", "banana", "orange"], "minor": ["papaya", "coffee"] },
+    "NL": { "major": ["rice", "maize"], "minor": ["banana", "orange", "papaya", "pigeonpeas"] },
+    "OR": { "major": ["rice", "mango", "blackgram", "mungbean"], "minor": ["jute", "coconut", "banana", "pigeonpeas", "papaya"] },
+    "PB": { "major": ["rice", "maize", "cotton", "orange"], "minor": ["chickpea", "lentil", "mungbean", "watermelon", "muskmelon"] },
+    "RJ": { "major": ["mothbeans", "mungbean", "chickpea", "maize", "watermelon", "muskmelon"], "minor": ["cotton", "orange", "pomegranate", "blackgram"] },
+    "SK": { "major": ["maize", "rice", "orange"], "minor": ["banana", "pigeonpeas"] },
+    "TN": { "major": ["rice", "banana", "coconut", "maize", "mango", "blackgram", "coffee"], "minor": ["cotton", "grapes", "mungbean", "papaya", "watermelon", "pigeonpeas"] },
+    "TG": { "major": ["rice", "cotton", "maize", "pigeonpeas", "mango"], "minor": ["chickpea", "banana", "papaya", "blackgram", "mungbean"] },
+    "TR": { "major": ["rice", "banana"], "minor": ["jute", "coconut", "orange", "papaya", "mango", "pigeonpeas"] },
+    "UP": { "major": ["rice", "maize", "chickpea", "lentil", "pigeonpeas", "mango", "banana"], "minor": ["mungbean", "blackgram", "watermelon", "muskmelon", "papaya"] },
+    "UT": { "major": ["apple", "kidneybeans"], "minor": ["rice", "maize", "mango", "lentil", "chickpea", "orange"] },
+    "WB": { "major": ["rice", "jute"], "minor": ["mango", "banana", "lentil", "blackgram", "coconut", "papaya"] },
+    "JK": { "major": ["apple", "maize", "kidneybeans"], "minor": ["rice"] },
+    "LA": { "minor": ["apple"] },
+    "DL": { "minor": ["rice", "maize", "watermelon", "muskmelon", "mango"] },
+    "PY": { "major": ["rice", "coconut", "banana"], "minor": ["mango", "blackgram", "papaya"] },
+    "AN": { "major": ["coconut", "rice", "banana"], "minor": ["papaya", "mango"] },
+    "CH": { "minor": ["rice", "maize", "mango"] },
+    "DN": { "major": ["rice", "mango"], "minor": ["coconut", "banana"] },
+    "LD": { "major": ["coconut"], "minor": ["banana", "papaya"] }
+  }
+}

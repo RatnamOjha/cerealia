@@ -1,0 +1,29 @@
+{
+  "trained_at": "2026-08-31T15:48:11",
+  "model": "RandomForestClassifier(n_estimators=300)",
+  "dataset": {
+    "n_rows": 2200,
+    "n_classes": 22,
+    "min_class_count": 100,
+    "max_class_count": 100,
+    "is_balanced": true
+  },
+  "holdout_accuracy": 0.9955,
+  "cv_accuracy_mean": 0.995,
+  "cv_accuracy_std": 0.0027,
+  "cv_folds": 5,
+  "misclassified_test_samples": 2,
+  "test_set_size": 440,
+  "train_seconds": 0.221,
+  "feature_importance": {
+    "rainfall": 0.2215,
+    "humidity": 0.2119,
+    "K": 0.1792,
+    "P": 0.1537,
+    "N": 0.1039,
+    "temperature": 0.0758,
+    "ph": 0.0539
+  },
+  "smote_applied": false,
+  "smote_rationale": "Dataset is exactly balanced (100 samples/class); resampling would add synthetic noise without addressing any imbalance."
+}
