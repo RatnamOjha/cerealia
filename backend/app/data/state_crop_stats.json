@@ -1,0 +1,3330 @@
+{
+ "_meta": {
+  "source": "District-wise, season-wise crop production statistics",
+  "publisher": "Directorate of Economics & Statistics, Ministry of Agriculture & Farmers Welfare, Government of India",
+  "portal": "https://www.data.gov.in/catalog/district-wise-season-wise-crop-production-statistics-0",
+  "coverage": {
+   "records_raw": 246091,
+   "records_used": 81347,
+   "years": [
+    1997,
+    2015
+   ],
+   "districts": 645,
+   "states_mapped": 33,
+   "crops_mapped": 21
+  },
+  "derived_fields": {
+   "area_share": "Crop's share of the state's total sown area across the 22 modelled crops",
+   "tier": "major >= 5% area share, minor >= 0.1%, else negligible",
+   "yield_t_ha": "Area-weighted mean yield across districts and years",
+   "yield_cv": "Coefficient of variation of annual yield - the empirical risk measure",
+   "yield_units_ok": "False where source production is not in tonnes (coconut in nuts, cotton in bales); the curated national figure is used instead"
+  }
+ },
+ "national": {
+  "rice": {
+   "yield_t_ha": 2.195,
+   "yield_cv": 0.16,
+   "states_reporting": 31
+  },
+  "maize": {
+   "yield_t_ha": 2.189,
+   "yield_cv": 0.224,
+   "states_reporting": 27
+  },
+  "chickpea": {
+   "yield_t_ha": 0.825,
+   "yield_cv": 0.195,
+   "states_reporting": 26
+  },
+  "kidneybeans": {
+   "yield_t_ha": 1.253,
+   "yield_cv": 0.0,
+   "states_reporting": 1
+  },
+  "pigeonpeas": {
+   "yield_t_ha": 0.683,
+   "yield_cv": 0.246,
+   "states_reporting": 27
+  },
+  "mothbeans": {
+   "yield_t_ha": 0.218,
+   "yield_cv": 0.716,
+   "states_reporting": 8
+  },
+  "mungbean": {
+   "yield_t_ha": 0.392,
+   "yield_cv": 0.355,
+   "states_reporting": 24
+  },
+  "blackgram": {
+   "yield_t_ha": 0.471,
+   "yield_cv": 0.224,
+   "states_reporting": 27
+  },
+  "lentil": {
+   "yield_t_ha": 0.697,
+   "yield_cv": 0.168,
+   "states_reporting": 16
+  },
+  "pomegranate": {
+   "yield_t_ha": 13.427,
+   "yield_cv": 0.217,
+   "states_reporting": 1
+  },
+  "banana": {
+   "yield_t_ha": 32.581,
+   "yield_cv": 0.177,
+   "states_reporting": 13
+  },
+  "mango": {
+   "yield_t_ha": 5.985,
+   "yield_cv": 0.245,
+   "states_reporting": 7
+  },
+  "grapes": {
+   "yield_t_ha": 26.666,
+   "yield_cv": 0.034,
+   "states_reporting": 5
+  },
+  "orange": {
+   "yield_t_ha": 12.644,
+   "yield_cv": 0.238,
+   "states_reporting": 3
+  },
+  "papaya": {
+   "yield_t_ha": 49.037,
+   "yield_cv": 0.17,
+   "states_reporting": 5
+  },
+  "coconut": {
+   "yield_t_ha": 2.667,
+   "yield_cv": 0.0,
+   "states_reporting": 1
+  },
+  "cotton": {
+   "yield_t_ha": 2.137,
+   "yield_cv": 0.401,
+   "states_reporting": 19
+  },
+  "jute": {
+   "yield_t_ha": 2.515,
+   "yield_cv": 0.602,
+   "states_reporting": 3
+  },
+  "coffee": {
+   "yield_t_ha": 0.774,
+   "yield_cv": 0.022,
+   "states_reporting": 1
+  }
+ },
+ "states": {
+  "AN": {
+   "coconut": {
+    "area_ha_total": 190722.0,
+    "mean_area_ha_per_year": 23840.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.085,
+    "years": 8,
+    "yield_units_ok": false,
+    "area_share": 0.67308,
+    "tier": "major"
+   },
+   "rice": {
+    "area_ha_total": 77715.0,
+    "mean_area_ha_per_year": 9714.0,
+    "yield_t_ha": 2.867,
+    "yield_cv": 0.035,
+    "years": 8,
+    "yield_units_ok": true,
+    "area_share": 0.27427,
+    "tier": "major"
+   },
+   "banana": {
+    "area_ha_total": 12146.0,
+    "mean_area_ha_per_year": 1735.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.172,
+    "years": 7,
+    "yield_units_ok": false,
+    "area_share": 0.04286,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 1200.0,
+    "mean_area_ha_per_year": 1200.0,
+    "yield_t_ha": 0.48,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 0.00423,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 1095.0,
+    "mean_area_ha_per_year": 1095.0,
+    "yield_t_ha": 0.434,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 0.00386,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 315.0,
+    "mean_area_ha_per_year": 315.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": false,
+    "area_share": 0.00111,
+    "tier": "minor"
+   },
+   "maize": {
+    "area_ha_total": 164.0,
+    "mean_area_ha_per_year": 164.0,
+    "yield_t_ha": 2.248,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 0.00058,
+    "tier": "negligible"
+   }
+  },
+  "AP": {
+   "rice": {
+    "area_ha_total": 46548311.0,
+    "mean_area_ha_per_year": 2586017.0,
+    "yield_t_ha": 3.069,
+    "yield_cv": 0.086,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.57948,
+    "tier": "major"
+   },
+   "cotton": {
+    "area_ha_total": 7421436.0,
+    "mean_area_ha_per_year": 412302.0,
+    "yield_t_ha": 2.375,
+    "yield_cv": 0.32,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.09239,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 7038512.0,
+    "mean_area_ha_per_year": 391028.0,
+    "yield_t_ha": 0.658,
+    "yield_cv": 0.211,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.08762,
+    "tier": "major"
+   },
+   "chickpea": {
+    "area_ha_total": 6381442.0,
+    "mean_area_ha_per_year": 354525.0,
+    "yield_t_ha": 1.123,
+    "yield_cv": 0.254,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.07944,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 3380398.0,
+    "mean_area_ha_per_year": 198847.0,
+    "yield_t_ha": 0.456,
+    "yield_cv": 0.249,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.04208,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 3113621.0,
+    "mean_area_ha_per_year": 172979.0,
+    "yield_t_ha": 0.434,
+    "yield_cv": 0.339,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.03876,
+    "tier": "minor"
+   },
+   "maize": {
+    "area_ha_total": 2982670.0,
+    "mean_area_ha_per_year": 165704.0,
+    "yield_t_ha": 5.543,
+    "yield_cv": 0.277,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.03713,
+    "tier": "minor"
+   },
+   "coconut": {
+    "area_ha_total": 1332907.0,
+    "mean_area_ha_per_year": 102531.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.277,
+    "years": 13,
+    "yield_units_ok": false,
+    "area_share": 0.01659,
+    "tier": "minor"
+   },
+   "mango": {
+    "area_ha_total": 1253920.0,
+    "mean_area_ha_per_year": 250784.0,
+    "yield_t_ha": 6.587,
+    "yield_cv": 0.276,
+    "years": 5,
+    "yield_units_ok": true,
+    "area_share": 0.01561,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 587709.0,
+    "mean_area_ha_per_year": 48976.0,
+    "yield_t_ha": 24.754,
+    "yield_cv": 0.298,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.00732,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 186780.0,
+    "mean_area_ha_per_year": 186780.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": false,
+    "area_share": 0.00233,
+    "tier": "minor"
+   },
+   "orange": {
+    "area_ha_total": 67138.0,
+    "mean_area_ha_per_year": 33569.0,
+    "yield_t_ha": 14.131,
+    "yield_cv": 0.176,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.00084,
+    "tier": "negligible"
+   },
+   "papaya": {
+    "area_ha_total": 26535.0,
+    "mean_area_ha_per_year": 5307.0,
+    "yield_t_ha": 100.459,
+    "yield_cv": 0.193,
+    "years": 5,
+    "yield_units_ok": true,
+    "area_share": 0.00033,
+    "tier": "negligible"
+   },
+   "pomegranate": {
+    "area_ha_total": 5018.0,
+    "mean_area_ha_per_year": 1673.0,
+    "yield_t_ha": 13.427,
+    "yield_cv": 0.217,
+    "years": 3,
+    "yield_units_ok": true,
+    "area_share": 6e-05,
+    "tier": "negligible"
+   },
+   "grapes": {
+    "area_ha_total": 1194.0,
+    "mean_area_ha_per_year": 239.0,
+    "yield_t_ha": 22.331,
+    "yield_cv": 0.226,
+    "years": 5,
+    "yield_units_ok": true,
+    "area_share": 1e-05,
+    "tier": "negligible"
+   }
+  },
+  "AR": {
+   "rice": {
+    "area_ha_total": 2209673.0,
+    "mean_area_ha_per_year": 122760.0,
+    "yield_t_ha": 1.223,
+    "yield_cv": 0.105,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.74614,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 751806.0,
+    "mean_area_ha_per_year": 41767.0,
+    "yield_t_ha": 1.405,
+    "yield_cv": 0.044,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.25386,
+    "tier": "major"
+   }
+  },
+  "AS": {
+   "rice": {
+    "area_ha_total": 54391262.0,
+    "mean_area_ha_per_year": 3021737.0,
+    "yield_t_ha": 1.598,
+    "yield_cv": 0.194,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.9301,
+    "tier": "major"
+   },
+   "jute": {
+    "area_ha_total": 1207168.0,
+    "mean_area_ha_per_year": 67065.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.102,
+    "years": 18,
+    "yield_units_ok": false,
+    "area_share": 0.02064,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 812277.0,
+    "mean_area_ha_per_year": 50767.0,
+    "yield_t_ha": 14.457,
+    "yield_cv": 0.081,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.01389,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 649488.0,
+    "mean_area_ha_per_year": 46392.0,
+    "yield_t_ha": 0.552,
+    "yield_cv": 0.073,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.01111,
+    "tier": "minor"
+   },
+   "maize": {
+    "area_ha_total": 347592.0,
+    "mean_area_ha_per_year": 20447.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.812,
+    "years": 17,
+    "yield_units_ok": false,
+    "area_share": 0.00594,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 323708.0,
+    "mean_area_ha_per_year": 23122.0,
+    "yield_t_ha": 0.558,
+    "yield_cv": 0.161,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.00554,
+    "tier": "minor"
+   },
+   "coconut": {
+    "area_ha_total": 322687.0,
+    "mean_area_ha_per_year": 20168.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.619,
+    "years": 16,
+    "yield_units_ok": false,
+    "area_share": 0.00552,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 120068.0,
+    "mean_area_ha_per_year": 8576.0,
+    "yield_t_ha": 0.506,
+    "yield_cv": 0.156,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.00205,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 118404.0,
+    "mean_area_ha_per_year": 6578.0,
+    "yield_t_ha": 0.744,
+    "yield_cv": 0.103,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00202,
+    "tier": "minor"
+   },
+   "orange": {
+    "area_ha_total": 76163.0,
+    "mean_area_ha_per_year": 12694.0,
+    "yield_t_ha": 11.629,
+    "yield_cv": 0.061,
+    "years": 6,
+    "yield_units_ok": true,
+    "area_share": 0.0013,
+    "tier": "minor"
+   },
+   "papaya": {
+    "area_ha_total": 44203.0,
+    "mean_area_ha_per_year": 7367.0,
+    "yield_t_ha": 18.161,
+    "yield_cv": 0.153,
+    "years": 6,
+    "yield_units_ok": true,
+    "area_share": 0.00076,
+    "tier": "negligible"
+   },
+   "chickpea": {
+    "area_ha_total": 39132.0,
+    "mean_area_ha_per_year": 2174.0,
+    "yield_t_ha": 0.547,
+    "yield_cv": 0.195,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00067,
+    "tier": "negligible"
+   },
+   "cotton": {
+    "area_ha_total": 26516.0,
+    "mean_area_ha_per_year": 1473.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.017,
+    "years": 18,
+    "yield_units_ok": false,
+    "area_share": 0.00045,
+    "tier": "negligible"
+   }
+  },
+  "BR": {
+   "rice": {
+    "area_ha_total": 57733396.0,
+    "mean_area_ha_per_year": 3207411.0,
+    "yield_t_ha": 1.584,
+    "yield_cv": 0.316,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.72691,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 11630046.0,
+    "mean_area_ha_per_year": 646114.0,
+    "yield_t_ha": 2.739,
+    "yield_cv": 0.237,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.14643,
+    "tier": "major"
+   },
+   "lentil": {
+    "area_ha_total": 2678615.0,
+    "mean_area_ha_per_year": 167413.0,
+    "yield_t_ha": 0.912,
+    "yield_cv": 0.168,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.03373,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 2608489.0,
+    "mean_area_ha_per_year": 163031.0,
+    "yield_t_ha": 0.576,
+    "yield_cv": 0.105,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.03284,
+    "tier": "minor"
+   },
+   "jute": {
+    "area_ha_total": 2388886.0,
+    "mean_area_ha_per_year": 132716.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.347,
+    "years": 18,
+    "yield_units_ok": false,
+    "area_share": 0.03008,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 1245963.0,
+    "mean_area_ha_per_year": 69220.0,
+    "yield_t_ha": 1.017,
+    "yield_cv": 0.157,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.01569,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 593134.0,
+    "mean_area_ha_per_year": 32952.0,
+    "yield_t_ha": 1.416,
+    "yield_cv": 0.184,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00747,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 381676.0,
+    "mean_area_ha_per_year": 22452.0,
+    "yield_t_ha": 0.801,
+    "yield_cv": 0.116,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.00481,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 162306.0,
+    "mean_area_ha_per_year": 16231.0,
+    "yield_t_ha": 17.625,
+    "yield_cv": 0.227,
+    "years": 10,
+    "yield_units_ok": true,
+    "area_share": 0.00204,
+    "tier": "minor"
+   },
+   "cotton": {
+    "area_ha_total": 243.0,
+    "mean_area_ha_per_year": 122.0,
+    "yield_t_ha": 2.023,
+    "yield_cv": 0.016,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.0,
+    "tier": "negligible"
+   }
+  },
+  "CH": {
+   "maize": {
+    "area_ha_total": 1640.0,
+    "mean_area_ha_per_year": 126.0,
+    "yield_t_ha": 2.265,
+    "yield_cv": 0.182,
+    "years": 13,
+    "yield_units_ok": true,
+    "area_share": 0.61331,
+    "tier": "major"
+   },
+   "rice": {
+    "area_ha_total": 850.0,
+    "mean_area_ha_per_year": 65.0,
+    "yield_t_ha": 4.704,
+    "yield_cv": 0.161,
+    "years": 13,
+    "yield_units_ok": true,
+    "area_share": 0.31788,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 88.0,
+    "mean_area_ha_per_year": 44.0,
+    "yield_t_ha": 1.0,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.03291,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 57.0,
+    "mean_area_ha_per_year": 11.0,
+    "yield_t_ha": 0.887,
+    "yield_cv": 0.118,
+    "years": 5,
+    "yield_units_ok": true,
+    "area_share": 0.02132,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 25.0,
+    "mean_area_ha_per_year": 6.0,
+    "yield_t_ha": 1.438,
+    "yield_cv": 0.087,
+    "years": 4,
+    "yield_units_ok": true,
+    "area_share": 0.00935,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 7.0,
+    "mean_area_ha_per_year": 2.0,
+    "yield_t_ha": 1.0,
+    "yield_cv": 0.0,
+    "years": 3,
+    "yield_units_ok": true,
+    "area_share": 0.00262,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 7.0,
+    "mean_area_ha_per_year": 2.0,
+    "yield_t_ha": 1.0,
+    "yield_cv": 0.0,
+    "years": 3,
+    "yield_units_ok": true,
+    "area_share": 0.00262,
+    "tier": "minor"
+   }
+  },
+  "CT": {
+   "rice": {
+    "area_ha_total": 58259645.0,
+    "mean_area_ha_per_year": 3883976.0,
+    "yield_t_ha": 1.392,
+    "yield_cv": 0.283,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.87916,
+    "tier": "major"
+   },
+   "chickpea": {
+    "area_ha_total": 3503655.0,
+    "mean_area_ha_per_year": 233577.0,
+    "yield_t_ha": 0.826,
+    "yield_cv": 0.224,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.05287,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 1667656.0,
+    "mean_area_ha_per_year": 111177.0,
+    "yield_t_ha": 0.293,
+    "yield_cv": 0.058,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.02517,
+    "tier": "minor"
+   },
+   "maize": {
+    "area_ha_total": 1556671.0,
+    "mean_area_ha_per_year": 103778.0,
+    "yield_t_ha": 1.484,
+    "yield_cv": 0.233,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.02349,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 784519.0,
+    "mean_area_ha_per_year": 52301.0,
+    "yield_t_ha": 0.503,
+    "yield_cv": 0.154,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.01184,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 244751.0,
+    "mean_area_ha_per_year": 16317.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.082,
+    "years": 15,
+    "yield_units_ok": false,
+    "area_share": 0.00369,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 240416.0,
+    "mean_area_ha_per_year": 16028.0,
+    "yield_t_ha": 0.258,
+    "yield_cv": 0.058,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00363,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 7903.0,
+    "mean_area_ha_per_year": 527.0,
+    "yield_t_ha": 38.818,
+    "yield_cv": 0.29,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00012,
+    "tier": "negligible"
+   },
+   "cotton": {
+    "area_ha_total": 1558.0,
+    "mean_area_ha_per_year": 111.0,
+    "yield_t_ha": 1.292,
+    "yield_cv": 0.36,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 2e-05,
+    "tier": "negligible"
+   },
+   "papaya": {
+    "area_ha_total": 256.0,
+    "mean_area_ha_per_year": 128.0,
+    "yield_t_ha": 38.629,
+    "yield_cv": 0.083,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.0,
+    "tier": "negligible"
+   }
+  },
+  "DN": {
+   "rice": {
+    "area_ha_total": 230982.0,
+    "mean_area_ha_per_year": 13587.0,
+    "yield_t_ha": 1.96,
+    "yield_cv": 0.188,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.85894,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 22012.0,
+    "mean_area_ha_per_year": 1467.0,
+    "yield_t_ha": 0.923,
+    "yield_cv": 0.182,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.08185,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 9714.0,
+    "mean_area_ha_per_year": 1388.0,
+    "yield_t_ha": 0.921,
+    "yield_cv": 0.228,
+    "years": 7,
+    "yield_units_ok": true,
+    "area_share": 0.03612,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 2774.0,
+    "mean_area_ha_per_year": 185.0,
+    "yield_t_ha": 0.882,
+    "yield_cv": 0.236,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.01032,
+    "tier": "minor"
+   },
+   "coconut": {
+    "area_ha_total": 1640.0,
+    "mean_area_ha_per_year": 182.0,
+    "yield_t_ha": null,
+    "yield_cv": 1.947,
+    "years": 9,
+    "yield_units_ok": false,
+    "area_share": 0.0061,
+    "tier": "minor"
+   },
+   "maize": {
+    "area_ha_total": 1102.0,
+    "mean_area_ha_per_year": 85.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.129,
+    "years": 13,
+    "yield_units_ok": false,
+    "area_share": 0.0041,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 691.0,
+    "mean_area_ha_per_year": 77.0,
+    "yield_t_ha": 14.378,
+    "yield_cv": 0.608,
+    "years": 9,
+    "yield_units_ok": true,
+    "area_share": 0.00257,
+    "tier": "minor"
+   }
+  },
+  "GA": {
+   "rice": {
+    "area_ha_total": 552280.0,
+    "mean_area_ha_per_year": 46023.0,
+    "yield_t_ha": 2.608,
+    "yield_cv": 0.094,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.76741,
+    "tier": "major"
+   },
+   "coconut": {
+    "area_ha_total": 153021.0,
+    "mean_area_ha_per_year": 25504.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.775,
+    "years": 6,
+    "yield_units_ok": false,
+    "area_share": 0.21263,
+    "tier": "major"
+   },
+   "mango": {
+    "area_ha_total": 9662.0,
+    "mean_area_ha_per_year": 4831.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.008,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.01343,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 4704.0,
+    "mean_area_ha_per_year": 2352.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.002,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.00654,
+    "tier": "minor"
+   }
+  },
+  "GJ": {
+   "cotton": {
+    "area_ha_total": 32970500.0,
+    "mean_area_ha_per_year": 2060656.0,
+    "yield_t_ha": 2.449,
+    "yield_cv": 0.405,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.52031,
+    "tier": "major"
+   },
+   "rice": {
+    "area_ha_total": 10942100.0,
+    "mean_area_ha_per_year": 683881.0,
+    "yield_t_ha": 1.714,
+    "yield_cv": 0.201,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.17268,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 7131300.0,
+    "mean_area_ha_per_year": 445706.0,
+    "yield_t_ha": 1.406,
+    "yield_cv": 0.304,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.11254,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 4695400.0,
+    "mean_area_ha_per_year": 293462.0,
+    "yield_t_ha": 0.872,
+    "yield_cv": 0.25,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.0741,
+    "tier": "major"
+   },
+   "mungbean": {
+    "area_ha_total": 2811300.0,
+    "mean_area_ha_per_year": 175706.0,
+    "yield_t_ha": 0.428,
+    "yield_cv": 0.278,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.04437,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 2140800.0,
+    "mean_area_ha_per_year": 133800.0,
+    "yield_t_ha": 0.85,
+    "yield_cv": 0.255,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.03378,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 1675400.0,
+    "mean_area_ha_per_year": 104712.0,
+    "yield_t_ha": 0.56,
+    "yield_cv": 0.236,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.02644,
+    "tier": "minor"
+   },
+   "mothbeans": {
+    "area_ha_total": 618800.0,
+    "mean_area_ha_per_year": 38675.0,
+    "yield_t_ha": 0.363,
+    "yield_cv": 0.455,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.00977,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 381000.0,
+    "mean_area_ha_per_year": 25400.0,
+    "yield_t_ha": 66.346,
+    "yield_cv": 0.087,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00601,
+    "tier": "minor"
+   }
+  },
+  "HP": {
+   "maize": {
+    "area_ha_total": 3584997.0,
+    "mean_area_ha_per_year": 298750.0,
+    "yield_t_ha": 2.179,
+    "yield_cv": 0.105,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.76301,
+    "tier": "major"
+   },
+   "rice": {
+    "area_ha_total": 960488.0,
+    "mean_area_ha_per_year": 80041.0,
+    "yield_t_ha": 1.48,
+    "yield_cv": 0.116,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.20442,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 125407.0,
+    "mean_area_ha_per_year": 12541.0,
+    "yield_t_ha": 0.398,
+    "yield_cv": 0.21,
+    "years": 10,
+    "yield_units_ok": true,
+    "area_share": 0.02669,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 12969.0,
+    "mean_area_ha_per_year": 1297.0,
+    "yield_t_ha": 0.765,
+    "yield_cv": 0.252,
+    "years": 10,
+    "yield_units_ok": true,
+    "area_share": 0.00276,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 8183.0,
+    "mean_area_ha_per_year": 818.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.314,
+    "years": 10,
+    "yield_units_ok": false,
+    "area_share": 0.00174,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 3235.0,
+    "mean_area_ha_per_year": 324.0,
+    "yield_t_ha": 0.395,
+    "yield_cv": 0.175,
+    "years": 10,
+    "yield_units_ok": true,
+    "area_share": 0.00069,
+    "tier": "negligible"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 2630.0,
+    "mean_area_ha_per_year": 263.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.434,
+    "years": 10,
+    "yield_units_ok": false,
+    "area_share": 0.00056,
+    "tier": "negligible"
+   },
+   "cotton": {
+    "area_ha_total": 328.0,
+    "mean_area_ha_per_year": 41.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.177,
+    "years": 8,
+    "yield_units_ok": false,
+    "area_share": 7e-05,
+    "tier": "negligible"
+   },
+   "mothbeans": {
+    "area_ha_total": 250.0,
+    "mean_area_ha_per_year": 50.0,
+    "yield_t_ha": 0.307,
+    "yield_cv": 0.215,
+    "years": 5,
+    "yield_units_ok": true,
+    "area_share": 5e-05,
+    "tier": "negligible"
+   }
+  },
+  "HR": {
+   "rice": {
+    "area_ha_total": 17371895.0,
+    "mean_area_ha_per_year": 1085743.0,
+    "yield_t_ha": 2.835,
+    "yield_cv": 0.109,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.59137,
+    "tier": "major"
+   },
+   "cotton": {
+    "area_ha_total": 8845225.0,
+    "mean_area_ha_per_year": 552827.0,
+    "yield_t_ha": 2.898,
+    "yield_cv": 0.359,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.30111,
+    "tier": "major"
+   },
+   "chickpea": {
+    "area_ha_total": 2140540.0,
+    "mean_area_ha_per_year": 133784.0,
+    "yield_t_ha": 0.813,
+    "yield_cv": 0.219,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.07287,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 339787.0,
+    "mean_area_ha_per_year": 22652.0,
+    "yield_t_ha": 0.99,
+    "yield_cv": 0.143,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.01157,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 248162.0,
+    "mean_area_ha_per_year": 16544.0,
+    "yield_t_ha": 0.353,
+    "yield_cv": 0.367,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00845,
+    "tier": "minor"
+   },
+   "maize": {
+    "area_ha_total": 239712.0,
+    "mean_area_ha_per_year": 14982.0,
+    "yield_t_ha": 2.359,
+    "yield_cv": 0.14,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.00816,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 85621.0,
+    "mean_area_ha_per_year": 5708.0,
+    "yield_t_ha": 0.816,
+    "yield_cv": 0.098,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00291,
+    "tier": "minor"
+   },
+   "mothbeans": {
+    "area_ha_total": 66088.0,
+    "mean_area_ha_per_year": 4406.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.641,
+    "years": 15,
+    "yield_units_ok": false,
+    "area_share": 0.00225,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 33848.0,
+    "mean_area_ha_per_year": 2257.0,
+    "yield_t_ha": 0.339,
+    "yield_cv": 0.311,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00115,
+    "tier": "minor"
+   },
+   "mango": {
+    "area_ha_total": 3201.0,
+    "mean_area_ha_per_year": 1600.0,
+    "yield_t_ha": 3.492,
+    "yield_cv": 1.396,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.00011,
+    "tier": "negligible"
+   },
+   "grapes": {
+    "area_ha_total": 1180.0,
+    "mean_area_ha_per_year": 590.0,
+    "yield_t_ha": null,
+    "yield_cv": 1.366,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 4e-05,
+    "tier": "negligible"
+   },
+   "banana": {
+    "area_ha_total": 206.0,
+    "mean_area_ha_per_year": 103.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 1e-05,
+    "tier": "negligible"
+   }
+  },
+  "JH": {
+   "rice": {
+    "area_ha_total": 7726361.0,
+    "mean_area_ha_per_year": 1287727.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.254,
+    "years": 6,
+    "yield_units_ok": false,
+    "area_share": 0.91414,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 471203.0,
+    "mean_area_ha_per_year": 78534.0,
+    "yield_t_ha": 1.326,
+    "yield_cv": 0.155,
+    "years": 6,
+    "yield_units_ok": true,
+    "area_share": 0.05575,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 127252.0,
+    "mean_area_ha_per_year": 18179.0,
+    "yield_t_ha": 1.405,
+    "yield_cv": 0.109,
+    "years": 7,
+    "yield_units_ok": true,
+    "area_share": 0.01506,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 101511.0,
+    "mean_area_ha_per_year": 14502.0,
+    "yield_t_ha": 0.765,
+    "yield_cv": 0.102,
+    "years": 7,
+    "yield_units_ok": true,
+    "area_share": 0.01201,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 25765.0,
+    "mean_area_ha_per_year": 3681.0,
+    "yield_t_ha": 0.736,
+    "yield_cv": 0.337,
+    "years": 7,
+    "yield_units_ok": true,
+    "area_share": 0.00305,
+    "tier": "minor"
+   }
+  },
+  "JK": {
+   "maize": {
+    "area_ha_total": 3179109.0,
+    "mean_area_ha_per_year": 317911.0,
+    "yield_t_ha": 1.493,
+    "yield_cv": 0.091,
+    "years": 10,
+    "yield_units_ok": true,
+    "area_share": 0.54052,
+    "tier": "major"
+   },
+   "rice": {
+    "area_ha_total": 2564431.0,
+    "mean_area_ha_per_year": 256443.0,
+    "yield_t_ha": 1.62,
+    "yield_cv": 0.385,
+    "years": 10,
+    "yield_units_ok": true,
+    "area_share": 0.43601,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 100382.0,
+    "mean_area_ha_per_year": 12548.0,
+    "yield_t_ha": 0.409,
+    "yield_cv": 0.079,
+    "years": 8,
+    "yield_units_ok": true,
+    "area_share": 0.01707,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 20179.0,
+    "mean_area_ha_per_year": 2242.0,
+    "yield_t_ha": 0.56,
+    "yield_cv": 0.058,
+    "years": 9,
+    "yield_units_ok": true,
+    "area_share": 0.00343,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 13110.0,
+    "mean_area_ha_per_year": 1639.0,
+    "yield_t_ha": 0.528,
+    "yield_cv": 0.55,
+    "years": 8,
+    "yield_units_ok": true,
+    "area_share": 0.00223,
+    "tier": "minor"
+   },
+   "mothbeans": {
+    "area_ha_total": 3481.0,
+    "mean_area_ha_per_year": 3481.0,
+    "yield_t_ha": 0.594,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 0.00059,
+    "tier": "negligible"
+   },
+   "lentil": {
+    "area_ha_total": 670.0,
+    "mean_area_ha_per_year": 112.0,
+    "yield_t_ha": 0.467,
+    "yield_cv": 0.049,
+    "years": 6,
+    "yield_units_ok": true,
+    "area_share": 0.00011,
+    "tier": "negligible"
+   },
+   "cotton": {
+    "area_ha_total": 222.0,
+    "mean_area_ha_per_year": 44.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.093,
+    "years": 5,
+    "yield_units_ok": false,
+    "area_share": 4e-05,
+    "tier": "negligible"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 22.0,
+    "mean_area_ha_per_year": 22.0,
+    "yield_t_ha": 0.55,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 0.0,
+    "tier": "negligible"
+   }
+  },
+  "KA": {
+   "rice": {
+    "area_ha_total": 26219882.0,
+    "mean_area_ha_per_year": 1456660.0,
+    "yield_t_ha": 2.672,
+    "yield_cv": 0.097,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.29455,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 17036770.0,
+    "mean_area_ha_per_year": 946487.0,
+    "yield_t_ha": 2.793,
+    "yield_cv": 0.141,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.19139,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 11026410.0,
+    "mean_area_ha_per_year": 612578.0,
+    "yield_t_ha": 0.527,
+    "yield_cv": 0.304,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.12387,
+    "tier": "major"
+   },
+   "chickpea": {
+    "area_ha_total": 10298814.0,
+    "mean_area_ha_per_year": 605813.0,
+    "yield_t_ha": 0.565,
+    "yield_cv": 0.188,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.1157,
+    "tier": "major"
+   },
+   "cotton": {
+    "area_ha_total": 8783925.0,
+    "mean_area_ha_per_year": 516701.0,
+    "yield_t_ha": 1.66,
+    "yield_cv": 0.353,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.09868,
+    "tier": "major"
+   },
+   "coconut": {
+    "area_ha_total": 6708655.0,
+    "mean_area_ha_per_year": 394627.0,
+    "yield_t_ha": null,
+    "yield_cv": 1.037,
+    "years": 17,
+    "yield_units_ok": false,
+    "area_share": 0.07537,
+    "tier": "major"
+   },
+   "mungbean": {
+    "area_ha_total": 6122732.0,
+    "mean_area_ha_per_year": 360161.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.397,
+    "years": 17,
+    "yield_units_ok": false,
+    "area_share": 0.06878,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 2019228.0,
+    "mean_area_ha_per_year": 126202.0,
+    "yield_t_ha": 0.303,
+    "yield_cv": 0.407,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.02268,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 577792.0,
+    "mean_area_ha_per_year": 48149.0,
+    "yield_t_ha": 18.451,
+    "yield_cv": 0.24,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.00649,
+    "tier": "minor"
+   },
+   "mango": {
+    "area_ha_total": 199525.0,
+    "mean_area_ha_per_year": 99762.0,
+    "yield_t_ha": 3.594,
+    "yield_cv": 0.253,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.00224,
+    "tier": "minor"
+   },
+   "grapes": {
+    "area_ha_total": 20052.0,
+    "mean_area_ha_per_year": 10026.0,
+    "yield_t_ha": 29.525,
+    "yield_cv": 0.011,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.00023,
+    "tier": "negligible"
+   },
+   "papaya": {
+    "area_ha_total": 1713.0,
+    "mean_area_ha_per_year": 1713.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": false,
+    "area_share": 2e-05,
+    "tier": "negligible"
+   }
+  },
+  "KL": {
+   "coconut": {
+    "area_ha_total": 15504052.0,
+    "mean_area_ha_per_year": 861336.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.263,
+    "years": 18,
+    "yield_units_ok": false,
+    "area_share": 0.72005,
+    "tier": "major"
+   },
+   "rice": {
+    "area_ha_total": 4512923.0,
+    "mean_area_ha_per_year": 265466.0,
+    "yield_t_ha": 2.391,
+    "yield_cv": 0.107,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.20959,
+    "tier": "major"
+   },
+   "banana": {
+    "area_ha_total": 924784.0,
+    "mean_area_ha_per_year": 54399.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.154,
+    "years": 17,
+    "yield_units_ok": false,
+    "area_share": 0.04295,
+    "tier": "minor"
+   },
+   "mango": {
+    "area_ha_total": 327495.0,
+    "mean_area_ha_per_year": 65499.0,
+    "yield_t_ha": 5.078,
+    "yield_cv": 0.167,
+    "years": 5,
+    "yield_units_ok": true,
+    "area_share": 0.01521,
+    "tier": "minor"
+   },
+   "coffee": {
+    "area_ha_total": 167908.0,
+    "mean_area_ha_per_year": 83954.0,
+    "yield_t_ha": 0.774,
+    "yield_cv": 0.022,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.0078,
+    "tier": "minor"
+   },
+   "papaya": {
+    "area_ha_total": 52241.0,
+    "mean_area_ha_per_year": 13060.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.302,
+    "years": 4,
+    "yield_units_ok": false,
+    "area_share": 0.00243,
+    "tier": "minor"
+   },
+   "cotton": {
+    "area_ha_total": 38616.0,
+    "mean_area_ha_per_year": 3218.0,
+    "yield_t_ha": 1.483,
+    "yield_cv": 0.109,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.00179,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 3550.0,
+    "mean_area_ha_per_year": 1183.0,
+    "yield_t_ha": 1.498,
+    "yield_cv": 0.121,
+    "years": 3,
+    "yield_units_ok": true,
+    "area_share": 0.00016,
+    "tier": "negligible"
+   },
+   "maize": {
+    "area_ha_total": 297.0,
+    "mean_area_ha_per_year": 99.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.807,
+    "years": 3,
+    "yield_units_ok": false,
+    "area_share": 1e-05,
+    "tier": "negligible"
+   }
+  },
+  "MH": {
+   "cotton": {
+    "area_ha_total": 54264046.0,
+    "mean_area_ha_per_year": 3014669.0,
+    "yield_t_ha": null,
+    "yield_cv": 2.968,
+    "years": 18,
+    "yield_units_ok": false,
+    "area_share": 0.37939,
+    "tier": "major"
+   },
+   "rice": {
+    "area_ha_total": 25672065.0,
+    "mean_area_ha_per_year": 1426226.0,
+    "yield_t_ha": 1.625,
+    "yield_cv": 0.185,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.17949,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 18664061.0,
+    "mean_area_ha_per_year": 1036892.0,
+    "yield_t_ha": 0.702,
+    "yield_cv": 0.241,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.13049,
+    "tier": "major"
+   },
+   "chickpea": {
+    "area_ha_total": 17766333.0,
+    "mean_area_ha_per_year": 987018.0,
+    "yield_t_ha": 0.687,
+    "yield_cv": 0.209,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.12421,
+    "tier": "major"
+   },
+   "mungbean": {
+    "area_ha_total": 9552408.0,
+    "mean_area_ha_per_year": 530689.0,
+    "yield_t_ha": 0.441,
+    "yield_cv": 0.27,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.06679,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 9103164.0,
+    "mean_area_ha_per_year": 535480.0,
+    "yield_t_ha": 2.117,
+    "yield_cv": 0.282,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.06364,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 7713958.0,
+    "mean_area_ha_per_year": 453762.0,
+    "yield_t_ha": 0.501,
+    "yield_cv": 0.249,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.05393,
+    "tier": "major"
+   },
+   "mango": {
+    "area_ha_total": 200507.0,
+    "mean_area_ha_per_year": 200507.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": false,
+    "area_share": 0.0014,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 57700.0,
+    "mean_area_ha_per_year": 57700.0,
+    "yield_t_ha": 62.993,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 0.0004,
+    "tier": "negligible"
+   },
+   "grapes": {
+    "area_ha_total": 36231.0,
+    "mean_area_ha_per_year": 36231.0,
+    "yield_t_ha": 26.86,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 0.00025,
+    "tier": "negligible"
+   }
+  },
+  "ML": {
+   "rice": {
+    "area_ha_total": 1885907.0,
+    "mean_area_ha_per_year": 104773.0,
+    "yield_t_ha": 1.883,
+    "yield_cv": 0.153,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.74314,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 309467.0,
+    "mean_area_ha_per_year": 17193.0,
+    "yield_t_ha": 1.606,
+    "yield_cv": 0.173,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.12195,
+    "tier": "major"
+   },
+   "cotton": {
+    "area_ha_total": 130172.0,
+    "mean_area_ha_per_year": 7232.0,
+    "yield_t_ha": 0.974,
+    "yield_cv": 0.17,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.05129,
+    "tier": "major"
+   },
+   "banana": {
+    "area_ha_total": 99366.0,
+    "mean_area_ha_per_year": 6210.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.037,
+    "years": 16,
+    "yield_units_ok": false,
+    "area_share": 0.03916,
+    "tier": "minor"
+   },
+   "jute": {
+    "area_ha_total": 80221.0,
+    "mean_area_ha_per_year": 4457.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.161,
+    "years": 18,
+    "yield_units_ok": false,
+    "area_share": 0.03161,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 14879.0,
+    "mean_area_ha_per_year": 875.0,
+    "yield_t_ha": 0.885,
+    "yield_cv": 0.224,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.00586,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 13060.0,
+    "mean_area_ha_per_year": 726.0,
+    "yield_t_ha": 0.683,
+    "yield_cv": 0.218,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00515,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 3488.0,
+    "mean_area_ha_per_year": 698.0,
+    "yield_t_ha": 0.919,
+    "yield_cv": 0.137,
+    "years": 5,
+    "yield_units_ok": true,
+    "area_share": 0.00137,
+    "tier": "minor"
+   },
+   "papaya": {
+    "area_ha_total": 1187.0,
+    "mean_area_ha_per_year": 594.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.122,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.00047,
+    "tier": "negligible"
+   }
+  },
+  "MN": {
+   "rice": {
+    "area_ha_total": 1628585.0,
+    "mean_area_ha_per_year": 148053.0,
+    "yield_t_ha": 2.352,
+    "yield_cv": 0.037,
+    "years": 11,
+    "yield_units_ok": true,
+    "area_share": 0.95033,
+    "tier": "major"
+   },
+   "banana": {
+    "area_ha_total": 43551.0,
+    "mean_area_ha_per_year": 3959.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.268,
+    "years": 11,
+    "yield_units_ok": false,
+    "area_share": 0.02541,
+    "tier": "minor"
+   },
+   "maize": {
+    "area_ha_total": 35286.0,
+    "mean_area_ha_per_year": 3208.0,
+    "yield_t_ha": 2.769,
+    "yield_cv": 0.195,
+    "years": 11,
+    "yield_units_ok": true,
+    "area_share": 0.02059,
+    "tier": "minor"
+   },
+   "papaya": {
+    "area_ha_total": 3875.0,
+    "mean_area_ha_per_year": 1938.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.007,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.00226,
+    "tier": "minor"
+   },
+   "orange": {
+    "area_ha_total": 1243.0,
+    "mean_area_ha_per_year": 1243.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": false,
+    "area_share": 0.00073,
+    "tier": "negligible"
+   },
+   "cotton": {
+    "area_ha_total": 690.0,
+    "mean_area_ha_per_year": 115.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.313,
+    "years": 6,
+    "yield_units_ok": false,
+    "area_share": 0.0004,
+    "tier": "negligible"
+   },
+   "mango": {
+    "area_ha_total": 398.0,
+    "mean_area_ha_per_year": 199.0,
+    "yield_t_ha": 5.088,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.00023,
+    "tier": "negligible"
+   },
+   "jute": {
+    "area_ha_total": 40.0,
+    "mean_area_ha_per_year": 20.0,
+    "yield_t_ha": 2.0,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 2e-05,
+    "tier": "negligible"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 40.0,
+    "mean_area_ha_per_year": 40.0,
+    "yield_t_ha": 0.5,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 2e-05,
+    "tier": "negligible"
+   }
+  },
+  "MP": {
+   "chickpea": {
+    "area_ha_total": 42071806.0,
+    "mean_area_ha_per_year": 2629488.0,
+    "yield_t_ha": 0.925,
+    "yield_cv": 0.153,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.36767,
+    "tier": "major"
+   },
+   "rice": {
+    "area_ha_total": 29618671.0,
+    "mean_area_ha_per_year": 1742275.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.357,
+    "years": 17,
+    "yield_units_ok": false,
+    "area_share": 0.25884,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 14086126.0,
+    "mean_area_ha_per_year": 828596.0,
+    "yield_t_ha": 1.595,
+    "yield_cv": 0.254,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.1231,
+    "tier": "major"
+   },
+   "cotton": {
+    "area_ha_total": 9659410.0,
+    "mean_area_ha_per_year": 568201.0,
+    "yield_t_ha": 1.038,
+    "yield_cv": 0.64,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.08441,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 6604783.0,
+    "mean_area_ha_per_year": 550399.0,
+    "yield_t_ha": 0.355,
+    "yield_cv": 0.102,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.05772,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 6040412.0,
+    "mean_area_ha_per_year": 355318.0,
+    "yield_t_ha": 0.718,
+    "yield_cv": 0.187,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.05279,
+    "tier": "major"
+   },
+   "lentil": {
+    "area_ha_total": 5483717.0,
+    "mean_area_ha_per_year": 498520.0,
+    "yield_t_ha": 0.482,
+    "yield_cv": 0.206,
+    "years": 11,
+    "yield_units_ok": true,
+    "area_share": 0.04792,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 677528.0,
+    "mean_area_ha_per_year": 84691.0,
+    "yield_t_ha": 0.315,
+    "yield_cv": 0.187,
+    "years": 8,
+    "yield_units_ok": true,
+    "area_share": 0.00592,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 150174.0,
+    "mean_area_ha_per_year": 13652.0,
+    "yield_t_ha": 44.973,
+    "yield_cv": 0.406,
+    "years": 11,
+    "yield_units_ok": true,
+    "area_share": 0.00131,
+    "tier": "minor"
+   },
+   "orange": {
+    "area_ha_total": 14835.0,
+    "mean_area_ha_per_year": 14835.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": false,
+    "area_share": 0.00013,
+    "tier": "negligible"
+   },
+   "mango": {
+    "area_ha_total": 13947.0,
+    "mean_area_ha_per_year": 6974.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.00012,
+    "tier": "negligible"
+   },
+   "jute": {
+    "area_ha_total": 4605.0,
+    "mean_area_ha_per_year": 4605.0,
+    "yield_t_ha": 1.878,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 4e-05,
+    "tier": "negligible"
+   },
+   "papaya": {
+    "area_ha_total": 1480.0,
+    "mean_area_ha_per_year": 740.0,
+    "yield_t_ha": 27.58,
+    "yield_cv": 0.246,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 1e-05,
+    "tier": "negligible"
+   },
+   "watermelon": {
+    "area_ha_total": 699.0,
+    "mean_area_ha_per_year": 699.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": false,
+    "area_share": 1e-05,
+    "tier": "negligible"
+   },
+   "grapes": {
+    "area_ha_total": 201.0,
+    "mean_area_ha_per_year": 100.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.0,
+    "tier": "negligible"
+   }
+  },
+  "MZ": {
+   "rice": {
+    "area_ha_total": 730332.0,
+    "mean_area_ha_per_year": 56179.0,
+    "yield_t_ha": 1.548,
+    "yield_cv": 0.352,
+    "years": 13,
+    "yield_units_ok": true,
+    "area_share": 0.85986,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 112666.0,
+    "mean_area_ha_per_year": 8667.0,
+    "yield_t_ha": 1.737,
+    "yield_cv": 0.354,
+    "years": 13,
+    "yield_units_ok": true,
+    "area_share": 0.13265,
+    "tier": "major"
+   },
+   "cotton": {
+    "area_ha_total": 4272.0,
+    "mean_area_ha_per_year": 356.0,
+    "yield_t_ha": 1.794,
+    "yield_cv": 0.764,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.00503,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 1312.0,
+    "mean_area_ha_per_year": 219.0,
+    "yield_t_ha": 1.152,
+    "yield_cv": 0.607,
+    "years": 6,
+    "yield_units_ok": true,
+    "area_share": 0.00154,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 362.0,
+    "mean_area_ha_per_year": 72.0,
+    "yield_t_ha": 1.092,
+    "yield_cv": 0.187,
+    "years": 5,
+    "yield_units_ok": true,
+    "area_share": 0.00043,
+    "tier": "negligible"
+   },
+   "blackgram": {
+    "area_ha_total": 186.0,
+    "mean_area_ha_per_year": 46.0,
+    "yield_t_ha": 1.235,
+    "yield_cv": 0.509,
+    "years": 4,
+    "yield_units_ok": true,
+    "area_share": 0.00022,
+    "tier": "negligible"
+   },
+   "lentil": {
+    "area_ha_total": 174.0,
+    "mean_area_ha_per_year": 29.0,
+    "yield_t_ha": 0.936,
+    "yield_cv": 0.248,
+    "years": 6,
+    "yield_units_ok": true,
+    "area_share": 0.0002,
+    "tier": "negligible"
+   },
+   "chickpea": {
+    "area_ha_total": 46.0,
+    "mean_area_ha_per_year": 46.0,
+    "yield_t_ha": 0.935,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 5e-05,
+    "tier": "negligible"
+   },
+   "coconut": {
+    "area_ha_total": 15.0,
+    "mean_area_ha_per_year": 15.0,
+    "yield_t_ha": 2.667,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 2e-05,
+    "tier": "negligible"
+   }
+  },
+  "NL": {
+   "rice": {
+    "area_ha_total": 2946040.0,
+    "mean_area_ha_per_year": 163669.0,
+    "yield_t_ha": 1.76,
+    "yield_cv": 0.185,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.71501,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 959250.0,
+    "mean_area_ha_per_year": 53292.0,
+    "yield_t_ha": 1.698,
+    "yield_cv": 0.195,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.23281,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 67541.0,
+    "mean_area_ha_per_year": 4221.0,
+    "yield_t_ha": 0.902,
+    "yield_cv": 0.196,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.01639,
+    "tier": "minor"
+   },
+   "jute": {
+    "area_ha_total": 67330.0,
+    "mean_area_ha_per_year": 3961.0,
+    "yield_t_ha": 2.559,
+    "yield_cv": 0.644,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.01634,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 24150.0,
+    "mean_area_ha_per_year": 2195.0,
+    "yield_t_ha": 0.854,
+    "yield_cv": 0.492,
+    "years": 11,
+    "yield_units_ok": true,
+    "area_share": 0.00586,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 16750.0,
+    "mean_area_ha_per_year": 1196.0,
+    "yield_t_ha": 0.948,
+    "yield_cv": 0.253,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.00407,
+    "tier": "minor"
+   },
+   "kidneybeans": {
+    "area_ha_total": 14840.0,
+    "mean_area_ha_per_year": 14840.0,
+    "yield_t_ha": 1.253,
+    "yield_cv": 0.0,
+    "years": 1,
+    "yield_units_ok": true,
+    "area_share": 0.0036,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 12130.0,
+    "mean_area_ha_per_year": 866.0,
+    "yield_t_ha": 0.866,
+    "yield_cv": 0.255,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.00294,
+    "tier": "minor"
+   },
+   "cotton": {
+    "area_ha_total": 6401.0,
+    "mean_area_ha_per_year": 457.0,
+    "yield_t_ha": 0.903,
+    "yield_cv": 1.386,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.00155,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 5840.0,
+    "mean_area_ha_per_year": 730.0,
+    "yield_t_ha": 0.807,
+    "yield_cv": 0.212,
+    "years": 8,
+    "yield_units_ok": true,
+    "area_share": 0.00142,
+    "tier": "minor"
+   }
+  },
+  "OR": {
+   "rice": {
+    "area_ha_total": 90174357.0,
+    "mean_area_ha_per_year": 4746019.0,
+    "yield_t_ha": 1.448,
+    "yield_cv": 0.248,
+    "years": 19,
+    "yield_units_ok": true,
+    "area_share": 0.89845,
+    "tier": "major"
+   },
+   "mungbean": {
+    "area_ha_total": 4703269.0,
+    "mean_area_ha_per_year": 261293.0,
+    "yield_t_ha": 0.274,
+    "yield_cv": 0.19,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.04686,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 2676847.0,
+    "mean_area_ha_per_year": 140887.0,
+    "yield_t_ha": 0.294,
+    "yield_cv": 0.116,
+    "years": 19,
+    "yield_units_ok": true,
+    "area_share": 0.02667,
+    "tier": "minor"
+   },
+   "maize": {
+    "area_ha_total": 1461725.0,
+    "mean_area_ha_per_year": 76933.0,
+    "yield_t_ha": 1.75,
+    "yield_cv": 0.304,
+    "years": 19,
+    "yield_units_ok": true,
+    "area_share": 0.01456,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 891173.0,
+    "mean_area_ha_per_year": 148529.0,
+    "yield_t_ha": 0.578,
+    "yield_cv": 0.322,
+    "years": 6,
+    "yield_units_ok": true,
+    "area_share": 0.00888,
+    "tier": "minor"
+   },
+   "jute": {
+    "area_ha_total": 172258.0,
+    "mean_area_ha_per_year": 9066.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.487,
+    "years": 19,
+    "yield_units_ok": false,
+    "area_share": 0.00172,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 165181.0,
+    "mean_area_ha_per_year": 27530.0,
+    "yield_t_ha": 0.623,
+    "yield_cv": 0.024,
+    "years": 6,
+    "yield_units_ok": true,
+    "area_share": 0.00165,
+    "tier": "minor"
+   },
+   "cotton": {
+    "area_ha_total": 77280.0,
+    "mean_area_ha_per_year": 38640.0,
+    "yield_t_ha": 1.632,
+    "yield_cv": 0.027,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.00077,
+    "tier": "negligible"
+   },
+   "lentil": {
+    "area_ha_total": 44470.0,
+    "mean_area_ha_per_year": 8894.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.105,
+    "years": 5,
+    "yield_units_ok": false,
+    "area_share": 0.00044,
+    "tier": "negligible"
+   }
+  },
+  "PB": {
+   "rice": {
+    "area_ha_total": 48099000.0,
+    "mean_area_ha_per_year": 2672167.0,
+    "yield_t_ha": 3.727,
+    "yield_cv": 0.069,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.78551,
+    "tier": "major"
+   },
+   "cotton": {
+    "area_ha_total": 9400000.0,
+    "mean_area_ha_per_year": 522222.0,
+    "yield_t_ha": 3.142,
+    "yield_cv": 0.327,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.15351,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 2662000.0,
+    "mean_area_ha_per_year": 147889.0,
+    "yield_t_ha": 3.067,
+    "yield_cv": 0.198,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.04347,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 445800.0,
+    "mean_area_ha_per_year": 24767.0,
+    "yield_t_ha": 0.758,
+    "yield_cv": 0.166,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00728,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 220900.0,
+    "mean_area_ha_per_year": 12272.0,
+    "yield_t_ha": 1.021,
+    "yield_cv": 0.172,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00361,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 196700.0,
+    "mean_area_ha_per_year": 10928.0,
+    "yield_t_ha": 0.892,
+    "yield_cv": 0.127,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00321,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 116800.0,
+    "mean_area_ha_per_year": 7300.0,
+    "yield_t_ha": 0.487,
+    "yield_cv": 0.108,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.00191,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 89600.0,
+    "mean_area_ha_per_year": 4978.0,
+    "yield_t_ha": 0.625,
+    "yield_cv": 0.147,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00146,
+    "tier": "minor"
+   },
+   "mothbeans": {
+    "area_ha_total": 2200.0,
+    "mean_area_ha_per_year": 314.0,
+    "yield_t_ha": 0.857,
+    "yield_cv": 0.208,
+    "years": 7,
+    "yield_units_ok": true,
+    "area_share": 4e-05,
+    "tier": "negligible"
+   }
+  },
+  "PY": {
+   "rice": {
+    "area_ha_total": 396196.0,
+    "mean_area_ha_per_year": 23306.0,
+    "yield_t_ha": 2.653,
+    "yield_cv": 0.146,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.81589,
+    "tier": "major"
+   },
+   "coconut": {
+    "area_ha_total": 30829.0,
+    "mean_area_ha_per_year": 2055.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.172,
+    "years": 15,
+    "yield_units_ok": false,
+    "area_share": 0.06349,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 24920.0,
+    "mean_area_ha_per_year": 1661.0,
+    "yield_t_ha": 0.433,
+    "yield_cv": 0.432,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.05132,
+    "tier": "major"
+   },
+   "mungbean": {
+    "area_ha_total": 23992.0,
+    "mean_area_ha_per_year": 1599.0,
+    "yield_t_ha": 0.318,
+    "yield_cv": 0.451,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.04941,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 4382.0,
+    "mean_area_ha_per_year": 274.0,
+    "yield_t_ha": 31.578,
+    "yield_cv": 0.203,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.00902,
+    "tier": "minor"
+   },
+   "cotton": {
+    "area_ha_total": 3885.0,
+    "mean_area_ha_per_year": 229.0,
+    "yield_t_ha": 2.06,
+    "yield_cv": 0.935,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.008,
+    "tier": "minor"
+   },
+   "mango": {
+    "area_ha_total": 1394.0,
+    "mean_area_ha_per_year": 199.0,
+    "yield_t_ha": 14.723,
+    "yield_cv": 0.441,
+    "years": 7,
+    "yield_units_ok": true,
+    "area_share": 0.00287,
+    "tier": "minor"
+   }
+  },
+  "RJ": {
+   "chickpea": {
+    "area_ha_total": 17502681.0,
+    "mean_area_ha_per_year": 1250192.0,
+    "yield_t_ha": 0.703,
+    "yield_cv": 0.2,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.262,
+    "tier": "major"
+   },
+   "mothbeans": {
+    "area_ha_total": 14448299.0,
+    "mean_area_ha_per_year": 1111408.0,
+    "yield_t_ha": 0.212,
+    "yield_cv": 0.727,
+    "years": 13,
+    "yield_units_ok": true,
+    "area_share": 0.21628,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 14366543.0,
+    "mean_area_ha_per_year": 1026182.0,
+    "yield_t_ha": 1.318,
+    "yield_cv": 0.266,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.21505,
+    "tier": "major"
+   },
+   "mungbean": {
+    "area_ha_total": 9629646.0,
+    "mean_area_ha_per_year": 740742.0,
+    "yield_t_ha": 0.281,
+    "yield_cv": 0.691,
+    "years": 13,
+    "yield_units_ok": true,
+    "area_share": 0.14415,
+    "tier": "major"
+   },
+   "cotton": {
+    "area_ha_total": 6332309.0,
+    "mean_area_ha_per_year": 452308.0,
+    "yield_t_ha": 0.877,
+    "yield_cv": 0.773,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.09479,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 1991571.0,
+    "mean_area_ha_per_year": 153198.0,
+    "yield_t_ha": 0.36,
+    "yield_cv": 0.417,
+    "years": 13,
+    "yield_units_ok": true,
+    "area_share": 0.02981,
+    "tier": "minor"
+   },
+   "rice": {
+    "area_ha_total": 1883061.0,
+    "mean_area_ha_per_year": 134504.0,
+    "yield_t_ha": 1.441,
+    "yield_cv": 0.253,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.02819,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 329233.0,
+    "mean_area_ha_per_year": 25326.0,
+    "yield_t_ha": 0.982,
+    "yield_cv": 0.161,
+    "years": 13,
+    "yield_units_ok": true,
+    "area_share": 0.00493,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 312933.0,
+    "mean_area_ha_per_year": 22352.0,
+    "yield_t_ha": 0.674,
+    "yield_cv": 0.393,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.00468,
+    "tier": "minor"
+   },
+   "watermelon": {
+    "area_ha_total": 6153.0,
+    "mean_area_ha_per_year": 3076.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 9e-05,
+    "tier": "negligible"
+   },
+   "mango": {
+    "area_ha_total": 1565.0,
+    "mean_area_ha_per_year": 782.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 2e-05,
+    "tier": "negligible"
+   },
+   "banana": {
+    "area_ha_total": 12.0,
+    "mean_area_ha_per_year": 6.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.0,
+    "tier": "negligible"
+   },
+   "grapes": {
+    "area_ha_total": 26.0,
+    "mean_area_ha_per_year": 13.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.0,
+    "tier": "negligible"
+   },
+   "orange": {
+    "area_ha_total": 53.0,
+    "mean_area_ha_per_year": 26.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.0,
+    "tier": "negligible"
+   },
+   "papaya": {
+    "area_ha_total": 294.0,
+    "mean_area_ha_per_year": 147.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.274,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.0,
+    "tier": "negligible"
+   }
+  },
+  "SK": {
+   "maize": {
+    "area_ha_total": 692234.0,
+    "mean_area_ha_per_year": 38457.0,
+    "yield_t_ha": 1.914,
+    "yield_cv": 0.658,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.70737,
+    "tier": "major"
+   },
+   "rice": {
+    "area_ha_total": 225617.0,
+    "mean_area_ha_per_year": 12534.0,
+    "yield_t_ha": 1.749,
+    "yield_cv": 0.189,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.23055,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 60748.0,
+    "mean_area_ha_per_year": 3375.0,
+    "yield_t_ha": 0.965,
+    "yield_cv": 0.754,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.06208,
+    "tier": "major"
+   }
+  },
+  "TG": {
+   "rice": {
+    "area_ha_total": 23842311.0,
+    "mean_area_ha_per_year": 1402489.0,
+    "yield_t_ha": 2.842,
+    "yield_cv": 0.126,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.39653,
+    "tier": "major"
+   },
+   "cotton": {
+    "area_ha_total": 16073767.0,
+    "mean_area_ha_per_year": 945516.0,
+    "yield_t_ha": 1.858,
+    "yield_cv": 0.259,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.26733,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 9040744.0,
+    "mean_area_ha_per_year": 531808.0,
+    "yield_t_ha": 3.315,
+    "yield_cv": 0.209,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.15036,
+    "tier": "major"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 4101345.0,
+    "mean_area_ha_per_year": 256334.0,
+    "yield_t_ha": 0.428,
+    "yield_cv": 0.288,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.06821,
+    "tier": "major"
+   },
+   "mungbean": {
+    "area_ha_total": 4006821.0,
+    "mean_area_ha_per_year": 235695.0,
+    "yield_t_ha": 0.422,
+    "yield_cv": 0.327,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.06664,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 1300351.0,
+    "mean_area_ha_per_year": 76491.0,
+    "yield_t_ha": 0.505,
+    "yield_cv": 0.3,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.02163,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 1296733.0,
+    "mean_area_ha_per_year": 76278.0,
+    "yield_t_ha": 1.09,
+    "yield_cv": 0.429,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.02157,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 245815.0,
+    "mean_area_ha_per_year": 81938.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.193,
+    "years": 3,
+    "yield_units_ok": false,
+    "area_share": 0.00409,
+    "tier": "minor"
+   },
+   "mango": {
+    "area_ha_total": 141848.0,
+    "mean_area_ha_per_year": 70924.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.296,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.00236,
+    "tier": "minor"
+   },
+   "orange": {
+    "area_ha_total": 40486.0,
+    "mean_area_ha_per_year": 20243.0,
+    "yield_t_ha": 12.087,
+    "yield_cv": 0.676,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.00067,
+    "tier": "negligible"
+   },
+   "banana": {
+    "area_ha_total": 23394.0,
+    "mean_area_ha_per_year": 1800.0,
+    "yield_t_ha": 26.008,
+    "yield_cv": 0.325,
+    "years": 13,
+    "yield_units_ok": true,
+    "area_share": 0.00039,
+    "tier": "negligible"
+   },
+   "coconut": {
+    "area_ha_total": 10592.0,
+    "mean_area_ha_per_year": 883.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.49,
+    "years": 12,
+    "yield_units_ok": false,
+    "area_share": 0.00018,
+    "tier": "negligible"
+   },
+   "grapes": {
+    "area_ha_total": 3091.0,
+    "mean_area_ha_per_year": 1546.0,
+    "yield_t_ha": 19.171,
+    "yield_cv": 0.007,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 5e-05,
+    "tier": "negligible"
+   },
+   "papaya": {
+    "area_ha_total": 564.0,
+    "mean_area_ha_per_year": 282.0,
+    "yield_t_ha": 110.629,
+    "yield_cv": 0.253,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 1e-05,
+    "tier": "negligible"
+   }
+  },
+  "TN": {
+   "rice": {
+    "area_ha_total": 32351269.0,
+    "mean_area_ha_per_year": 1903016.0,
+    "yield_t_ha": 3.066,
+    "yield_cv": 0.165,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.62778,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 4963905.0,
+    "mean_area_ha_per_year": 291994.0,
+    "yield_t_ha": 0.448,
+    "yield_cv": 0.299,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.09633,
+    "tier": "major"
+   },
+   "coconut": {
+    "area_ha_total": 3777232.0,
+    "mean_area_ha_per_year": 377723.0,
+    "yield_t_ha": null,
+    "yield_cv": 2.118,
+    "years": 10,
+    "yield_units_ok": false,
+    "area_share": 0.0733,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 2931218.0,
+    "mean_area_ha_per_year": 195415.0,
+    "yield_t_ha": 3.199,
+    "yield_cv": 0.537,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.05688,
+    "tier": "major"
+   },
+   "mungbean": {
+    "area_ha_total": 2539223.0,
+    "mean_area_ha_per_year": 149366.0,
+    "yield_t_ha": 0.424,
+    "yield_cv": 0.309,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.04927,
+    "tier": "minor"
+   },
+   "cotton": {
+    "area_ha_total": 2365029.0,
+    "mean_area_ha_per_year": 139119.0,
+    "yield_t_ha": 1.809,
+    "yield_cv": 0.264,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.04589,
+    "tier": "minor"
+   },
+   "banana": {
+    "area_ha_total": 1375126.0,
+    "mean_area_ha_per_year": 98223.0,
+    "yield_t_ha": 42.317,
+    "yield_cv": 0.155,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.02668,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 877026.0,
+    "mean_area_ha_per_year": 51590.0,
+    "yield_t_ha": 0.701,
+    "yield_cv": 0.179,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.01702,
+    "tier": "minor"
+   },
+   "mango": {
+    "area_ha_total": 226884.0,
+    "mean_area_ha_per_year": 113442.0,
+    "yield_t_ha": 6.056,
+    "yield_cv": 0.164,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.0044,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 108076.0,
+    "mean_area_ha_per_year": 6755.0,
+    "yield_t_ha": 0.708,
+    "yield_cv": 0.27,
+    "years": 16,
+    "yield_units_ok": true,
+    "area_share": 0.0021,
+    "tier": "minor"
+   },
+   "watermelon": {
+    "area_ha_total": 5459.0,
+    "mean_area_ha_per_year": 2730.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.00011,
+    "tier": "negligible"
+   },
+   "grapes": {
+    "area_ha_total": 4928.0,
+    "mean_area_ha_per_year": 2464.0,
+    "yield_t_ha": 19.352,
+    "yield_cv": 0.348,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.0001,
+    "tier": "negligible"
+   },
+   "orange": {
+    "area_ha_total": 5283.0,
+    "mean_area_ha_per_year": 2642.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.165,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.0001,
+    "tier": "negligible"
+   },
+   "pomegranate": {
+    "area_ha_total": 1165.0,
+    "mean_area_ha_per_year": 582.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 2e-05,
+    "tier": "negligible"
+   },
+   "papaya": {
+    "area_ha_total": 696.0,
+    "mean_area_ha_per_year": 348.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 1e-05,
+    "tier": "negligible"
+   },
+   "apple": {
+    "area_ha_total": 9.0,
+    "mean_area_ha_per_year": 4.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.0,
+    "years": 2,
+    "yield_units_ok": false,
+    "area_share": 0.0,
+    "tier": "negligible"
+   }
+  },
+  "TR": {
+   "rice": {
+    "area_ha_total": 4288487.0,
+    "mean_area_ha_per_year": 252264.0,
+    "yield_t_ha": 2.489,
+    "yield_cv": 0.101,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.96827,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 45259.0,
+    "mean_area_ha_per_year": 2662.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.175,
+    "years": 17,
+    "yield_units_ok": false,
+    "area_share": 0.01022,
+    "tier": "minor"
+   },
+   "jute": {
+    "area_ha_total": 21731.0,
+    "mean_area_ha_per_year": 1278.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.038,
+    "years": 17,
+    "yield_units_ok": false,
+    "area_share": 0.00491,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 18498.0,
+    "mean_area_ha_per_year": 1542.0,
+    "yield_t_ha": 0.719,
+    "yield_cv": 0.042,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.00418,
+    "tier": "minor"
+   },
+   "cotton": {
+    "area_ha_total": 17566.0,
+    "mean_area_ha_per_year": 1033.0,
+    "yield_t_ha": 1.328,
+    "yield_cv": 0.228,
+    "years": 17,
+    "yield_units_ok": true,
+    "area_share": 0.00397,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 17264.0,
+    "mean_area_ha_per_year": 1439.0,
+    "yield_t_ha": 0.607,
+    "yield_cv": 0.083,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.0039,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 10396.0,
+    "mean_area_ha_per_year": 866.0,
+    "yield_t_ha": 0.539,
+    "yield_cv": 0.065,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.00235,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 8050.0,
+    "mean_area_ha_per_year": 671.0,
+    "yield_t_ha": 0.666,
+    "yield_cv": 0.164,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.00182,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 1758.0,
+    "mean_area_ha_per_year": 146.0,
+    "yield_t_ha": 0.762,
+    "yield_cv": 0.102,
+    "years": 12,
+    "yield_units_ok": true,
+    "area_share": 0.0004,
+    "tier": "negligible"
+   }
+  },
+  "UP": {
+   "rice": {
+    "area_ha_total": 103380331.0,
+    "mean_area_ha_per_year": 5743352.0,
+    "yield_t_ha": 2.114,
+    "yield_cv": 0.09,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.67582,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 14988945.0,
+    "mean_area_ha_per_year": 832719.0,
+    "yield_t_ha": 1.5,
+    "yield_cv": 0.154,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.09799,
+    "tier": "major"
+   },
+   "chickpea": {
+    "area_ha_total": 12557954.0,
+    "mean_area_ha_per_year": 697664.0,
+    "yield_t_ha": 0.864,
+    "yield_cv": 0.242,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.08209,
+    "tier": "major"
+   },
+   "lentil": {
+    "area_ha_total": 8207558.0,
+    "mean_area_ha_per_year": 547171.0,
+    "yield_t_ha": 0.757,
+    "yield_cv": 0.138,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.05365,
+    "tier": "major"
+   },
+   "blackgram": {
+    "area_ha_total": 7103767.0,
+    "mean_area_ha_per_year": 473584.0,
+    "yield_t_ha": 0.472,
+    "yield_cv": 0.262,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.04644,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 5431681.0,
+    "mean_area_ha_per_year": 362112.0,
+    "yield_t_ha": 0.98,
+    "yield_cv": 0.207,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.03551,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 1198712.0,
+    "mean_area_ha_per_year": 79914.0,
+    "yield_t_ha": 0.49,
+    "yield_cv": 0.209,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00784,
+    "tier": "minor"
+   },
+   "cotton": {
+    "area_ha_total": 79770.0,
+    "mean_area_ha_per_year": 4986.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.807,
+    "years": 16,
+    "yield_units_ok": false,
+    "area_share": 0.00052,
+    "tier": "negligible"
+   },
+   "banana": {
+    "area_ha_total": 19546.0,
+    "mean_area_ha_per_year": 2172.0,
+    "yield_t_ha": 41.057,
+    "yield_cv": 0.08,
+    "years": 9,
+    "yield_units_ok": true,
+    "area_share": 0.00013,
+    "tier": "negligible"
+   },
+   "mothbeans": {
+    "area_ha_total": 1701.0,
+    "mean_area_ha_per_year": 243.0,
+    "yield_t_ha": 0.406,
+    "yield_cv": 0.169,
+    "years": 7,
+    "yield_units_ok": true,
+    "area_share": 1e-05,
+    "tier": "negligible"
+   },
+   "jute": {
+    "area_ha_total": 134.0,
+    "mean_area_ha_per_year": 45.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.048,
+    "years": 3,
+    "yield_units_ok": false,
+    "area_share": 0.0,
+    "tier": "negligible"
+   }
+  },
+  "UT": {
+   "rice": {
+    "area_ha_total": 4437208.0,
+    "mean_area_ha_per_year": 295814.0,
+    "yield_t_ha": 2.061,
+    "yield_cv": 0.065,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.83729,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 421217.0,
+    "mean_area_ha_per_year": 28081.0,
+    "yield_t_ha": 1.452,
+    "yield_cv": 0.146,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.07948,
+    "tier": "major"
+   },
+   "lentil": {
+    "area_ha_total": 189865.0,
+    "mean_area_ha_per_year": 12658.0,
+    "yield_t_ha": 0.603,
+    "yield_cv": 0.266,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.03583,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 170965.0,
+    "mean_area_ha_per_year": 11398.0,
+    "yield_t_ha": 0.635,
+    "yield_cv": 0.259,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.03226,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 35295.0,
+    "mean_area_ha_per_year": 2353.0,
+    "yield_t_ha": 0.505,
+    "yield_cv": 0.274,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00666,
+    "tier": "minor"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 32644.0,
+    "mean_area_ha_per_year": 2176.0,
+    "yield_t_ha": 0.669,
+    "yield_cv": 0.182,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00616,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 11755.0,
+    "mean_area_ha_per_year": 784.0,
+    "yield_t_ha": 0.735,
+    "yield_cv": 0.136,
+    "years": 15,
+    "yield_units_ok": true,
+    "area_share": 0.00222,
+    "tier": "minor"
+   },
+   "mothbeans": {
+    "area_ha_total": 556.0,
+    "mean_area_ha_per_year": 40.0,
+    "yield_t_ha": 0.422,
+    "yield_cv": 0.419,
+    "years": 14,
+    "yield_units_ok": true,
+    "area_share": 0.0001,
+    "tier": "negligible"
+   }
+  },
+  "WB": {
+   "rice": {
+    "area_ha_total": 101993454.0,
+    "mean_area_ha_per_year": 5666303.0,
+    "yield_t_ha": 2.536,
+    "yield_cv": 0.075,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.86683,
+    "tier": "major"
+   },
+   "jute": {
+    "area_ha_total": 10798065.0,
+    "mean_area_ha_per_year": 599892.0,
+    "yield_t_ha": null,
+    "yield_cv": 0.082,
+    "years": 18,
+    "yield_units_ok": false,
+    "area_share": 0.09177,
+    "tier": "major"
+   },
+   "maize": {
+    "area_ha_total": 1353616.0,
+    "mean_area_ha_per_year": 75201.0,
+    "yield_t_ha": 3.217,
+    "yield_cv": 0.233,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.0115,
+    "tier": "minor"
+   },
+   "blackgram": {
+    "area_ha_total": 1149221.0,
+    "mean_area_ha_per_year": 63846.0,
+    "yield_t_ha": 0.664,
+    "yield_cv": 0.112,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00977,
+    "tier": "minor"
+   },
+   "lentil": {
+    "area_ha_total": 1107958.0,
+    "mean_area_ha_per_year": 61553.0,
+    "yield_t_ha": 0.758,
+    "yield_cv": 0.19,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00942,
+    "tier": "minor"
+   },
+   "chickpea": {
+    "area_ha_total": 574372.0,
+    "mean_area_ha_per_year": 31910.0,
+    "yield_t_ha": 0.965,
+    "yield_cv": 0.161,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00488,
+    "tier": "minor"
+   },
+   "coconut": {
+    "area_ha_total": 304317.0,
+    "mean_area_ha_per_year": 25360.0,
+    "yield_t_ha": null,
+    "yield_cv": 2.329,
+    "years": 12,
+    "yield_units_ok": false,
+    "area_share": 0.00259,
+    "tier": "minor"
+   },
+   "mungbean": {
+    "area_ha_total": 282251.0,
+    "mean_area_ha_per_year": 15681.0,
+    "yield_t_ha": 0.53,
+    "yield_cv": 0.271,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.0024,
+    "tier": "minor"
+   },
+   "cotton": {
+    "area_ha_total": 54770.0,
+    "mean_area_ha_per_year": 3043.0,
+    "yield_t_ha": 2.472,
+    "yield_cv": 0.385,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00047,
+    "tier": "negligible"
+   },
+   "pigeonpeas": {
+    "area_ha_total": 44159.0,
+    "mean_area_ha_per_year": 2453.0,
+    "yield_t_ha": 0.904,
+    "yield_cv": 0.35,
+    "years": 18,
+    "yield_units_ok": true,
+    "area_share": 0.00038,
+    "tier": "negligible"
+   },
+   "mothbeans": {
+    "area_ha_total": 31.0,
+    "mean_area_ha_per_year": 16.0,
+    "yield_t_ha": 0.871,
+    "yield_cv": 0.007,
+    "years": 2,
+    "yield_units_ok": true,
+    "area_share": 0.0,
+    "tier": "negligible"
+   }
+  }
+ }
+}

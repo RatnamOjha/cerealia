@@ -57,8 +57,15 @@ DEFAULT_WEIGHTS = {
 }
 
 # Prior weights for crops the region demonstrably supports.
-PRIOR_MAJOR = 1.0
-PRIOR_MINOR = 0.6
+PRIOR_MAJOR = 1.0          # >= 5% of the state's sown area, or a listed major crop
+PRIOR_MINOR_STATS = 0.7    # 0.1-5% of sown area in official statistics
+PRIOR_MINOR = 0.6          # listed as a minor crop of the state
+PRIOR_NEGLIGIBLE = 0.4     # present in the record but under 0.1% of area
+
+# Empirical yield variability above which a crop counts as maximally risky.
+# Cotton's coefficient of variation is inflated by states reporting lint in
+# different units, so the conversion is capped rather than trusted unbounded.
+RISK_CV_CAP = 0.8
 
 # Agro-climatic floor, applied to fitness *before* the regional prior. When a
 # prior is available it does the hard filtering, so this only needs to catch
@@ -113,20 +120,68 @@ def _calendar() -> dict[str, Any]:
     return json.loads((DATA_DIR / "state_crop_calendar.json").read_text())["states"]
 
 
+@lru_cache(maxsize=1)
+def _crop_stats() -> dict[str, Any]:
+    """Per-state crop statistics derived from official GoI area/production data."""
+    return json.loads((DATA_DIR / "state_crop_stats.json").read_text())
+
+
+def state_stats(state_id: str | None) -> dict[str, Any]:
+    if not state_id:
+        return {}
+    return _crop_stats()["states"].get(state_id.upper(), {})
+
+
 def regional_prior(state_id: str | None) -> dict[str, float] | None:
     """Prior weight per crop for a state; None means "no regional constraint".
 
-    Returned as {crop: weight}. Crops absent from the map are not cultivated in
-    that state and are excluded from the candidate set entirely.
+    Two sources are combined, and the stronger signal wins:
+
+      1. Official area statistics (246k records, 1997-2015). Authoritative for
+         field crops -- if a state sows 79% of its area to rice, that is a fact,
+         not an opinion.
+      2. A curated horticulture list. The official dataset is field-crop
+         focused: it records no apple for Himachal at all, and puts Maharashtra
+         grapes at 0.03% of area. Ranking on sown area alone structurally buries
+         high-value crops that occupy little land, which is precisely the class
+         of crop this project exists to surface.
     """
     if not state_id:
         return None
+
+    prior: dict[str, float] = {}
+
+    for crop, rec in state_stats(state_id).items():
+        tier = rec.get("tier")
+        if tier == "major":
+            prior[crop] = PRIOR_MAJOR
+        elif tier == "minor":
+            prior[crop] = PRIOR_MINOR_STATS
+        elif tier == "negligible":
+            prior[crop] = PRIOR_NEGLIGIBLE
+
     entry = _calendar().get(state_id.upper())
-    if entry is None:
-        return None
-    prior = {c: PRIOR_MAJOR for c in entry.get("major", [])}
-    prior.update({c: PRIOR_MINOR for c in entry.get("minor", [])})
-    return prior
+    if entry:
+        for crop in entry.get("major", []):
+            prior[crop] = max(prior.get(crop, 0.0), PRIOR_MAJOR)
+        for crop in entry.get("minor", []):
+            prior[crop] = max(prior.get(crop, 0.0), PRIOR_MINOR)
+
+    return prior or None
+
+
+def prior_source(state_id: str | None, crop: str) -> str:
+    """Where this crop's regional evidence came from, for display."""
+    rec = state_stats(state_id).get(crop)
+    in_cal = False
+    entry = _calendar().get((state_id or "").upper())
+    if entry:
+        in_cal = crop in entry.get("major", []) or crop in entry.get("minor", [])
+    if rec and in_cal:
+        return "official statistics + horticulture listing"
+    if rec:
+        return "official area statistics"
+    return "horticulture listing"
 
 
 @lru_cache(maxsize=1)
@@ -202,7 +257,68 @@ def _envelope_fit(crop: str, site: SiteConditions) -> float:
     return score / total_w
 
 
-def _annual_economics(crop: str, econ: dict[str, Any]) -> dict[str, float]:
+def resolve_yield(crop: str, econ: dict[str, Any], state_id: str | None) -> dict[str, Any]:
+    """Best available yield for this crop in this state, and where it came from.
+
+    Preference order: the state's own measured yield, then the national measured
+    yield, then the curated agronomic figure. Measured yields carry real
+    regional signal -- Punjab paddy at 3.73 t/ha against Jharkhand at 0.97 t/ha
+    is a productivity gap a single national average erases entirely.
+    """
+    rec = state_stats(state_id).get(crop)
+    if rec and rec.get("yield_units_ok") and rec.get("yield_t_ha"):
+        return {
+            "yield_t_ha": float(rec["yield_t_ha"]),
+            "source": "state statistics",
+            "years": rec.get("years"),
+        }
+
+    national = _crop_stats()["national"].get(crop)
+    if national:
+        return {
+            "yield_t_ha": float(national["yield_t_ha"]),
+            "source": "national statistics",
+            "years": None,
+        }
+
+    return {"yield_t_ha": float(econ["yield_t_ha"]), "source": "curated estimate", "years": None}
+
+
+def resolve_risk(crop: str, econ: dict[str, Any], state_id: str | None) -> dict[str, Any]:
+    """Risk as measured yield volatility, falling back to the curated score.
+
+    The coefficient of variation of annual yield is what "risky crop" actually
+    means to a farmer: moth beans at CV 0.72 really do fail some years, and
+    grapes at CV 0.06 really are dependable under irrigation.
+    """
+    rec = state_stats(state_id).get(crop)
+    cv = None
+    if rec and rec.get("years", 0) and rec["years"] >= 5:
+        cv = float(rec["yield_cv"])
+    elif (nat := _crop_stats()["national"].get(crop)):
+        cv = float(nat["yield_cv"])
+
+    # Production risk and market risk are different things. Measured yield
+    # volatility says nothing about whether a perishable crop can be sold:
+    # papaya yields reliably (CV 0.19) but rots without a cold chain and
+    # crashes in price at a local glut. Blending both stops the model treating
+    # a dependable yield as a dependable income.
+    market_risk = econ["risk_score"] / 5.0
+    if cv is None:
+        return {"risk": market_risk, "yield_cv": None, "production_risk": None,
+                "market_risk": market_risk, "source": "curated estimate"}
+
+    production_risk = min(1.0, cv / RISK_CV_CAP)
+    return {
+        "risk": 0.5 * production_risk + 0.5 * market_risk,
+        "yield_cv": round(cv, 3),
+        "production_risk": round(production_risk, 3),
+        "market_risk": round(market_risk, 3),
+        "source": "measured volatility + market risk",
+    }
+
+
+def _annual_economics(crop: str, econ: dict[str, Any], state_id: str | None = None) -> dict[str, float]:
     """Revenue and cost put on a common per-hectare-per-year footing.
 
     Comparing a 70-day mung bean crop against a 30-year mango orchard on raw
@@ -210,23 +326,34 @@ def _annual_economics(crop: str, econ: dict[str, Any]) -> dict[str, float]:
     cycles fit in a year and perennials carry an amortised share of their
     establishment cost.
     """
-    revenue_per_cycle = econ["yield_t_ha"] * 10.0 * econ["price_per_quintal"]
+    y = resolve_yield(crop, econ, state_id)
+    revenue_per_cycle = y["yield_t_ha"] * 10.0 * econ["price_per_quintal"]
     opex = econ["opex_per_ha"]
     duration = max(econ["duration_days"], 1)
 
-    if econ["establishment_years"] > 0 or duration >= 300:
-        cycles_per_year = 1.0
-    else:
-        cycles_per_year = min(2.0, 365.0 / duration)
+    # Only genuinely short-duration catch crops fit two cycles in a year.
+    # Deriving this from duration alone gave jute (120 days) two harvests,
+    # which double-counted its revenue.
+    cycles_per_year = 2.0 if duration <= 75 and econ["establishment_years"] == 0 else 1.0
 
     gross = revenue_per_cycle * cycles_per_year
-    running = opex * cycles_per_year
+
+    # Field crops cost roughly in proportion to what they produce, so cost is
+    # taken per quintal where CACP publishes it. Horticulture spend is driven by
+    # labour and canopy management, so it stays per hectare.
+    cost_per_qtl = econ.get("cost_per_quintal")
+    if cost_per_qtl:
+        running = y["yield_t_ha"] * 10.0 * cost_per_qtl * cycles_per_year
+    else:
+        running = opex * cycles_per_year
 
     capex = econ.get("capex_per_ha", 0)
     amortised_capex = capex / PRODUCTIVE_YEARS.get(crop, 15) if capex else 0.0
 
     net = gross - running - amortised_capex
     return {
+        "yield_t_ha_used": round(y["yield_t_ha"], 3),
+        "yield_source": y["source"],
         "gross_revenue_per_ha_year": round(gross, 0),
         "operating_cost_per_ha_year": round(running, 0),
         "amortised_capex_per_ha_year": round(amortised_capex, 0),
@@ -380,26 +507,33 @@ def recommend(
         viable = sorted(scored, key=lambda s: s["agro_fit"], reverse=True)[:MIN_RESULTS]
 
     annual_rain = site.annual_rain
-    profits = [_annual_economics(s["crop"], s["econ"])["net_profit_per_ha_year"] for s in viable]
-    # Rank on risk-adjusted expected return, not headline profit. A crop paying
-    # Rs 6 lakh/ha that only half-fits the climate is not worth more than one
-    # paying Rs 3 lakh that thrives -- weighting profit by agro-climatic fitness
-    # stops high-value horticulture floating to the top of every single region.
-    expected = [p * s["agro_fit"] for p, s in zip(profits, viable)]
-    n_profit = _normalise(expected)
+    profits = [_annual_economics(s["crop"], s["econ"], state_id)["net_profit_per_ha_year"] for s in viable]
+    # Rank on risk-adjusted expected return, not headline profit, and discount
+    # by regional evidence as well as climate. A farmer cannot realise papaya's
+    # national yield in a district with no papaya supply chain, buyer or
+    # extension support -- so a headline figure the region cannot actually
+    # deliver should not outrank a modest one it can.
+    expected = [p * s["agro_fit"] * s["prior"] for p, s in zip(profits, viable)]
+    # Net profit per hectare runs from about Rs 10k for a pulse to Rs 7 lakh for
+    # papaya. Min-max normalising that raw range gives the single largest crop a
+    # score of 1.0 and squashes everything else to near zero, so the ranking
+    # collapses to "whichever crop has the biggest headline number". A log
+    # transform keeps the ordering while restoring proportion between tiers.
+    n_profit = _normalise([math.log1p(max(0.0, v)) for v in expected])
 
     results = []
     for i, s in enumerate(viable):
         crop, econ = s["crop"], s["econ"]
         water = _water_assessment(econ, annual_rain)
-        risk = econ["risk_score"] / 5.0
+        risk_info = resolve_risk(crop, econ, state_id)
+        risk = risk_info["risk"]
         score = (
             w["fitness"] * s["fitness"]
             + w["profit"] * n_profit[i]
             - w["water"] * water["dependence_ratio"]
             - w["risk"] * risk
         )
-        economics = _annual_economics(crop, econ)
+        economics = _annual_economics(crop, econ, state_id)
         results.append({
             "crop": crop,
             "display": econ["display"],
@@ -416,6 +550,9 @@ def recommend(
                               else "minor" if s["prior"] == PRIOR_MINOR else "unconstrained"),
             "model_confidence": round(float(s["rf_proba"]) * 100, 1),
             "risk_score": econ["risk_score"],
+            "risk": {**risk_info, "risk": round(risk, 3)},
+            "evidence": prior_source(state_id, crop),
+            "area_share": state_stats(state_id).get(crop, {}).get("area_share"),
             "establishment_years": econ["establishment_years"],
             "economics": {
                 **economics,
@@ -441,6 +578,7 @@ def recommend(
 
     best_fit = max(results, key=lambda r: r["fitness"])
     best_profit = max(results, key=lambda r: r["economics"]["net_profit_per_ha_year"])
+    measured = sum(1 for r in results if r["economics"]["yield_source"] != "curated estimate")
 
     return {
         "site": {f: getattr(site, f) for f in FEATURES},
@@ -453,6 +591,7 @@ def recommend(
             "excluded_poor_agro_fit": gated_out,
             "crops_considered": len(viable),
             "regional_prior_applied": prior is not None,
+            "crops_with_measured_yield": measured,
         },
         "recommendations": top,
         "headline": {

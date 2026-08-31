@@ -59,8 +59,8 @@ function CropCard({ rec, rank, landHa }) {
         <div className="crop-detail">
           <div className="detail-grid">
             <div>
-              <span className="k">Expected yield</span>
-              <span className="v">{e.yield_t_ha} t/ha</span>
+              <span className="k">Yield used</span>
+              <span className="v">{e.yield_t_ha_used} t/ha</span>
             </div>
             <div>
               <span className="k">Price</span>
@@ -84,6 +84,12 @@ function CropCard({ rec, rank, landHa }) {
               <span className="k">Risk-adjusted</span>
               <span className="v">{rupees(e.expected_profit_per_ha_year * landHa)}</span>
             </div>
+            {rec.risk?.yield_cv != null && (
+              <div>
+                <span className="k">Yield volatility</span>
+                <span className="v">CV {rec.risk.yield_cv}</span>
+              </div>
+            )}
             {rec.establishment_years > 0 && (
               <div className="full">
                 <span className="k">First harvest</span>
@@ -100,6 +106,29 @@ function CropCard({ rec, rank, landHa }) {
                 </span>
               </div>
             )}
+          </div>
+
+          <div className="provenance">
+            <span className="prov-title">Data sources</span>
+            <div className="prov-row">
+              <span>Yield</span>
+              <b className={e.yield_source === 'curated estimate' ? 'est' : 'real'}>
+                {e.yield_source}
+              </b>
+            </div>
+            <div className="prov-row">
+              <span>Grown here</span>
+              <b className="real">
+                {rec.evidence}
+                {rec.area_share != null && ` · ${(rec.area_share * 100).toFixed(1)}% of sown area`}
+              </b>
+            </div>
+            <div className="prov-row">
+              <span>Risk</span>
+              <b className={rec.risk?.source === 'curated estimate' ? 'est' : 'real'}>
+                {rec.risk?.source}
+              </b>
+            </div>
           </div>
 
           <h5>Why this crop</h5>
@@ -225,7 +254,8 @@ export default function RecommendationPanel({ data, loading, error, landHa, onLa
         )}
         <p className="gate-note">
           {g.excluded_not_cultivated_in_region} crops excluded as not cultivated here ·{' '}
-          {g.crops_considered} scored
+          {g.crops_considered} scored · {g.crops_with_measured_yield} using measured
+          government yield data
         </p>
       </div>
 

@@ -544,3 +544,35 @@ button { font: inherit; cursor: pointer; }
   .panel { width: 100%; border-left: none; border-top: 1px solid var(--line); }
   .map-section { min-height: 420px; }
 }
+
+/* ---------------- Data provenance ---------------- */
+
+.provenance {
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 9px 11px;
+  margin-bottom: 13px;
+}
+
+.prov-title {
+  display: block;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.prov-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  padding: 2px 0;
+}
+
+.prov-row span { color: var(--text-dim); flex-shrink: 0; }
+.prov-row b { font-weight: 600; text-align: right; }
+.prov-row b.real { color: var(--green-bright); }
+.prov-row b.est { color: var(--amber); }
