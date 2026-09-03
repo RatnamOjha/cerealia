@@ -1,0 +1,30 @@
+# Cerealia on Render — free tier, no card.
+#
+# Hugging Face is no longer an option at zero cost: Docker Spaces on free
+# cpu-basic now return 402 and require a PRO subscription. Render is the
+# remaining host that runs a container without payment details.
+#
+# The same Dockerfile serves both here and on Spaces. Render injects its own
+# PORT, which the image already honours, so nothing in the build changes.
+#
+# Deploy: render.com -> New -> Blueprint -> pick this repo. Render reads this
+# file, then prompts for GROK_API_KEY because it is marked `sync: false`.
+
+services:
+  - name: cerealia
+    type: web
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+
+    # Render restarts the service if this stops answering. It is also the
+    # endpoint the keep-awake workflow pings.
+    healthCheckPath: /api/health
+
+    envVars:
+      # Left unset here on purpose -- Render prompts for it at blueprint
+      # creation and stores it encrypted, so the key stays out of the repo.
+      # Omit it entirely and the app still runs: the chatbot falls back to the
+      # local scheme database and speech to the browser recogniser.
+      - key: GROK_API_KEY
+        sync: false

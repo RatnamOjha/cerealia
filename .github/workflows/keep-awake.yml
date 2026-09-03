@@ -1,19 +1,26 @@
-# Keep the Hugging Face Space awake.
+# Keep the Render service awake.
 #
-# Free `cpu-basic` Spaces are paused after 48 hours of inactivity and cannot
-# opt out -- `hf spaces settings --sleep-time 0` requires upgraded hardware.
-# The next visitor then waits 30-90s for a cold start, which is exactly the
-# first impression a reviewer clicking your link would get.
+# Render's free instances spin down after 15 minutes without traffic, and the
+# next visitor waits 30-60s for the container to boot. Pinging inside that
+# window keeps the timer from ever expiring.
 #
-# A request every 6 hours keeps the idle timer from ever reaching 48h.
-# Set the SPACE_URL repository variable to your Space, e.g.
-#   https://<user>-cerealia.hf.space
+# The cron asks for every 10 minutes. GitHub does not honour that precisely --
+# scheduled workflows are queued at low priority and can be delayed by 10+
+# minutes under load -- so some cold starts will still slip through. This
+# narrows the odds; it does not eliminate them. The reliable fix is a paid
+# instance that never sleeps.
+#
+# Set the APP_URL repository variable to your service, e.g.
+#   https://cerealia.onrender.com   (or your Porkbun domain once DNS resolves)
+#
+# Note: GitHub disables scheduled workflows on repos with no activity for 60
+# days. A single commit re-enables them.
 
-name: Keep Space awake
+name: Keep app awake
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -22,15 +29,15 @@ jobs:
     steps:
       - name: Ping the health endpoint
         env:
-          SPACE_URL: ${{ vars.SPACE_URL }}
+          APP_URL: ${{ vars.APP_URL }}
         run: |
-          if [ -z "$SPACE_URL" ]; then
-            echo "SPACE_URL repository variable is not set — nothing to ping."
+          if [ -z "$APP_URL" ]; then
+            echo "::error::Set the APP_URL repository variable to your Render URL."
             exit 1
           fi
-          # A sleeping Space answers slowly rather than quickly, so allow for a
-          # cold start rather than failing the run that is waking it up.
+          # A sleeping instance answers slowly rather than quickly, so allow for
+          # a cold start rather than failing the run that is waking it up.
           code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 180 \
-                 "${SPACE_URL%/}/api/health")
-          echo "GET ${SPACE_URL%/}/api/health -> $code"
+                 "${APP_URL%/}/api/health")
+          echo "GET ${APP_URL%/}/api/health -> $code"
           [ "$code" = "200" ]

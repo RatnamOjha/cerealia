@@ -1,73 +1,68 @@
-# Deploying Cerealia — zero cost
+# Deploying Cerealia
 
-One container serves both the API and the web app, so this is a single free
-service. No CORS to configure, no second host to keep awake.
+One container serves both the API and the web app, so this is a single service.
+No CORS to configure, no second host to keep awake.
 
-## Why Hugging Face Spaces
+## Why Render
 
-| | Free tier | Cold start | Card required |
+The obvious candidates mostly do not work for this app, and it is worth
+recording why so nobody re-litigates it:
+
+| | Runs the Python API? | Card required | Cold start |
 |---|---|---|---|
-| **Hugging Face Spaces** | 2 vCPU, 16 GB, unlimited | only after 48 h idle | no |
-| Render free | 512 MB | ~50 s spin-up after 15 min idle | no |
-| Fly.io / Railway | trial credits only | — | yes |
-| Vercel / Netlify | frontend only | — | no |
+| **Render (Hobby)** | yes, Docker | no | 30-60 s after 15 min idle |
+| Hugging Face Spaces | yes, but Docker Spaces now **require PRO** | no (PRO is paid) | — |
+| Netlify / GitHub Pages | **no** — static + JS/TS/Go functions only | no | — |
+| Google Cloud Run | yes | yes, and an RBI e-mandate in India | seconds |
+| Fly.io / Railway / Koyeb | free tiers ended or closed to new users | yes | — |
 
-Render's cold start is the problem: a reviewer clicking your link waits almost a
-minute staring at nothing. Spaces also suits an ML project — scikit-learn and
-pandas are already expected there.
-
-Vercel would work for the frontend, but then the backend still needs a home and
-you are maintaining two deployments plus CORS.
+The static hosts are the trap: this app is half backend. Without the API there
+are no recommendations, no chatbot and no speech — just a map that does nothing.
 
 ## Deploy
 
-```bash
-# once
-curl -LsSf https://hf.co/cli/install.sh | bash
-hf auth login          # paste a token from huggingface.co/settings/tokens
+1. Push the repo to GitHub.
+2. Sign in at [render.com](https://render.com) with GitHub — no card.
+3. **New → Blueprint**, pick this repo. Render reads `render.yaml`.
+4. It prompts for `GROK_API_KEY` (marked `sync: false`, so it is never in the
+   repo). Paste it, or skip — see below.
+5. First build takes 5-10 minutes: it builds the frontend, installs
+   scikit-learn and pandas, and trains the model.
 
-# every time
-./deploy.sh <your-hf-username>
-```
+Render redeploys automatically on every push to `main` — no CI workflow needed.
 
-The script creates the Space, uploads the source, ships your API key as a Space
-**secret** (never committed), and waits for the build. It prints the live URL.
+## Custom domain
 
-## What happens on build
+Render issues and renews TLS certificates for custom domains automatically, on
+the free plan.
 
-1. Node stage builds the frontend to `frontend/dist`.
-2. Python stage installs dependencies and **trains the model** — about a second,
-   which keeps a 5 MB binary out of version control and guarantees the deployed
-   model matches the deployed code.
-3. Uvicorn serves the API on `/api/*` and the built app on everything else.
+1. Render dashboard → your service → **Settings → Custom Domains → Add**.
+2. It shows the exact DNS records to create.
+3. At your registrar (Porkbun: **Details → DNS Records**), add them — a `CNAME`
+   for `www`, and Porkbun's `ALIAS` at the apex, pointing at the value Render
+   gives you.
+4. **Delete any `AAAA` records.** Render is IPv4-only and stray `AAAA` records
+   cause intermittent failures that are miserable to debug.
 
-## Managing it
+DNS takes minutes to a few hours. The certificate is issued once it resolves.
 
-```bash
-hf spaces logs <user>/cerealia --follow      # live logs
-hf spaces restart <user>/cerealia            # restart
-hf spaces secrets add <user>/cerealia --secrets GROK_API_KEY=...
-```
+## The sleep tradeoff
 
-## Latency
+Free instances spin down after 15 minutes idle; the next visitor waits 30-60 s.
 
-While the Space is awake there is no cold start, and the container serves the
-API and the built frontend from one origin — no cross-origin hop, and the model
-is trained at build time rather than on first request.
-
-The one real source of latency is sleep. A free `cpu-basic` Space is paused
-after 48 hours of inactivity and **cannot opt out** — `--sleep-time 0` needs
-upgraded hardware. The next visitor then waits 30-90 s for the container to wake.
-
-`.github/workflows/keep-awake.yml` prevents that by pinging `/api/health` every
-6 hours, so the idle timer never reaches 48 h. To enable it, set a `SPACE_URL`
-repository variable (Settings → Secrets and variables → Actions → Variables) to
-`https://<user>-cerealia.hf.space`. The alternative is paid hardware, which lets
-you disable sleep outright.
+`.github/workflows/keep-awake.yml` pings `/api/health` every 10 minutes to keep
+the timer from expiring — set the `APP_URL` repository variable to enable it.
+GitHub's scheduler is loose, so this narrows cold starts rather than removing
+them. A paid instance is the only way to remove them entirely.
 
 ## Without an API key
 
-The Space still runs. The chatbot falls back to local retrieval over the scheme
-database and speech falls back to the browser recogniser — both answer in Hindi.
-Everything else is unaffected, since the model, the recommendation engine and
-all the data are local to the container.
+The app still runs. The chatbot falls back to local retrieval over the scheme
+database and speech falls back to the browser recogniser — both answer in
+Hindi. The model, the recommendation engine and all the data are local to the
+container, so everything else is unaffected.
+
+## Hugging Face
+
+`deploy.sh` still works if you ever subscribe to PRO — Docker Spaces returned
+`402 Payment Required` on the free tier as of September 2026.
