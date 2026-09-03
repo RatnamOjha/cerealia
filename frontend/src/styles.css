@@ -436,9 +436,9 @@ button { font: inherit; cursor: pointer; }
   position: fixed;
   right: 20px;
   bottom: 20px;
-  width: 380px;
+  width: 430px;
   max-width: calc(100vw - 40px);
-  height: 540px;
+  height: 620px;
   max-height: calc(100vh - 90px);
   background: var(--panel);
   border: 1px solid var(--line);
@@ -668,3 +668,131 @@ button { font: inherit; cursor: pointer; }
 [lang="hi"] { line-height: 1.65; }
 .msg-text[lang="hi"] { font-size: 13.5px; }
 .chat-suggestions button[lang="hi"] { font-size: 11px; }
+
+/* ---------------- Voice stage ---------------- */
+
+.voice-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px 16px;
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(110, 207, 148, 0.1), transparent 70%),
+    var(--panel);
+}
+
+.voice-orb { position: relative; display: grid; place-items: center; width: 96px; height: 96px; }
+
+.orb-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(110, 207, 148, 0.35);
+  background: radial-gradient(circle, rgba(110, 207, 148, 0.16), transparent 68%);
+  transition: transform 90ms linear;
+}
+
+.voice-orb.processing .orb-ring {
+  border-color: rgba(224, 164, 88, 0.4);
+  background: radial-gradient(circle, rgba(224, 164, 88, 0.14), transparent 68%);
+  animation: orb-breathe 1.6s ease-in-out infinite;
+}
+
+@keyframes orb-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.09); } }
+
+.orb-core {
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #1e4038, #14282e);
+  border: 1px solid rgba(110, 207, 148, 0.4);
+  display: grid; place-items: center;
+  z-index: 1;
+}
+
+.orb-bars { display: flex; align-items: center; gap: 3px; height: 30px; }
+
+.orb-bars i {
+  width: 3.5px;
+  min-height: 4px;
+  border-radius: 2px;
+  background: var(--green-bright);
+  transition: height 70ms linear;
+}
+
+.orb-spinner {
+  width: 22px; height: 22px;
+  border: 2.5px solid rgba(224, 164, 88, 0.25);
+  border-top-color: var(--amber);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.orb-timer {
+  position: absolute;
+  bottom: -2px;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+  background: var(--panel);
+  padding: 0 6px;
+  border-radius: 999px;
+}
+
+.voice-status { margin: 0; font-size: 13px; color: var(--green-bright); font-weight: 600; }
+.voice-orb.processing ~ .voice-status { color: var(--amber); }
+.voice-interim { margin: 0; font-size: 12px; color: var(--text-dim); text-align: center; }
+
+.voice-cancel {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  border-radius: 999px;
+  padding: 3px 14px;
+  font-size: 11.5px;
+}
+.voice-cancel:hover { color: var(--red); border-color: var(--red); }
+
+.voice-error {
+  padding: 9px 14px;
+  font-size: 12px;
+  color: var(--red);
+  background: rgba(209, 104, 92, 0.1);
+  border-top: 1px solid var(--line);
+}
+
+.mic-btn.busy { opacity: 0.6; }
+
+.spoken-tag {
+  display: inline-block;
+  font-size: 9.5px;
+  color: var(--green-bright);
+  background: rgba(110, 207, 148, 0.12);
+  border-radius: 999px;
+  padding: 1px 7px;
+  margin-bottom: 3px;
+  letter-spacing: 0.3px;
+}
+
+.msg.user .spoken-tag { float: right; }
+
+.thinking-row { display: flex; align-items: center; gap: 4px; }
+.thinking-row span { font-size: 11.5px; color: var(--text-dim); padding-right: 10px; }
+
+.speak-btn.on { color: var(--green-bright); border-color: var(--green); }
+
+/* Browser speech recognition exposes no level data, so the bars carry the
+   "listening" signal themselves rather than sitting frozen. */
+.voice-orb.unmetered .orb-bars i {
+  animation: bar-dance 1.05s ease-in-out infinite;
+}
+
+.voice-orb.unmetered .orb-ring {
+  animation: orb-breathe 2s ease-in-out infinite;
+}
+
+@keyframes bar-dance {
+  0%, 100% { height: 18%; }
+  50%      { height: 84%; }
+}

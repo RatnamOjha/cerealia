@@ -112,6 +112,7 @@ export default function App() {
         open={chatOpen}
         onToggle={() => setChatOpen((o) => !o)}
         contextNote={contextNote}
+        sttServerSide={Boolean(health?.stt?.server_side)}
       />
     </div>
   )

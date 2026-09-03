@@ -6,11 +6,11 @@ import json
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
-from . import chatbot
+from . import chatbot, speech
 from .recommender import (
     FEATURES,
     SiteConditions,
@@ -58,10 +58,26 @@ class StateRequest(BaseModel):
     )
 
 
+class ChatTurn(BaseModel):
+    """One prior turn of the conversation.
+
+    `extra="ignore"` is the point of this model. The client naturally holds
+    extra state on each message -- retrieved sources, which mode answered, a
+    greeting flag -- and posting those back rejected the whole request with a
+    422, breaking the farmer's chat over a field the server never needed.
+    A chat endpoint should take the fields it understands and ignore the rest.
+    """
+
+    model_config = ConfigDict(extra="ignore")
+
+    role: str = Field(..., pattern="^(user|assistant|system)$")
+    content: str = Field("", max_length=8000)
+
+
 class ChatRequest(BaseModel):
     message: str = Field(..., min_length=1, max_length=2000)
     context_note: str | None = None
-    history: list[dict[str, str]] | None = None
+    history: list[ChatTurn] | None = None
     lang: str = Field("auto", pattern="^(auto|en|hi)$",
                       description="Reply language; 'auto' detects Devanagari")
 
@@ -74,6 +90,11 @@ def health() -> dict[str, Any]:
         "status": "ok",
         "model_trained": (MODELS_DIR / "crop_suitability.joblib").exists(),
         "chatbot_mode": "grok" if chatbot.GROK_KEY else "offline-retrieval",
+        "stt": {
+            "provider": "xai-stt" if speech.available() else "browser",
+            "server_side": speech.available(),
+            "languages": sorted(speech.SUPPORTED_LANGUAGES),
+        },
         "metrics": metrics,
     }
 
@@ -150,5 +171,26 @@ def schemes() -> dict[str, Any]:
 
 @app.post("/api/chat")
 def chat(req: ChatRequest) -> dict[str, Any]:
+    history = [t.model_dump() for t in (req.history or [])]
     return chatbot.ask(req.message, context_note=req.context_note,
-                       history=req.history, lang=req.lang)
+                       history=history, lang=req.lang)
+
+
+@app.post("/api/stt")
+async def speech_to_text(
+    audio: UploadFile = File(..., description="Recorded audio clip"),
+    language: str = Form("hi"),
+) -> dict[str, Any]:
+    """Transcribe a recorded question.
+
+    Returns 200 with `ok: false` on a recognition failure rather than an HTTP
+    error: the client needs to tell the farmer what went wrong and offer the
+    browser recogniser instead, which is easier from a normal response body.
+    """
+    data = await audio.read()
+    return speech.transcribe(
+        data,
+        filename=audio.filename or "speech.webm",
+        content_type=audio.content_type or "audio/webm",
+        language=language,
+    )

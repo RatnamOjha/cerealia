@@ -25,11 +25,16 @@ from typing import Any
 
 import httpx
 
+from . import config  # noqa: F401  -- importing loads backend/.env into os.environ
+
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
+# xAI publishes the key under either name in its own examples; accept both so a
+# key pasted from their docs works without the farmer-facing app silently
+# staying offline.
 GROK_URL = os.getenv("GROK_API_URL", "https://api.x.ai/v1/chat/completions")
 GROK_MODEL = os.getenv("GROK_MODEL", "grok-3")
-GROK_KEY = os.getenv("GROK_API_KEY", "").strip()
+GROK_KEY = (os.getenv("GROK_API_KEY") or os.getenv("XAI_API_KEY") or "").strip()
 REQUEST_TIMEOUT = float(os.getenv("GROK_TIMEOUT", "25"))
 
 SYSTEM_PROMPT = """You are KrishiMitra, an agricultural advisor for Indian farmers.
