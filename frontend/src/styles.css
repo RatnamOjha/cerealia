@@ -558,7 +558,7 @@ button { font: inherit; cursor: pointer; }
   bottom: 20px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   background: var(--green);
   color: #06120e;
   border: none;
@@ -749,21 +749,41 @@ button { font: inherit; cursor: pointer; }
   flex-shrink: 0;
   width: 38px;
   height: 38px;
+  padding: 0;
   border-radius: 50%;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   background: var(--panel-2);
-  font-size: 15px;
-  line-height: 1;
-  transition: transform 0.15s ease, background 0.15s ease;
+  color: var(--text-dim);
+  /* Flex rather than grid: a <button> wraps its children in an anonymous
+     content box that does not inherit grid alignment in Chrome, which left the
+     icon 6.5px right of centre. Flex centring applies to that box directly. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  transition: transform 0.2s var(--ease-spring), background 0.2s ease, color 0.2s ease;
 }
 
-.mic-btn:hover:not(:disabled) { border-color: var(--green); transform: scale(1.05); }
+.mic-btn:hover:not(:disabled) {
+  border-color: var(--green);
+  color: var(--green-bright);
+  transform: scale(1.06);
+}
 .mic-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
 .mic-btn.live {
   background: var(--red);
   border-color: var(--red);
+  color: #fff;
   animation: mic-pulse 1.3s ease-in-out infinite;
+}
+
+.stop-square {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: currentColor;
+  display: block;
 }
 
 @keyframes mic-pulse {
@@ -907,7 +927,9 @@ button { font: inherit; cursor: pointer; }
 .mic-btn.busy { opacity: 0.6; }
 
 .spoken-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 9.5px;
   color: var(--green-bright);
   background: rgba(110, 207, 148, 0.12);
@@ -937,4 +959,19 @@ button { font: inherit; cursor: pointer; }
 @keyframes bar-dance {
   0%, 100% { height: 18%; }
   50%      { height: 84%; }
+}
+
+.fab-icon {
+  display: grid;
+  place-items: center;
+  line-height: 0;
+}
+
+.source-chip {
+  font-size: 10.5px;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
 }

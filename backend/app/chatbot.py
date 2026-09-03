@@ -1,5 +1,15 @@
 """
-Government-scheme advisory chatbot.
+Farm advisory chatbot.
+
+Answers two kinds of question, because a farmer does not separate them:
+
+  1. "What should I grow here?" -- answered from the recommendation engine,
+     with the real ranked crops, their margins and their water needs.
+  2. "What help can I get?" -- answered from the curated scheme database.
+
+The first was originally missing, which meant the single most natural question
+a farmer could ask was the one the assistant refused, even though the rest of
+the application had just computed the answer.
 
 Design note: the chatbot is *grounded*, not free-running. Every question first
 retrieves matching schemes from our own curated dataset, and only those schemes
@@ -26,6 +36,7 @@ from typing import Any
 import httpx
 
 from . import config
+from .recommender import get_state, recommend_for_state
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
@@ -53,6 +64,19 @@ Rules you must follow:
    document to carry.
 5. Keep answers under 200 words unless the farmer asks for detail."""
 
+CROP_SYSTEM = """
+
+You are now answering a question about WHICH CROP TO GROW, not about a scheme.
+The ranked crops below were computed by this system's own recommendation engine
+from soil, climate, measured government yield data, price, water need and risk.
+
+- Use those crops and those exact figures. Do not invent crops or numbers.
+- Lead with the top recommendation and say plainly why it suits this land.
+- Mention the money (net return per hectare per year) and the irrigation need,
+  because those decide whether the farmer can actually take it on.
+- If the top crop has low climate-fit confidence, say so honestly.
+- Do not discuss schemes unless the farmer also asked about them."""
+
 HINDI_INSTRUCTION = """
 6. REPLY ENTIRELY IN HINDI, in Devanagari script. This is not optional.
    The farmer asked in Hindi and may be listening to the answer read aloud, so
@@ -65,6 +89,126 @@ HINDI_INSTRUCTION = """
 # Detecting the script is sufficient here: a farmer writing or speaking Hindi
 # produces Devanagari, and nothing else in this application does.
 DEVANAGARI = re.compile(r"[\u0900-\u097F]")
+
+# Phrases that mean "tell me what to plant" rather than "tell me about a
+# scheme". Substring matching, because Devanagari inflects with suffixes and
+# English phrasing varies far more than a keyword list can enumerate.
+CROP_INTENT = [
+    # English
+    "which crop", "what crop", "which crops", "what crops",
+    "should i grow", "should i plant", "should i sow", "can i grow",
+    "what to grow", "what to plant", "best crop", "recommend a crop",
+    "crop recommendation", "suitable crop", "grow here", "plant this season",
+    "most profitable crop", "which seed",
+    # Hindi
+    "कौन सी फसल", "कौनसी फसल", "कौन सा फसल", "कौन-सी फसल",
+    "क्या उगा", "क्या लगा", "क्या बो", "क्या खेती",
+    "फसल उगा", "फसल लगा", "फसल बो", "फसल की सलाह", "फसल चुन",
+    "बुवाई", "कौन सी खेती", "सबसे अच्छी फसल", "ज्यादा मुनाफ",
+    "कौन सी फ़सल", "क्या फसल",
+]
+
+CROP_LABELS = {
+    "en": {
+        "intro": "For {state}, these are the best-scoring crops right now:",
+        "fit": "climate fit", "net": "net", "per_year": "/ha per year",
+        "water": "water", "msp": "MSP-backed",
+        "footer": ("Ranked on risk-adjusted expected return — climate fitness, "
+                   "measured yield, price, water need and risk combined. "
+                   "Open a crop card on the left for the full breakdown."),
+        "no_state": ("Tap a state on the map first, then ask again and I will "
+                     "rank the crops for that region."),
+    },
+    "hi": {
+        "intro": "{state} के लिए इस समय सबसे उपयुक्त फसलें ये हैं:",
+        "fit": "जलवायु अनुकूलता", "net": "शुद्ध लाभ", "per_year": "/हेक्टेयर प्रति वर्ष",
+        "water": "पानी", "msp": "एमएसपी समर्थित",
+        "footer": ("यह क्रम जोखिम-समायोजित अपेक्षित आय पर आधारित है — जलवायु अनुकूलता, "
+                   "मापी गई पैदावार, भाव, पानी की ज़रूरत और जोखिम, सब मिलाकर। "
+                   "पूरा ब्यौरा बाईं ओर फसल कार्ड खोलकर देखें।"),
+        "no_state": ("पहले नक्शे पर अपना राज्य चुनिए, फिर दोबारा पूछिए — मैं उस "
+                     "क्षेत्र की फसलें क्रम से बताऊँगा।"),
+    },
+}
+
+WATER_HI = {
+    "rainfed": "बारिश पर निर्भर", "light": "थोड़ी सिंचाई",
+    "moderate": "मध्यम सिंचाई", "heavy": "अधिक सिंचाई",
+}
+
+
+def is_crop_question(query: str) -> bool:
+    """True when the farmer is asking what to plant, not about a scheme."""
+    lowered = query.lower()
+    return any(k in lowered or k in query for k in CROP_INTENT)
+
+
+def _rupees(amount: float, lang: str) -> str:
+    if amount >= 100000:
+        return f"₹{amount / 100000:.2f} लाख" if lang == "hi" else f"₹{amount / 100000:.2f} lakh"
+    return f"₹{amount:,.0f}"
+
+
+def crop_context(state_id: str, lang: str, top_n: int = 5) -> tuple[str, list[dict]]:
+    """Ranked crops for a state, as grounding text plus structured sources."""
+    result = recommend_for_state(state_id, top_n=top_n)
+    state = result["state"]
+    lines = [
+        f"State: {state['name']} ({state['zone']}, {state['soil']} soil)",
+        f"Soil: N {result['site']['N']}, P {result['site']['P']}, K {result['site']['K']}, "
+        f"pH {result['site']['ph']}; {result['rainfall_annual_mm']} mm annual rainfall",
+        "",
+        "RANKED CROPS (already computed by the recommendation engine — use these "
+        "exact figures, do not invent others):",
+    ]
+    sources = []
+    for i, rec in enumerate(result["recommendations"], 1):
+        econ = rec["economics"]
+        name = rec["display"]
+        if lang == "hi":
+            name = f"{rec.get('display_hi') or rec['display']}"
+        lines.append(
+            f"{i}. {rec['display']} — climate fit {rec['agro_fit_pct']}% ({rec['confidence']}), "
+            f"net ₹{econ['net_profit_per_ha_year']:,.0f}/ha/year, "
+            f"yield {econ['yield_t_ha_used']} t/ha ({econ['yield_source']}), "
+            f"water: {rec['water']['label']}"
+            + (", MSP-backed" if rec["msp_backed"] else "")
+        )
+        sources.append({"name": name, "portal": ""})
+    lines.append("")
+    lines.append(
+        "Explain the top two or three in plain language: why they suit this soil "
+        "and climate, what they earn, and what irrigation they need."
+    )
+    return "\n".join(lines), sources
+
+
+def _offline_crop_answer(state_id: str, lang: str, top_n: int = 5) -> tuple[str, list[dict]]:
+    """Ranked crops rendered directly, with no model involved."""
+    L = CROP_LABELS.get(lang, CROP_LABELS["en"])
+    result = recommend_for_state(state_id, top_n=top_n)
+    state_name = result["state"]["name"]
+
+    out = [L["intro"].format(state=state_name), ""]
+    sources = []
+    for i, rec in enumerate(result["recommendations"], 1):
+        econ = rec["economics"]
+        name = rec.get("display_hi") if lang == "hi" else None
+        name = name or rec["display"]
+        water = rec["water"]["verdict"]
+        water_txt = WATER_HI.get(water, water) if lang == "hi" else rec["water"]["label"]
+        tag = f" · {L['msp']}" if rec["msp_backed"] else ""
+        out.append(f"**{i}. {name}**{tag}")
+        out.append(
+            f"- {L['fit']}: {rec['agro_fit_pct']}% ({rec['confidence']})"
+        )
+        out.append(
+            f"- {L['net']}: {_rupees(econ['net_profit_per_ha_year'], lang)}{L['per_year']}"
+        )
+        out.append(f"- {L['water']}: {water_txt}\n")
+        sources.append({"name": name, "portal": ""})
+    out.append(f"_{L['footer']}_")
+    return "\n".join(out), sources
 
 
 @lru_cache(maxsize=1)
@@ -192,6 +336,7 @@ def ask(
     context_note: str | None = None,
     history: list[dict[str, str]] | None = None,
     lang: str = "auto",
+    state_id: str | None = None,
 ) -> dict[str, Any]:
     """Answer a farmer's question about government schemes.
 
@@ -205,25 +350,57 @@ def ask(
     if resolved not in ("en", "hi"):
         resolved = "en"
 
-    schemes = retrieve(query, k=3)
-    sources = [
-        {"name": _field(s, "name", resolved), "portal": s["portal"]} for s in schemes
-    ]
+    # --- crop questions go to the recommendation engine, not the schemes ----
+    crop_mode = is_crop_question(query)
+    if crop_mode:
+        if not (state_id and get_state(state_id)):
+            L = CROP_LABELS.get(resolved, CROP_LABELS["en"])
+            return {
+                "answer": L["no_state"],
+                "sources": [],
+                "mode": "needs-state",
+                "topic": "crops",
+                "lang": resolved,
+            }
+        try:
+            grounding, sources = crop_context(state_id, resolved)
+        except (KeyError, FileNotFoundError) as exc:
+            return {
+                "answer": str(exc),
+                "sources": [],
+                "mode": "error",
+                "topic": "crops",
+                "lang": resolved,
+            }
+        schemes = []
+    else:
+        schemes = retrieve(query, k=3)
+        sources = [
+            {"name": _field(s, "name", resolved), "portal": s["portal"]} for s in schemes
+        ]
+        grounding = None
 
     if not GROK_KEY:
+        if crop_mode:
+            answer, sources = _offline_crop_answer(state_id, resolved)
+        else:
+            answer = _offline_answer(query, schemes, resolved)
         return {
-            "answer": _offline_answer(query, schemes, resolved),
+            "answer": answer,
             "sources": sources,
             "mode": "offline-retrieval",
+            "topic": "crops" if crop_mode else "schemes",
             "lang": resolved,
-            "note": "No API key set — served from the local scheme database.",
+            "note": "No API key set — served from local data.",
         }
 
     user_parts = []
     if context_note:
         user_parts.append(f"Farmer's current situation: {context_note}")
     user_parts.append(f"Question: {query}")
-    if schemes:
+    if crop_mode:
+        user_parts.append(grounding)
+    elif schemes:
         user_parts.append(
             "Relevant verified scheme information:\n\n" + _context_block(schemes, resolved)
         )
@@ -233,7 +410,9 @@ def ask(
             "and redirect them to their block agriculture office."
         )
 
-    system = SYSTEM_PROMPT + (HINDI_INSTRUCTION if resolved == "hi" else "")
+    system_extra = CROP_SYSTEM if crop_mode else ""
+
+    system = SYSTEM_PROMPT + system_extra + (HINDI_INSTRUCTION if resolved == "hi" else "")
     messages = [{"role": "system", "content": system}]
     for turn in (history or [])[-6:]:
         if turn.get("role") in {"user", "assistant"} and turn.get("content"):
@@ -260,9 +439,13 @@ def ask(
         # A Hindi question answered in English is a failure the farmer cannot
         # work around, so fall back to the Hindi template rather than ship it.
         if resolved == "hi" and not DEVANAGARI.search(answer):
+            hi_fallback, hi_sources = (
+                _offline_crop_answer(state_id, "hi") if crop_mode
+                else (_offline_answer(query, schemes, "hi"), sources)
+            )
             return {
-                "answer": _offline_answer(query, schemes, "hi"),
-                "sources": sources,
+                "answer": hi_fallback,
+                "sources": hi_sources,
                 "mode": "offline-fallback",
                 "lang": "hi",
                 "note": "Model replied in English to a Hindi question; served the Hindi template instead.",
@@ -273,13 +456,19 @@ def ask(
             "mode": "llm",
             "provider": PROVIDER_LABEL,
             "model": GROK_MODEL,
+            "topic": "crops" if crop_mode else "schemes",
             "lang": resolved,
         }
     except Exception as exc:  # noqa: BLE001 - degrade rather than fail the request
+        if crop_mode:
+            fallback, sources = _offline_crop_answer(state_id, resolved)
+        else:
+            fallback = _offline_answer(query, schemes, resolved)
         return {
-            "answer": _offline_answer(query, schemes, resolved),
+            "answer": fallback,
             "sources": sources,
             "mode": "offline-fallback",
+            "topic": "crops" if crop_mode else "schemes",
             "lang": resolved,
             "note": f"{PROVIDER_LABEL} unavailable ({type(exc).__name__}); served from the local database.",
         }

@@ -3,12 +3,13 @@ import { sendChat, transcribe } from '../api'
 import { useSpeechInput, useSpeechOutput } from '../useSpeech'
 import { useAudioRecorder } from '../useRecorder'
 import VoiceOrb from './VoiceOrb'
+import MicIcon from './MicIcon'
 
 const COPY = {
   en: {
     title: 'Scheme Advisor',
     greeting:
-      'Namaste! Ask me about government schemes — crop insurance, loans, irrigation subsidies, soil testing, MSP. Tap the mic and just speak.',
+      'Namaste! Ask me what to grow on your land, or about government schemes — insurance, loans, irrigation subsidies, MSP. Tap the mic and just speak.',
     placeholder: 'Ask about a scheme…',
     send: 'Send',
     fab: 'Ask by voice',
@@ -27,16 +28,16 @@ const COPY = {
     sttServer: 'Grok speech recognition',
     sttBrowser: 'Browser speech recognition',
     suggestions: [
-      'What subsidy can I get for drip irrigation?',
+      'Which crop should I grow here?',
       'How do I insure my crop against drought?',
+      'What subsidy can I get for drip irrigation?',
       'I need a loan to buy seeds. What are my options?',
-      'How do I get my soil tested for free?',
     ],
   },
   hi: {
     title: 'योजना सलाहकार',
     greeting:
-      'नमस्ते! सरकारी योजनाओं के बारे में पूछिए — फसल बीमा, कर्ज़, सिंचाई सब्सिडी, मिट्टी जाँच, एमएसपी। माइक दबाइए और बस बोलिए।',
+      'नमस्ते! पूछिए कि आपकी ज़मीन पर कौन सी फसल उगाएँ, या सरकारी योजनाओं के बारे में — बीमा, कर्ज़, सिंचाई सब्सिडी, एमएसपी। माइक दबाइए और बस बोलिए।',
     placeholder: 'योजना के बारे में पूछें…',
     send: 'भेजें',
     fab: 'बोलकर पूछें',
@@ -55,10 +56,10 @@ const COPY = {
     sttServer: 'Grok आवाज़ पहचान',
     sttBrowser: 'ब्राउज़र आवाज़ पहचान',
     suggestions: [
-      'ड्रिप सिंचाई पर कितनी सब्सिडी मिलती है?',
+      'मैं यहाँ कौन सी फसल उगाऊँ?',
       'सूखे से फसल बर्बाद हो जाए तो बीमा कैसे मिलेगा?',
+      'ड्रिप सिंचाई पर कितनी सब्सिडी मिलती है?',
       'बीज खरीदने के लिए कर्ज़ कहाँ से लूँ?',
-      'मिट्टी की जाँच मुफ़्त में कैसे कराएँ?',
     ],
   },
 }
@@ -71,7 +72,7 @@ const ERRORS = {
   'mic-failed': { en: 'Could not open the microphone.', hi: 'माइक चालू नहीं हो सका।' },
 }
 
-export default function ChatPanel({ open, onToggle, contextNote, sttServerSide }) {
+export default function ChatPanel({ open, onToggle, contextNote, stateId, stateName, sttServerSide }) {
   const [lang, setLang] = useState('hi')
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
@@ -125,6 +126,7 @@ export default function ChatPanel({ open, onToggle, contextNote, sttServerSide }
         contextNote,
         next.slice(-6).map((m) => ({ role: m.role, content: m.content })),
         lang,
+        stateId,
       )
       setMode(res.mode)
       const reply = {
@@ -193,7 +195,7 @@ export default function ChatPanel({ open, onToggle, contextNote, sttServerSide }
   return (
     <>
       <button className={`chat-fab ${open ? 'hidden' : ''}`} onClick={onToggle} aria-label={t.fab}>
-        <span className="fab-icon">🎙</span>
+        <span className="fab-icon"><MicIcon size={16} /></span>
         <span className="fab-text">{t.fab}</span>
       </button>
 
@@ -222,7 +224,9 @@ export default function ChatPanel({ open, onToggle, contextNote, sttServerSide }
         <div className="chat-body">
           {messages.map((m, i) => (
             <div key={i} className={`msg ${m.role} ${m.error ? 'error' : ''}`}>
-              {m.spoken && <span className="spoken-tag">🎙 {t.youSaid}</span>}
+              {m.spoken && (
+                <span className="spoken-tag"><MicIcon size={10} /> {t.youSaid}</span>
+              )}
               <div className="msg-text" lang={m.lang === 'hi' ? 'hi' : 'en'}>{m.content}</div>
               {m.role === 'assistant' && !m.error && voice.supported && (
                 <button
@@ -237,11 +241,25 @@ export default function ChatPanel({ open, onToggle, contextNote, sttServerSide }
               )}
               {m.sources?.length > 0 && (
                 <div className="msg-sources">
-                  {m.sources.map((s) => (
-                    <a key={s.portal} href={s.portal} target="_blank" rel="noreferrer">
-                      {s.name.split(' (')[0]}
-                    </a>
-                  ))}
+                  {m.sources.map((src, si) =>
+                    // Crop sources carry no portal, so they render as plain
+                    // chips rather than links to nowhere. The index keeps keys
+                    // unique where several sources share an empty portal.
+                    src.portal ? (
+                      <a
+                        key={`${src.portal}-${si}`}
+                        href={src.portal}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {src.name.split(' (')[0]}
+                      </a>
+                    ) : (
+                      <span key={`${src.name}-${si}`} className="source-chip">
+                        {src.name.split(' (')[0]}
+                      </span>
+                    ),
+                  )}
                 </div>
               )}
             </div>
@@ -294,7 +312,7 @@ export default function ChatPanel({ open, onToggle, contextNote, sttServerSide }
             title={micAvailable ? t.micHint : t.micUnsupported}
             aria-label={t.micHint}
           >
-            {listening ? '■' : '🎙'}
+            {listening ? <span className="stop-square" /> : <MicIcon />}
           </button>
           <input
             value={input}

@@ -112,6 +112,8 @@ export default function App() {
         open={chatOpen}
         onToggle={() => setChatOpen((o) => !o)}
         contextNote={contextNote}
+        stateId={selectedId}
+        stateName={recommendation?.state?.name}
         sttServerSide={Boolean(health?.stt?.server_side)}
       />
     </div>

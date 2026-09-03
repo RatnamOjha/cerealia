@@ -32,8 +32,10 @@ export async function transcribe(blob, mimeType, lang = 'hi') {
   return res.json()
 }
 
-export const sendChat = (message, contextNote, history, lang = 'auto') =>
+export const sendChat = (message, contextNote, history, lang = 'auto', stateId = null) =>
   request('/api/chat', {
     method: 'POST',
-    body: JSON.stringify({ message, context_note: contextNote, history, lang }),
+    body: JSON.stringify({
+      message, context_note: contextNote, history, lang, state_id: stateId,
+    }),
   })

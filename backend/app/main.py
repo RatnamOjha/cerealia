@@ -80,6 +80,9 @@ class ChatRequest(BaseModel):
     history: list[ChatTurn] | None = None
     lang: str = Field("auto", pattern="^(auto|en|hi)$",
                       description="Reply language; 'auto' detects Devanagari")
+    state_id: str | None = Field(
+        None, max_length=4,
+        description="Selected state, so 'what should I grow?' can be answered")
 
 
 @app.get("/api/health")
@@ -174,7 +177,7 @@ def schemes() -> dict[str, Any]:
 def chat(req: ChatRequest) -> dict[str, Any]:
     history = [t.model_dump() for t in (req.history or [])]
     return chatbot.ask(req.message, context_note=req.context_note,
-                       history=history, lang=req.lang)
+                       history=history, lang=req.lang, state_id=req.state_id)
 
 
 @app.post("/api/stt")
