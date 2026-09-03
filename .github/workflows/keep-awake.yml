@@ -31,9 +31,11 @@ jobs:
         env:
           APP_URL: ${{ vars.APP_URL }}
         run: |
+          # Skip rather than fail when unconfigured: this runs every 10 minutes,
+          # and a red cross on the repo every 10 minutes is noise, not a signal.
           if [ -z "$APP_URL" ]; then
-            echo "::error::Set the APP_URL repository variable to your Render URL."
-            exit 1
+            echo "::notice::APP_URL is not set — nothing to ping. Set it in Settings → Secrets and variables → Actions → Variables."
+            exit 0
           fi
           # A sleeping instance answers slowly rather than quickly, so allow for
           # a cold start rather than failing the run that is waking it up.
