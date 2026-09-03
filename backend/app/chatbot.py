@@ -25,19 +25,21 @@ from typing import Any
 
 import httpx
 
-from . import config  # noqa: F401  -- importing loads backend/.env into os.environ
+from . import config
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
-# xAI publishes the key under either name in its own examples; accept both so a
-# key pasted from their docs works without the farmer-facing app silently
-# staying offline.
-GROK_URL = os.getenv("GROK_API_URL", "https://api.x.ai/v1/chat/completions")
-GROK_MODEL = os.getenv("GROK_MODEL", "grok-3")
-GROK_KEY = (os.getenv("GROK_API_KEY") or os.getenv("XAI_API_KEY") or "").strip()
-REQUEST_TIMEOUT = float(os.getenv("GROK_TIMEOUT", "25"))
+# Endpoint and model follow whichever provider the key belongs to. Both expose
+# an OpenAI-compatible chat completions API, so only the URL and model differ.
+_CFG = config.provider_config()
+GROK_URL = _CFG["chat_url"]
+GROK_MODEL = _CFG["chat_model"]
+GROK_KEY = config.api_key()
+PROVIDER = _CFG["provider"]
+PROVIDER_LABEL = _CFG["label"]
+REQUEST_TIMEOUT = float(os.getenv("CHAT_TIMEOUT") or os.getenv("GROK_TIMEOUT") or "25")
 
-SYSTEM_PROMPT = """You are KrishiMitra, an agricultural advisor for Indian farmers.
+SYSTEM_PROMPT = """You are Cerealia, an agricultural advisor for Indian farmers.
 
 Rules you must follow:
 1. Answer ONLY from the scheme information provided in the context below. If the
@@ -214,7 +216,7 @@ def ask(
             "sources": sources,
             "mode": "offline-retrieval",
             "lang": resolved,
-            "note": "GROK_API_KEY not set — served from the local scheme database.",
+            "note": "No API key set — served from the local scheme database.",
         }
 
     user_parts = []
@@ -268,7 +270,8 @@ def ask(
         return {
             "answer": answer,
             "sources": sources,
-            "mode": "grok",
+            "mode": "llm",
+            "provider": PROVIDER_LABEL,
             "model": GROK_MODEL,
             "lang": resolved,
         }
@@ -278,7 +281,7 @@ def ask(
             "sources": sources,
             "mode": "offline-fallback",
             "lang": resolved,
-            "note": f"Grok API unavailable ({type(exc).__name__}); served from the local database.",
+            "note": f"{PROVIDER_LABEL} unavailable ({type(exc).__name__}); served from the local database.",
         }
 
 

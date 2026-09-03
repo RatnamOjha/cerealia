@@ -1,7 +1,9 @@
-# KrishiMitra — AI Crop Recommendation & Advisory for Indian Farmers
+# Cerealia — AI Crop Intelligence for Farmers
 
-An interactive platform where a farmer picks their region on a 3D globe / map of
-India and gets a ranked set of crops to grow — scored not just on whether the
+*Named for the Roman festival of Ceres, goddess of grain and harvest — the same root that gives us the word “cereal”.*
+
+An interactive platform where a farmer picks their region on a 3D globe and gets
+a ranked set of crops to grow — scored not just on whether the
 crop *can* grow there, but on what it is actually worth growing, given soil,
 climate, water availability, market price and risk. A grounded AI assistant then
 answers questions about the government schemes that apply.
@@ -167,22 +169,29 @@ and the demo runs with no network.
 ## Running it
 
 ```bash
-# Backend
-cd backend
-python3 -m venv .venv && ./.venv/bin/python -m pip install -r requirements.txt
-./.venv/bin/python train.py                 # ~1s, writes models/
-./.venv/bin/python -m uvicorn app.main:app --reload --port 8010
-
-# Frontend
-cd frontend && npm install && npm run dev    # http://localhost:5173
+./dev.sh
 ```
 
-Optional — enable the Grok-backed chatbot:
+That is the whole thing. It creates the virtual environment, installs
+dependencies, trains the model, starts the API and the web app, and prints a
+status board — skipping any step already done. Ctrl-C stops both.
+
+Optional — enable the AI chatbot and server-side speech recognition:
 
 ```bash
-cp backend/.env.example backend/.env
-# add GROK_API_KEY from https://console.x.ai
+cp backend/.env.example .env
+# paste your key:  GROK_API_KEY=...
 ```
+
+The provider is detected from the key prefix, so either works:
+
+| Key prefix | Provider | Chat | Speech-to-text |
+|---|---|---|---|
+| `gsk_…` | [Groq](https://console.groq.com) | gpt-oss-120b | Whisper large v3 turbo — **free**, 2,000/day |
+| `xai-…` | [xAI](https://console.x.ai) | grok-3 | xAI STT — billed per hour |
+
+Without a key the app still runs: the chatbot falls back to local retrieval over
+the scheme database and speech falls back to the browser recogniser.
 
 ### API
 

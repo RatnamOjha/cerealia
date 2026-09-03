@@ -1,22 +1,30 @@
 # Demo runbook
 
-Two terminals. Nothing here needs the internet.
+## One command
 
-## 1. Backend
 ```bash
-cd ~/minor_proj/backend
-./.venv/bin/python -m uvicorn app.main:app --port 8010
+cd ~/minor_proj && ./dev.sh
 ```
-Check: <http://localhost:8010/api/health> → `"status":"ok"`, `"model_trained":true`
 
-If the model is missing: `./.venv/bin/python train.py` (~1 second).
+Starts the API and the web app together and prints a status board:
 
-## 2. Frontend
-```bash
-cd ~/minor_proj/frontend
-npm run dev
 ```
-Opens <http://localhost:5173>
+Cerealia
+─────────────────────────────────────────
+  ✓ API        http://localhost:8010
+  ✓ Model      99.5% CV
+  ✓ Chatbot    Groq · openai/gpt-oss-120b
+  ✓ Speech     Groq · whisper-large-v3-turbo
+─────────────────────────────────────────
+  Open  http://localhost:5173
+```
+
+Ctrl-C stops both. On a fresh clone it also creates the virtual environment,
+installs dependencies and trains the model — all skipped when already present.
+
+A `○` instead of `✓` next to Chatbot or Speech means no API key was found; the
+app still works, falling back to the local scheme database and the browser
+recogniser. Ports are configurable: `API_PORT=8011 WEB_PORT=5174 ./dev.sh`.
 
 ## Demo path (about 3 minutes)
 

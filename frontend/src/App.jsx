@@ -74,7 +74,7 @@ export default function App() {
     <div className="app">
       <header className="topbar">
         <div className="brand" onClick={() => setView('globe')}>
-          Krishi<span>Mitra</span>
+          Cere<span>alia</span>
         </div>
         <nav className="topbar-meta">
           {health?.metrics && (

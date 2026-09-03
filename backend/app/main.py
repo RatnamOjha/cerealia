@@ -1,4 +1,4 @@
-"""FastAPI service for KrishiMitra."""
+"""FastAPI service for Cerealia."""
 
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ from .recommender import (
 )
 
 app = FastAPI(
-    title="KrishiMitra API",
+    title="Cerealia API",
     description="AI-based crop recommendation and scheme advisory for Indian farmers",
     version="0.1.0",
 )
@@ -89,12 +89,13 @@ def health() -> dict[str, Any]:
     return {
         "status": "ok",
         "model_trained": (MODELS_DIR / "crop_suitability.joblib").exists(),
-        "chatbot_mode": "grok" if chatbot.GROK_KEY else "offline-retrieval",
-        "stt": {
-            "provider": "xai-stt" if speech.available() else "browser",
-            "server_side": speech.available(),
-            "languages": sorted(speech.SUPPORTED_LANGUAGES),
+        "chatbot_mode": "llm" if chatbot.GROK_KEY else "offline-retrieval",
+        "provider": {
+            "name": chatbot.PROVIDER,
+            "label": chatbot.PROVIDER_LABEL,
+            "chat_model": chatbot.GROK_MODEL,
         },
+        "stt": speech.describe(),
         "metrics": metrics,
     }
 

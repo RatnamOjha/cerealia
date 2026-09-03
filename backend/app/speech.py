@@ -1,5 +1,10 @@
 """
-Speech-to-text for Hindi and English, via the xAI (Grok) STT API.
+Speech-to-text for Hindi and English.
+
+Supports two providers, chosen automatically from the API key prefix:
+Groq (`gsk_...`, Whisper, free tier) and xAI (`xai-...`, billed per hour).
+They differ in the multipart fields they expect, which is the only reason
+this needs a branch at all.
 
 Why this runs server-side rather than in the browser:
 
@@ -22,10 +27,9 @@ from typing import Any
 
 import httpx
 
-from . import config  # noqa: F401  -- loads backend/.env
+from . import config
 
-STT_URL = os.getenv("GROK_STT_URL", "https://api.x.ai/v1/stt")
-STT_TIMEOUT = float(os.getenv("GROK_STT_TIMEOUT", "45"))
+STT_TIMEOUT = float(os.getenv("STT_TIMEOUT") or os.getenv("GROK_STT_TIMEOUT") or "45")
 
 # Roughly 60 seconds of Opus at typical MediaRecorder bitrates. A farmer asking
 # a question does not need more, and a cap keeps a runaway recording from
@@ -36,11 +40,23 @@ SUPPORTED_LANGUAGES = {"hi", "en"}
 
 
 def _key() -> str:
-    return (os.getenv("GROK_API_KEY") or os.getenv("XAI_API_KEY") or "").strip()
+    return config.api_key()
 
 
 def available() -> bool:
     return bool(_key())
+
+
+def describe() -> dict[str, Any]:
+    """What the interface should say about speech, without exposing the key."""
+    cfg = config.provider_config()
+    return {
+        "provider": cfg["provider"] if available() else "browser",
+        "label": cfg["label"] if available() else "Browser speech recognition",
+        "model": cfg["stt_model"] if available() else None,
+        "server_side": available(),
+        "languages": sorted(SUPPORTED_LANGUAGES),
+    }
 
 
 def transcribe(
@@ -74,20 +90,25 @@ def transcribe(
         }
 
     lang = language if language in SUPPORTED_LANGUAGES else "hi"
+    cfg = config.provider_config()
+
+    # Groq follows OpenAI's transcription shape (model + response_format);
+    # xAI's endpoint is itself the model and takes `format` for normalisation.
+    if cfg["stt_style"] == "openai":
+        form = {"model": cfg["stt_model"], "language": lang, "response_format": "json"}
+    else:
+        form = {"language": lang, "format": "true"}
 
     try:
         response = httpx.post(
-            STT_URL,
+            cfg["stt_url"],
             headers={"Authorization": f"Bearer {key}"},
             files={"file": (filename, audio, content_type)},
-            # httpx wants a mapping here. xAI's own example passes a list of
-            # tuples, which is valid for `requests` but makes httpx fail while
-            # building the multipart body -- and the request goes out with no
-            # file attached at all.
-            # Inverse text normalisation matters: a farmer saying "छह हज़ार
-            # रुपये" should come back as digits, because the scheme text it has
-            # to match is written in digits.
-            data={"language": lang, "format": "true"},
+            # httpx wants a mapping. Provider docs show a list of tuples, which
+            # is valid for `requests` but makes httpx fail while building the
+            # multipart body -- the request then goes out with no file attached
+            # and the transcript comes back empty.
+            data=form,
             timeout=STT_TIMEOUT,
         )
         response.raise_for_status()
@@ -126,6 +147,7 @@ def transcribe(
         "ok": True,
         "text": text,
         "language": lang,
-        "provider": "xai-stt",
+        "provider": cfg["provider"],
+        "model": cfg["stt_model"],
         "audio_bytes": len(audio),
     }

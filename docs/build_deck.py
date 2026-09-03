@@ -1,5 +1,5 @@
 """
-Generate the KrishiMitra project review deck.
+Generate the Cerealia project review deck.
 
 Kept as a script rather than a hand-built file so every figure stays tied to
 what the system actually produces: the metrics come from models/metrics.json and
@@ -7,7 +7,7 @@ the data-coverage numbers from state_crop_stats.json. Retrain or rebuild the
 statistics and the deck updates itself instead of drifting out of date.
 
 Run:  ./backend/.venv/bin/python docs/build_deck.py
-Out:  docs/KrishiMitra_Project_Review.pptx
+Out:  docs/Cerealia_Project_Review.pptx
 """
 
 from __future__ import annotations
@@ -23,7 +23,7 @@ from pptx.util import Inches, Pt
 
 ROOT = Path(__file__).resolve().parent.parent
 SHOTS = ROOT / "docs" / "screenshots"
-OUT = ROOT / "docs" / "KrishiMitra_Project_Review.pptx"
+OUT = ROOT / "docs" / "Cerealia_Project_Review.pptx"
 DATA = ROOT / "backend" / "app" / "data"
 
 METRICS = json.loads((ROOT / "backend" / "models" / "metrics.json").read_text())
@@ -166,7 +166,7 @@ def foot(s):
     tf = tbox(s, W - Inches(1.4), H - Inches(0.52), Inches(0.6), Inches(0.3), align=PP_ALIGN.RIGHT)
     para(tf, f"{_state['n']:02d}", 9.5, FAINT, first=True, align=PP_ALIGN.RIGHT, after=0)
     tf = tbox(s, M, H - Inches(0.52), Inches(4), Inches(0.3))
-    para(tf, "KrishiMitra", 9.5, FAINT, first=True, after=0)
+    para(tf, "Cerealia", 9.5, FAINT, first=True, after=0)
 
 
 def stat(s, x, y, w, h, value, label, note=None, color=GREEN):
@@ -225,7 +225,7 @@ def build() -> None:
     rect(s, 0, 0, Inches(0.14), H, fill=GREEN, shape=MSO_SHAPE.RECTANGLE)
     tf = tbox(s, Inches(1.1), Inches(2.05), Inches(11), Inches(3))
     para(tf, "MINOR PROJECT  ·  PROGRESS REVIEW", 11, GREEN, bold=True, first=True, after=16)
-    para(tf, "KrishiMitra", 60, TEXT, bold=True, after=4)
+    para(tf, "Cerealia", 60, TEXT, bold=True, after=4)
     para(tf, "AI-Based Crop Recommendation for Indian Farmers", 23, GREEN, after=18)
     para(tf, "Not “what can grow here?” but “what is worth growing, and why?”",
          15, DIM, italic=True, after=0)
@@ -843,7 +843,7 @@ def build() -> None:
         stat(s, col(i, tile_w, tile_gap), y2, tile_w, Inches(1.25), val, lbl)
 
     tf = tbox(s, M, y2 + Inches(1.6), CW, Inches(1.2))
-    para(tf, "github.com/RatnamOjha/krishi-mitra", 15, GREEN, bold=True, first=True, after=6)
+    para(tf, "github.com/RatnamOjha/cerealia", 15, GREEN, bold=True, first=True, after=6)
     para(tf, "Model, ranking engine, REST API, React interface and scheme chatbot — working end to "
              "end and running fully offline for this demonstration.", 12, DIM, after=0, line=1.25)
     foot(s)
