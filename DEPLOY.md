@@ -7,7 +7,7 @@ service. No CORS to configure, no second host to keep awake.
 
 | | Free tier | Cold start | Card required |
 |---|---|---|---|
-| **Hugging Face Spaces** | 2 vCPU, 16 GB, unlimited | none while awake | no |
+| **Hugging Face Spaces** | 2 vCPU, 16 GB, unlimited | only after 48 h idle | no |
 | Render free | 512 MB | ~50 s spin-up after 15 min idle | no |
 | Fly.io / Railway | trial credits only | — | yes |
 | Vercel / Netlify | frontend only | — | no |
@@ -47,8 +47,23 @@ The script creates the Space, uploads the source, ships your API key as a Space
 hf spaces logs <user>/cerealia --follow      # live logs
 hf spaces restart <user>/cerealia            # restart
 hf spaces secrets add <user>/cerealia --secrets GROK_API_KEY=...
-hf spaces settings <user>/cerealia --sleep-time 0    # never sleep
 ```
+
+## Latency
+
+While the Space is awake there is no cold start, and the container serves the
+API and the built frontend from one origin — no cross-origin hop, and the model
+is trained at build time rather than on first request.
+
+The one real source of latency is sleep. A free `cpu-basic` Space is paused
+after 48 hours of inactivity and **cannot opt out** — `--sleep-time 0` needs
+upgraded hardware. The next visitor then waits 30-90 s for the container to wake.
+
+`.github/workflows/keep-awake.yml` prevents that by pinging `/api/health` every
+6 hours, so the idle timer never reaches 48 h. To enable it, set a `SPACE_URL`
+repository variable (Settings → Secrets and variables → Actions → Variables) to
+`https://<user>-cerealia.hf.space`. The alternative is paid hardware, which lets
+you disable sleep outright.
 
 ## Without an API key
 

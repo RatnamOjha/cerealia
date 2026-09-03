@@ -80,7 +80,7 @@ export default function App() {
         <nav className="topbar-meta">
           {health?.metrics && (
             <span className="metric-chip">
-              model {(health.metrics.cv_accuracy_mean * 100).toFixed(1)}% CV
+              model {(health.metrics.headline_accuracy_to_quote * 100).toFixed(0)}% @ ±20% sensor error
             </span>
           )}
           <span className={`metric-chip ${health ? 'ok' : 'bad'}`}>

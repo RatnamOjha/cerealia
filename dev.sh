@@ -90,7 +90,7 @@ p, s = h.get("provider", {}), h.get("stt", {})
 ok = "\033[0;32m✓\033[0m"
 dot = "\033[0;33m○\033[0m"
 print(f"  {ok} API        http://localhost:{sys.argv[1]}")
-print(f"  {ok} Model      {h['metrics']['cv_accuracy_mean']*100:.1f}% CV" if h.get("metrics") else "")
+print(f"  {ok} Model      {h['metrics']['headline_accuracy_to_quote']*100:.0f}% at ±20% sensor error" if h.get("metrics") else "")
 if h.get("chatbot_mode") == "llm":
     print(f"  {ok} Chatbot    {p.get('label')} · {p.get('chat_model')}")
 else:

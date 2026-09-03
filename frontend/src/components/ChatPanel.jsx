@@ -74,7 +74,12 @@ const ERRORS = {
 
 export default function ChatPanel({ open, onToggle, contextNote, stateId, stateName, sttServerSide }) {
   const [lang, setLang] = useState('hi')
-  const [messages, setMessages] = useState([])
+  // One transcript per language rather than one shared list. Switching the
+  // toggle used to leave the previous language's greeting and answers on
+  // screen under the new language's chrome; keeping the threads apart means a
+  // Hindi answer is never presented as the English one, and switching back
+  // still finds the conversation where it was left.
+  const [threads, setThreads] = useState({ hi: [], en: [] })
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
   const [mode, setMode] = useState(null)
@@ -83,6 +88,17 @@ export default function ChatPanel({ open, onToggle, contextNote, stateId, stateN
   const endRef = useRef(null)
 
   const t = COPY[lang]
+  const messages = threads[lang]
+
+  // Writes land in the thread that was active when the call was made, so an
+  // answer still arriving when the user flips the toggle lands beside its own
+  // question rather than in the other language.
+  const setMessages = (update) =>
+    setThreads((prev) => ({
+      ...prev,
+      [lang]: typeof update === 'function' ? update(prev[lang]) : update,
+    }))
+
   const recorder = useAudioRecorder()
   const browserSTT = useSpeechInput(lang)
   const voice = useSpeechOutput()
@@ -91,10 +107,14 @@ export default function ChatPanel({ open, onToggle, contextNote, stateId, stateN
   // browser recogniser is the fallback, not the default.
   const useServerSTT = sttServerSide && recorder.supported
 
+  // Seed each thread with its own greeting the first time it is opened.
   useEffect(() => {
-    setMessages((prev) =>
-      prev.length === 0 || (prev.length === 1 && prev[0].greeting)
-        ? [{ role: 'assistant', content: COPY[lang].greeting, greeting: true, lang }]
+    setThreads((prev) =>
+      prev[lang].length === 0
+        ? {
+            ...prev,
+            [lang]: [{ role: 'assistant', content: COPY[lang].greeting, greeting: true, lang }],
+          }
         : prev,
     )
   }, [lang])

@@ -1,6 +1,7 @@
 {
-  "trained_at": "2026-09-03T13:31:59",
-  "model": "RandomForestClassifier(n_estimators=300)",
+  "trained_at": "2026-09-03T21:15:05",
+  "model": "ExtraTreesClassifier(extra_trees_noise_augmented)",
+  "noise_augmented_training": true,
   "dataset": {
     "n_rows": 2200,
     "n_classes": 22,
@@ -8,21 +9,23 @@
     "max_class_count": 100,
     "is_balanced": true
   },
-  "holdout_accuracy": 0.9955,
-  "cv_accuracy_mean": 0.995,
-  "cv_accuracy_std": 0.0027,
+  "holdout_accuracy": 0.9932,
+  "holdout_accuracy_at_20pct_noise": 0.9545,
+  "macro_f1": 0.9932,
+  "cv_accuracy_mean": 0.9932,
+  "cv_accuracy_std": 0.002,
   "cv_folds": 5,
-  "misclassified_test_samples": 2,
+  "misclassified_test_samples": 3,
   "test_set_size": 440,
-  "train_seconds": 0.209,
+  "train_seconds": 0.305,
   "feature_importance": {
-    "rainfall": 0.2215,
-    "humidity": 0.2119,
-    "K": 0.1792,
-    "P": 0.1537,
-    "N": 0.1039,
-    "temperature": 0.0758,
-    "ph": 0.0539
+    "rainfall": 0.2023,
+    "humidity": 0.1961,
+    "P": 0.144,
+    "N": 0.1323,
+    "K": 0.1249,
+    "temperature": 0.1153,
+    "ph": 0.0852
   },
   "smote_applied": false,
   "smote_rationale": "Dataset is exactly balanced (100 samples/class); resampling would add synthetic noise without addressing any imbalance.",
@@ -32,13 +35,48 @@
     "leakage_detected": false,
     "naive_bayes_accuracy": 0.9945,
     "mean_within_class_feature_correlation": 0.0755,
-    "accuracy_under_noise": {
-      "10pct": 0.9818,
-      "20pct": 0.9432,
-      "30pct": 0.8768,
-      "50pct": 0.7173
-    },
     "interpretation": "No leakage: the score is arithmetically correct. But Gaussian Naive Bayes reaches nearly the same accuracy, and features are uncorrelated within each crop, which together indicate a synthetic dataset of well-separated classes rather than a strong model. Quote the noise-robust figure operationally."
   },
-  "headline_accuracy_to_quote": 0.9432
+  "model_selection": {
+    "selected": "extra_trees_noise_augmented",
+    "selected_on": "cross-validated accuracy at 20% input noise",
+    "candidates": {
+      "forest": {
+        "0pct": 0.995,
+        "10pct": 0.9664,
+        "20pct": 0.8809,
+        "30pct": 0.7559,
+        "50pct": 0.5709
+      },
+      "forest_noise_augmented": {
+        "0pct": 0.9927,
+        "10pct": 0.9841,
+        "20pct": 0.9536,
+        "30pct": 0.8755,
+        "50pct": 0.705
+      },
+      "extra_trees_noise_augmented": {
+        "0pct": 0.9882,
+        "10pct": 0.9845,
+        "20pct": 0.9609,
+        "30pct": 0.8918,
+        "50pct": 0.7473
+      },
+      "boosting_noise_augmented": {
+        "0pct": 0.985,
+        "10pct": 0.9795,
+        "20pct": 0.9555,
+        "30pct": 0.8682,
+        "50pct": 0.7005
+      }
+    }
+  },
+  "accuracy_under_noise": {
+    "0pct": 0.9882,
+    "10pct": 0.9845,
+    "20pct": 0.9609,
+    "30pct": 0.8918,
+    "50pct": 0.7473
+  },
+  "headline_accuracy_to_quote": 0.9609
 }

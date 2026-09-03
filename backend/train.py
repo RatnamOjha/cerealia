@@ -18,8 +18,17 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.ensemble import (
+    ExtraTreesClassifier,
+    HistGradientBoostingClassifier,
+    RandomForestClassifier,
+)
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix,
+    f1_score,
+)
 from sklearn.model_selection import StratifiedKFold, cross_val_score, train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.pipeline import Pipeline
@@ -31,6 +40,18 @@ DATA = ROOT / "app" / "data" / "Crop_recommendation.csv"
 MODELS = ROOT / "models"
 FEATURES = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall"]
 SEED = 42
+
+# Noise levels to score at. 0 is the pristine-lab number; 20 is the one worth
+# quoting, being roughly what a field NPK strip and a cheap thermometer give you.
+EVAL_NOISE_PCT = (0, 10, 20, 30, 50)
+HEADLINE_NOISE_PCT = 20
+
+# Training-time augmentation. Each original row gets NOISE_COPIES jittered
+# twins, and every twin draws its own error magnitude from this band rather
+# than a single fixed level -- real sensors vary by unit and by reading, and
+# training at exactly the evaluation level would be teaching to the test.
+NOISE_COPIES = 4
+AUG_NOISE_RANGE = (5, 30)
 
 
 def load_data() -> pd.DataFrame:
@@ -57,6 +78,120 @@ def describe_balance(df: pd.DataFrame) -> dict:
     }
 
 
+def augment(X: np.ndarray, y: np.ndarray, sd: np.ndarray, rng) -> tuple:
+    """Replicate rows with sensor-scale noise so the model learns wider margins.
+
+    Each twin draws its own error magnitude per row, so the model sees the whole
+    band of plausible instrument quality rather than one level of it.
+    """
+    Xs, ys = [X], [y]
+    for _ in range(NOISE_COPIES):
+        pct = rng.uniform(*AUG_NOISE_RANGE, size=(len(X), 1))
+        Xs.append(X + rng.standard_normal(X.shape) * sd * pct / 100)
+        ys.append(y)
+    return np.vstack(Xs), np.concatenate(ys)
+
+
+def noise_curve(make_model, X, y, cv, sd, augmented: bool) -> dict:
+    """Cross-validated accuracy at each noise level.
+
+    Two details keep this honest:
+
+      1. Augmentation happens *inside* the fold, on the training half only.
+         Jittered twins of a row landing in both halves would be leakage, and
+         would manufacture exactly the robustness we are trying to measure.
+      2. The evaluation noise is drawn from a seed fixed by (fold, level), so
+         every candidate model is scored on byte-identical noisy inputs.
+    """
+    Xv, yv = X.values, y.values
+    scores = {pct: [] for pct in EVAL_NOISE_PCT}
+
+    for fold, (tr, te) in enumerate(cv.split(Xv, yv)):
+        X_tr, y_tr = Xv[tr], yv[tr]
+        if augmented:
+            X_tr, y_tr = augment(X_tr, y_tr, sd, np.random.default_rng(1000 + fold))
+
+        model = make_model()
+        model.fit(X_tr, y_tr)
+
+        for pct in EVAL_NOISE_PCT:
+            X_te = Xv[te]
+            if pct:
+                noise = np.random.default_rng(90_000 + fold * 100 + pct)
+                X_te = X_te + noise.normal(0, sd * pct / 100, X_te.shape)
+            scores[pct].append(accuracy_score(yv[te], model.predict(X_te)))
+
+    return {pct: round(float(np.mean(v)), 4) for pct, v in scores.items()}
+
+
+def make_forest() -> Pipeline:
+    # The scaler is redundant for trees but keeps the pipeline swappable, and
+    # recommender.py reads feature_importances_ off the "clf" step by name.
+    return Pipeline([
+        ("scale", StandardScaler()),
+        ("clf", RandomForestClassifier(
+            n_estimators=300, n_jobs=-1, random_state=SEED,
+        )),
+    ])
+
+
+def make_extra_trees() -> Pipeline:
+    # Randomised split thresholds give smoother boundaries than a forest's
+    # greedy ones, which is exactly what noisy inputs want.
+    return Pipeline([
+        ("scale", StandardScaler()),
+        ("clf", ExtraTreesClassifier(
+            n_estimators=300, n_jobs=-1, random_state=SEED,
+        )),
+    ])
+
+
+def make_boosting() -> Pipeline:
+    return Pipeline([
+        ("scale", StandardScaler()),
+        ("clf", HistGradientBoostingClassifier(
+            max_iter=200, learning_rate=0.1, random_state=SEED,
+        )),
+    ])
+
+
+# Boosting has no feature_importances_, which the explainability layer in
+# recommender.py reads directly -- so it has to win by a real margin, not a
+# rounding error, to be worth losing that for.
+CANDIDATES = {
+    "forest": (make_forest, False),
+    "forest_noise_augmented": (make_forest, True),
+    "extra_trees_noise_augmented": (make_extra_trees, True),
+    "boosting_noise_augmented": (make_boosting, True),
+}
+
+
+def benchmark(X, y, cv, sd) -> tuple[str, dict]:
+    """Score every candidate on the same noisy inputs; return the winner at 20%."""
+    print("\n" + "=" * 72)
+    print("BENCHMARK — accuracy by input noise level (5-fold CV)")
+    print("=" * 72)
+    header = "  " + f"{'model':<30}" + "".join(f"{p:>7}%" for p in EVAL_NOISE_PCT)
+    print(header)
+
+    results = {}
+    for name, (factory, augmented) in CANDIDATES.items():
+        t0 = time.perf_counter()
+        curve = noise_curve(factory, X, y, cv, sd, augmented)
+        results[name] = curve
+        row = "".join(f"{curve[p] * 100:>7.2f}" for p in EVAL_NOISE_PCT)
+        print(f"  {name:<30}{row}   ({time.perf_counter() - t0:.0f}s)")
+
+    winner = max(results, key=lambda k: results[k][HEADLINE_NOISE_PCT])
+    baseline = results["forest"][HEADLINE_NOISE_PCT]
+    best = results[winner][HEADLINE_NOISE_PCT]
+
+    print(f"\n  Winner at {HEADLINE_NOISE_PCT}% noise: {winner} "
+          f"({best * 100:.2f}%, {(best - baseline) * 100:+.2f} pts vs the clean-trained forest)")
+    print("=" * 72)
+    return winner, results
+
+
 def audit(df: pd.DataFrame, X, y, cv) -> dict:
     """Interrogate the headline accuracy instead of reporting it uncritically.
 
@@ -67,8 +202,9 @@ def audit(df: pd.DataFrame, X, y, cv) -> dict:
          for free.
       2. Difficulty. If Gaussian Naive Bayes matches a 300-tree forest, the
          classes are near-separable blobs and the forest is not doing any work.
-      3. Robustness. Real soil and weather readings carry error. Accuracy under
-         injected noise is the number that means something operationally.
+    Robustness -- the number that actually means something operationally -- is
+    measured separately in benchmark(), which trains each candidate against the
+    same injected noise rather than only scoring against it.
     """
     print("\n" + "=" * 62)
     print("AUDIT — is the headline accuracy meaningful?")
@@ -92,23 +228,10 @@ def audit(df: pd.DataFrame, X, y, cv) -> dict:
     mean_corr = float(np.mean(within))
     print(f"  Mean |corr| between features     : {mean_corr:.3f}  (within a crop)")
 
-    rng = np.random.default_rng(0)
-    sd = X.values.std(axis=0)
-    noise_curve = {}
-    for pct in (10, 20, 30, 50):
-        noisy = X.values + rng.normal(0, sd * pct / 100, X.shape)
-        score = cross_val_score(
-            RandomForestClassifier(n_estimators=300, random_state=SEED, n_jobs=-1),
-            noisy, y, cv=cv, n_jobs=-1,
-        ).mean()
-        noise_curve[f"{pct}pct"] = round(float(score), 4)
-        print(f"  Accuracy at {pct:>2}% measurement noise : {score * 100:.2f}%")
-
-    print("\n  Verdict: the score is arithmetically sound but says little about the")
-    print("  model. Naive Bayes nearly matches a 300-tree forest, and features")
-    print("  within a crop are uncorrelated — signatures of a synthetic dataset")
-    print("  with well-separated classes. The defensible figure to quote is")
-    print(f"  {noise_curve['20pct'] * 100:.0f}% under realistic +/-20% sensor error.")
+    print("\n  Verdict: the clean score is arithmetically sound but says little")
+    print("  about the model. Naive Bayes nearly matches a 300-tree forest, and")
+    print("  features within a crop are uncorrelated — signatures of a synthetic")
+    print("  dataset with well-separated classes. Quote the noise-robust figure.")
     print("=" * 62)
 
     return {
@@ -117,7 +240,6 @@ def audit(df: pd.DataFrame, X, y, cv) -> dict:
         "leakage_detected": leakage,
         "naive_bayes_accuracy": round(float(nb), 4),
         "mean_within_class_feature_correlation": round(mean_corr, 4),
-        "accuracy_under_noise": noise_curve,
         "interpretation": (
             "No leakage: the score is arithmetically correct. But Gaussian Naive "
             "Bayes reaches nearly the same accuracy, and features are uncorrelated "
@@ -142,57 +264,70 @@ def main() -> None:
 
     X = df[FEATURES]
     y = df["label"]
+    sd = X.values.std(axis=0)
+
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)
+    audit_result = audit(df, X, y, cv)
+    winner, curves = benchmark(X, y, cv, sd)
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=SEED, stratify=y
     )
 
-    # Scaler is not strictly required for a forest, but it keeps the pipeline
-    # swappable -- we benchmark against models that do need it.
-    pipe = Pipeline(
-        [
-            ("scale", StandardScaler()),
-            (
-                "clf",
-                RandomForestClassifier(
-                    n_estimators=300,
-                    max_depth=None,
-                    min_samples_leaf=1,
-                    n_jobs=-1,
-                    random_state=SEED,
-                ),
-            ),
-        ]
-    )
+    factory, augmented = CANDIDATES[winner]
+    pipe = factory()
+
+    X_fit, y_fit = X_train.values, y_train.values
+    if augmented:
+        X_fit, y_fit = augment(X_fit, y_fit, sd, np.random.default_rng(SEED))
+        print(f"\nTraining on {len(X_fit)} rows "
+              f"({len(X_train)} measured + {NOISE_COPIES} jittered copies each)")
+
+    # Fit on a frame, not the raw array: recommender.py predicts from a
+    # DataFrame, and a pipeline fitted without feature names warns on every call.
+    X_fit = pd.DataFrame(X_fit, columns=FEATURES)
 
     t0 = time.perf_counter()
-    pipe.fit(X_train, y_train)
+    pipe.fit(X_fit, y_fit)
     train_seconds = time.perf_counter() - t0
 
     y_pred = pipe.predict(X_test)
     test_acc = accuracy_score(y_test, y_pred)
+    macro_f1 = f1_score(y_test, y_pred, average="macro")
 
-    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)
-    cv_scores = cross_val_score(pipe, X, y, cv=cv, scoring="accuracy", n_jobs=-1)
+    # The hold-out set the model is actually deployed against: noisy readings.
+    noisy_test = pd.DataFrame(
+        X_test.values + np.random.default_rng(7).normal(
+            0, sd * HEADLINE_NOISE_PCT / 100, X_test.shape
+        ),
+        columns=FEATURES,
+    )
+    noisy_acc = accuracy_score(y_test, pipe.predict(noisy_test))
 
-    importances = pipe.named_steps["clf"].feature_importances_
+    cv_scores = cross_val_score(factory(), X, y, cv=cv, scoring="accuracy", n_jobs=-1)
+
+    clf = pipe.named_steps["clf"]
+    has_importance = hasattr(clf, "feature_importances_")
     ranked = sorted(
-        zip(FEATURES, (round(float(v), 4) for v in importances)),
+        zip(FEATURES, (round(float(v), 4) for v in clf.feature_importances_)),
         key=lambda kv: kv[1],
         reverse=True,
-    )
+    ) if has_importance else []
 
     cm = confusion_matrix(y_test, y_pred, labels=sorted(y.unique()))
     misclassified = int(cm.sum() - np.trace(cm))
 
-    print(f"\nHold-out accuracy : {test_acc:.4f}")
-    print(f"5-fold CV accuracy: {cv_scores.mean():.4f} (+/- {cv_scores.std():.4f})")
-    print(f"Misclassified     : {misclassified} of {len(y_test)} test samples")
-    print(f"Train time        : {train_seconds:.2f}s")
-    print("\nFeature importance:")
-    for name, val in ranked:
-        bar = "#" * int(val * 60)
-        print(f"  {name:<12} {val:.4f}  {bar}")
+    print(f"\nModel selected     : {winner}")
+    print(f"Hold-out accuracy  : {test_acc:.4f}  (clean readings)")
+    print(f"Hold-out at {HEADLINE_NOISE_PCT}% noise: {noisy_acc:.4f}  <- the number to quote")
+    print(f"Macro F1           : {macro_f1:.4f}")
+    print(f"5-fold CV accuracy : {cv_scores.mean():.4f} (+/- {cv_scores.std():.4f})")
+    print(f"Misclassified      : {misclassified} of {len(y_test)} test samples")
+    print(f"Train time         : {train_seconds:.2f}s")
+    if ranked:
+        print("\nFeature importance:")
+        for name, val in ranked:
+            print(f"  {name:<12} {val:.4f}  {'#' * int(val * 60)}")
 
     print("\n" + classification_report(y_test, y_pred, zero_division=0))
 
@@ -201,13 +336,15 @@ def main() -> None:
         MODELS / "crop_suitability.joblib",
     )
 
-    audit_result = audit(df, X, y, cv)
-
+    winning_curve = curves[winner]
     metrics = {
         "trained_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
-        "model": "RandomForestClassifier(n_estimators=300)",
+        "model": f"{type(clf).__name__}({winner})",
+        "noise_augmented_training": augmented,
         "dataset": balance,
         "holdout_accuracy": round(float(test_acc), 4),
+        "holdout_accuracy_at_20pct_noise": round(float(noisy_acc), 4),
+        "macro_f1": round(float(macro_f1), 4),
         "cv_accuracy_mean": round(float(cv_scores.mean()), 4),
         "cv_accuracy_std": round(float(cv_scores.std()), 4),
         "cv_folds": 5,
@@ -218,7 +355,13 @@ def main() -> None:
         "smote_applied": False,
         "smote_rationale": "Dataset is exactly balanced (100 samples/class); resampling would add synthetic noise without addressing any imbalance.",
         "audit": audit_result,
-        "headline_accuracy_to_quote": audit_result["accuracy_under_noise"]["20pct"],
+        "model_selection": {
+            "selected": winner,
+            "selected_on": f"cross-validated accuracy at {HEADLINE_NOISE_PCT}% input noise",
+            "candidates": {k: {f"{p}pct": v for p, v in c.items()} for k, c in curves.items()},
+        },
+        "accuracy_under_noise": {f"{p}pct": v for p, v in winning_curve.items()},
+        "headline_accuracy_to_quote": winning_curve[HEADLINE_NOISE_PCT],
     }
     (MODELS / "metrics.json").write_text(json.dumps(metrics, indent=2))
 

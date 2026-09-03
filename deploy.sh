@@ -68,8 +68,10 @@ hf upload "$REPO" "$ROOT" . \
 hf upload "$REPO" "$STAGE/README.md" README.md --type space \
   --commit-message "Space card"
 
-# Ship the key as a secret if one is configured locally.
-KEY="$(grep -hoE '^[[:space:]]*(GROK|GROQ|XAI)_API_KEY[[:space:]]*=.*' "$ROOT/.env" "$ROOT/backend/.env" 2>/dev/null \
+# Ship the key as a secret if one is configured. The environment wins over the
+# .env files so CI can pass it from a repository secret, where no .env exists.
+KEY="${GROK_API_KEY:-${GROQ_API_KEY:-${XAI_API_KEY:-}}}"
+[ -n "$KEY" ] || KEY="$(grep -hoE '^[[:space:]]*(GROK|GROQ|XAI)_API_KEY[[:space:]]*=.*' "$ROOT/.env" "$ROOT/backend/.env" 2>/dev/null \
        | head -1 | sed -E "s/^[^=]*=[[:space:]]*//; s/^['\"]//; s/['\"]$//" || true)"
 if [ -n "$KEY" ]; then
   green "Uploading API key as a Space secret…"

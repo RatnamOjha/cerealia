@@ -462,15 +462,17 @@ def build() -> None:
 
     rect(s, col(1, COL2, GAP), y2, COL2, Inches(2.5), border=AMBER)
     tf = tbox(s, col(1, COL2, GAP) + Inches(0.3), y2 + Inches(0.22), COL2 - Inches(0.6), Inches(2.1))
-    para(tf, "READING 99.5% HONESTLY", 10.5, AMBER, bold=True, first=True, after=10)
+    para(tf, "READING THE ACCURACY HONESTLY", 10.5, AMBER, bold=True, first=True, after=10)
     para(tf, f"The training set is exactly balanced — {METRICS['dataset']['min_class_count']} samples for "
              f"each of the {METRICS['dataset']['n_classes']} crops — so no resampling was applied. "
              "Running SMOTE here would inject synthetic noise while correcting no imbalance, and "
              "train.py asserts the balance rather than assuming it.",
          11.5, TEXT, after=9, line=1.25)
-    para(tf, "The accuracy is high because this dataset has clean, well-separated class boundaries. "
-             "It should not be read as real-world performance — which is precisely why the model is "
-             "one signal of four rather than the whole system.",
+    para(tf, "The clean score is high because this dataset has well-separated class boundaries, so it "
+             "is not real-world performance. Training on noise-augmented readings is what makes the "
+             f"deployed model hold {METRICS['headline_accuracy_to_quote'] * 100:.0f}% at ±20% sensor "
+             f"error, against {METRICS['model_selection']['candidates']['forest']['20pct'] * 100:.0f}% "
+             "for a clean-trained forest.",
          11.5, DIM, after=0, line=1.25)
     foot(s)
 
@@ -676,7 +678,8 @@ def build() -> None:
     y = header(s, "Current Progress", kicker="Validation",
                sub="Working end to end — model, engine, API, interface and chatbot, running fully offline")
     done = [
-        "RandomForest trained, evaluated and versioned (99.50% CV)",
+        f"Noise-augmented model trained, benchmarked and versioned "
+        f"({METRICS['headline_accuracy_to_quote'] * 100:.0f}% at ±20% sensor error)",
         "Four-signal ranking engine with real cultivation prior",
         f"{COVERAGE['records_raw']:,} official GoI records integrated",
         "State-specific measured yields and empirical risk",

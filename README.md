@@ -115,8 +115,15 @@ Browser (React + Vite)
 
 ### Model
 
-- `RandomForestClassifier(n_estimators=300)` on 7 features, 22 crops
-- Hold-out accuracy **0.9955**, 5-fold CV **0.9950 ± 0.0027**, 2 errors in 440
+- `ExtraTreesClassifier(n_estimators=300)` on 7 features, 22 crops, trained on
+  noise-augmented data so it holds up on real instrument readings
+- **96% accuracy under ±20% sensor error** — the figure worth quoting. Clean
+  hold-out is 0.9932 and 5-fold CV 0.9932 ± 0.0020, but a pristine reading is
+  not what a farmer's NPK strip produces
+- Selected by benchmark, not assumption. At ±20% noise: extra trees 96.1%,
+  gradient boosting 95.6%, noise-augmented forest 95.4%, clean-trained forest
+  88.1%. Boosting also drops `feature_importances_`, which the explainability
+  layer reads directly
 - **No SMOTE.** The dataset is exactly balanced at 100 rows per class, so
   resampling would inject synthetic noise without correcting any imbalance.
   `train.py` asserts the balance rather than assuming it.
