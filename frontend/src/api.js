@@ -21,8 +21,8 @@ export const recommendForState = (stateId, { landHa = 1, topN = 6, overrides = n
     body: JSON.stringify({ state_id: stateId, land_ha: landHa, top_n: topN, overrides }),
   })
 
-export const sendChat = (message, contextNote, history) =>
+export const sendChat = (message, contextNote, history, lang = 'auto') =>
   request('/api/chat', {
     method: 'POST',
-    body: JSON.stringify({ message, context_note: contextNote, history }),
+    body: JSON.stringify({ message, context_note: contextNote, history, lang }),
   })

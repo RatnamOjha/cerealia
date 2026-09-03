@@ -128,6 +128,30 @@ rice's ideal 182–298 mm band"* — sorted so mismatches surface first. Plus a
 fertiliser plan converting the NPK gap into bags of urea/DAP/MOP and a rupee
 cost.
 
+### Hindi and voice
+
+Most Indian farmers are not fluent in English, which makes the language barrier
+the real adoption barrier — every feature above is unusable if the interface
+only speaks English.
+
+- **Speech input** in Hindi via the Web Speech API (`hi-IN`). The transcript
+  submits itself, so voice is a single action rather than dictate-then-press-send.
+- **Hindi answers.** Devanagari in the question routes the reply to Hindi, or the
+  farmer can pin the language with the toggle. All 12 schemes carry Hindi text
+  (`name_hi`, `benefit_hi`, `eligibility_hi`, `how_to_apply_hi`) plus Hindi
+  retrieval keywords, matched as substrings because Devanagari inflects with
+  suffixes — `बीमा` has to match inside `बीमे का`.
+- **Read aloud** via speech synthesis using the device's own Hindi voice.
+- If Grok answers a Hindi question in English, the response is discarded and the
+  Hindi template served instead. A farmer cannot work around a wrong-language
+  reply.
+
+**Honest limitation:** Chrome's recogniser streams audio to Google's servers, so
+*dictation* needs a network connection even though everything else here runs
+offline. Speech output is fully local. Moving dictation to
+[Bhashini](https://bhashini.gov.in) removes that dependency and adds 21 more
+scheduled languages.
+
 ### Chatbot
 
 Grounded retrieval over 12 curated central schemes (PM-KISAN, PMFBY, KCC,
@@ -169,7 +193,7 @@ cp backend/.env.example backend/.env
 | `POST /api/recommend/state` | Ranked crops for a state (+ optional soil overrides) |
 | `POST /api/recommend/custom` | Ranked crops from raw soil/climate readings |
 | `GET /api/schemes` | All government schemes |
-| `POST /api/chat` | Scheme advisory chatbot |
+| `POST /api/chat` | Scheme advisory chatbot (`lang`: `auto` / `en` / `hi`) |
 
 ---
 
@@ -214,8 +238,8 @@ for the irrigation-gap calculation.
 ## Roadmap
 
 **Near term** — district-level resolution; live weather via Open-Meteo; live mandi
-prices via Agmarknet/data.gov.in; SHAP explanations; Hindi + regional languages
-via Bhashini.
+prices via Agmarknet/data.gov.in; SHAP explanations; Bhashini for the remaining
+21 scheduled languages and on-device (offline) dictation.
 
 **Medium term** — crop rotation planning across seasons; groundwater
 sustainability scoring from CGWB block data; mandi price forecasting;

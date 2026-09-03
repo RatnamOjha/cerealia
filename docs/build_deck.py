@@ -490,7 +490,7 @@ def build() -> None:
         ("Costed fertiliser plan", "The NPK gap converted into kilograms of urea, DAP and MOP, 50 kg bags, and a total in rupees.", AMBER),
         ("Data provenance", "Every crop shows which yield source was used, the evidence that it is grown there, and its share of sown area.", VIOLET),
         ("Scheme advisory chatbot", f"Grounded retrieval over {len(SCHEMES)} central schemes, backed by Grok, degrading to local retrieval with no key and no network.", VIOLET),
-        ("Soil overrides", "A farmer's own Soil Health Card or sensor readings replace the state averages through the same API.", RED),
+        ("Hindi voice interface", "Speak a question in Hindi, get a Hindi answer, and have it read back aloud. Works with no API key; speech output needs no network at all.", RED),
     ]
     for i, (head, body, color) in enumerate(feats):
         cx = col(i % 3, COL3, Inches(0.26))
@@ -562,6 +562,22 @@ def build() -> None:
     ]):
         para(tf, head, 13, GREEN, bold=True, first=(i == 0), before=0 if i == 0 else 15, after=5)
         para(tf, body, 11, DIM, after=0, line=1.28)
+    foot(s)
+
+    # ---- voice and Hindi
+    s = slide(prs)
+    y = header(s, "Voice & Hindi", kicker="The Product",
+               sub="The literacy barrier is the real adoption barrier — a farmer who cannot type English cannot use any of this")
+    picture(s, "07-hindi-voice.png", M, y, Inches(7.3))
+    tf = tbox(s, M + Inches(7.6), y + Inches(0.1), CW - Inches(7.6), Inches(4.4))
+    for i, (head, body) in enumerate([
+        ("Speak the question", "Web Speech API dictation in hi-IN. The transcript submits itself — a farmer using voice should not have to find a second button."),
+        ("Answered in Hindi", "Script detection routes the question; all 12 schemes carry Hindi text, so the answer is Hindi even with no API key and no network."),
+        ("Read back aloud", "Speech synthesis in Hindi using the device's own voice, entirely offline. For a farmer who speaks Hindi but reads it slowly, this is the difference between usable and not."),
+        ("Honest about the gap", "Chrome's recogniser streams audio to Google, so dictation needs a network even though everything else runs offline. Bhashini, the government's own speech stack, removes that and adds 21 more languages."),
+    ]):
+        para(tf, head, 13, GREEN, bold=True, first=(i == 0), before=0 if i == 0 else 14, after=5)
+        para(tf, body, 10.5, DIM, after=0, line=1.28)
     foot(s)
 
     # ========================================================= 5 RESULTS ====
@@ -671,13 +687,14 @@ def build() -> None:
         "React interface — globe, map, panel, chat drawer",
         f"Grounded chatbot over {len(SCHEMES)} schemes with offline fallback",
         "Data provenance surfaced per recommendation",
+        "Hindi voice input, Hindi answers and Hindi read-aloud",
         "Verified end to end in headless Chrome, zero console errors",
     ]
     pending = [
         "Grok API key wiring",
         "District-level resolution",
         "Live weather and mandi prices",
-        "Hindi and regional languages",
+        "More languages via Bhashini",
         "ESP32 soil sensor hardware",
         "Leaf-disease detection",
     ]
@@ -731,8 +748,8 @@ def build() -> None:
             "District-level resolution — Nashik ≠ Vidarbha",
             "Live weather via Open-Meteo",
             "Live mandi prices via Agmarknet",
-            "Hindi and regional languages via Bhashini",
-            "Voice interface for low-literacy users",
+            "Bhashini for 21 more Indian languages",
+            "On-device speech, so dictation works offline",
             "SHAP values alongside the ideal bands",
         ]),
         ("MEDIUM TERM", "beyond the review", AMBER, [

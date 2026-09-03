@@ -1,7 +1,8 @@
 {
   "_meta": {
     "description": "Government of India agricultural schemes, used to ground the advisory chatbot. Figures current as of the 2024-25 cycle; always verify against the official portal before advising a farmer.",
-    "source_note": "Compiled from Ministry of Agriculture & Farmers Welfare scheme guidelines and official scheme portals."
+    "source_note": "Compiled from Ministry of Agriculture & Farmers Welfare scheme guidelines and official scheme portals.",
+    "languages": "Every scheme carries English and Hindi (_hi) text plus Hindi retrieval keywords, so the assistant answers in Hindi even with no API key and no network."
   },
   "schemes": [
     {
@@ -12,7 +13,27 @@
       "eligibility": "All landholding farmer families with cultivable land in their name. Excludes institutional landholders, income-tax payers, serving/retired government employees above Group D, and professionals such as doctors and lawyers.",
       "how_to_apply": "Register at pmkisan.gov.in or through the nearest Common Service Centre (CSC). Aadhaar, land records and a bank account seeded with Aadhaar are mandatory. e-KYC must be completed to receive instalments.",
       "portal": "https://pmkisan.gov.in",
-      "keywords": ["income", "6000", "samman nidhi", "direct benefit", "dbt", "instalment", "cash support"]
+      "keywords": [
+        "income",
+        "6000",
+        "samman nidhi",
+        "direct benefit",
+        "dbt",
+        "instalment",
+        "cash support"
+      ],
+      "name_hi": "पीएम-किसान (प्रधानमंत्री किसान सम्मान निधि)",
+      "benefit_hi": "हर साल ₹6,000 सीधे बैंक खाते में, ₹2,000 की तीन किस्तों में, हर चार महीने पर।",
+      "eligibility_hi": "जिन किसान परिवारों के नाम पर खेती की ज़मीन है। संस्थागत भूमिधारक, आयकर देने वाले, ग्रुप डी से ऊपर के सरकारी कर्मचारी, और डॉक्टर-वकील जैसे पेशेवर इसमें शामिल नहीं हैं।",
+      "how_to_apply_hi": "pmkisan.gov.in पर या नज़दीकी कॉमन सर्विस सेंटर (CSC) पर पंजीकरण करें। आधार, ज़मीन के कागज़ और आधार से जुड़ा बैंक खाता ज़रूरी है। किस्त पाने के लिए e-KYC पूरा करना अनिवार्य है।",
+      "keywords_hi": [
+        "सम्मान निधि",
+        "किस्त",
+        "छह हज़ार",
+        "6000",
+        "आमदनी",
+        "पैसा"
+      ]
     },
     {
       "id": "pmfby",
@@ -22,7 +43,32 @@
       "eligibility": "All farmers growing notified crops in notified areas, including sharecroppers and tenant farmers. Voluntary for all farmers since 2020.",
       "how_to_apply": "Apply through pmfby.gov.in, a bank branch, a CSC, or an authorised insurance intermediary. Enrolment must be completed before the cut-off date for the season, typically 31 July for kharif and 31 December for rabi.",
       "portal": "https://pmfby.gov.in",
-      "keywords": ["insurance", "bima", "crop loss", "premium", "claim", "drought", "flood", "hailstorm", "calamity"]
+      "keywords": [
+        "insurance",
+        "bima",
+        "crop loss",
+        "premium",
+        "claim",
+        "drought",
+        "flood",
+        "hailstorm",
+        "calamity"
+      ],
+      "name_hi": "पीएमएफबीवाई (प्रधानमंत्री फसल बीमा योजना)",
+      "benefit_hi": "प्राकृतिक आपदा, कीट और बीमारी से फसल के नुकसान पर बीमा। किसान को खरीफ फसल पर बीमित राशि का केवल 2%, रबी पर 1.5% और व्यावसायिक व बागवानी फसलों पर 5% प्रीमियम देना होता है; बाकी हिस्सा केंद्र और राज्य सरकार भरती है।",
+      "eligibility_hi": "अधिसूचित क्षेत्र में अधिसूचित फसल उगाने वाले सभी किसान, जिनमें बटाईदार और किरायेदार किसान भी शामिल हैं। 2020 से यह योजना स्वैच्छिक है।",
+      "how_to_apply_hi": "pmfby.gov.in, बैंक शाखा, CSC या अधिकृत बीमा एजेंट के ज़रिए आवेदन करें। मौसम की अंतिम तारीख से पहले नामांकन ज़रूरी है — आमतौर पर खरीफ के लिए 31 जुलाई और रबी के लिए 31 दिसंबर।",
+      "keywords_hi": [
+        "बीमा",
+        "फसल बीमा",
+        "नुकसान",
+        "सूखा",
+        "बाढ़",
+        "ओला",
+        "मुआवजा",
+        "प्रीमियम",
+        "आपदा"
+      ]
     },
     {
       "id": "kcc",
@@ -32,7 +78,31 @@
       "eligibility": "All farmers - owner cultivators, tenant farmers, oral lessees, sharecroppers, and Self Help Group or Joint Liability Group members.",
       "how_to_apply": "Apply at any commercial bank, regional rural bank or co-operative bank, or online through the bank's portal. Requires identity proof, address proof and land documents. Loans up to Rs 1.6 lakh are collateral-free.",
       "portal": "https://www.myscheme.gov.in/schemes/kcc",
-      "keywords": ["loan", "credit", "karz", "interest", "subvention", "collateral", "borrow", "finance", "working capital"]
+      "keywords": [
+        "loan",
+        "credit",
+        "karz",
+        "interest",
+        "subvention",
+        "collateral",
+        "borrow",
+        "finance",
+        "working capital"
+      ],
+      "name_hi": "किसान क्रेडिट कार्ड (KCC)",
+      "benefit_hi": "₹3 लाख तक का अल्पकालिक फसल ऋण 7% ब्याज पर। समय पर चुकाने पर 3% की छूट मिलती है, यानी असल ब्याज केवल 4%। इसमें कटाई के बाद का खर्च, पशुपालन व मत्स्य पालन जैसी गतिविधियाँ और दुर्घटना बीमा भी शामिल है।",
+      "eligibility_hi": "सभी किसान — अपनी ज़मीन जोतने वाले, किरायेदार किसान, मौखिक पट्टेदार, बटाईदार, तथा स्वयं सहायता समूह या संयुक्त देयता समूह के सदस्य।",
+      "how_to_apply_hi": "किसी भी व्यावसायिक बैंक, ग्रामीण बैंक या सहकारी बैंक में आवेदन करें। पहचान पत्र, पते का प्रमाण और ज़मीन के कागज़ चाहिए। ₹1.6 लाख तक के ऋण पर कोई गारंटी नहीं देनी पड़ती।",
+      "keywords_hi": [
+        "कर्ज",
+        "कर्ज़",
+        "ऋण",
+        "लोन",
+        "क्रेडिट",
+        "ब्याज",
+        "उधार",
+        "पैसा उधार"
+      ]
     },
     {
       "id": "soil-health-card",
@@ -42,7 +112,30 @@
       "eligibility": "All farmers, free of cost.",
       "how_to_apply": "Contact the district or block agriculture office, or a Krishi Vigyan Kendra, to have soil samples collected. Reports can be downloaded from soilhealth.dac.gov.in.",
       "portal": "https://soilhealth.dac.gov.in",
-      "keywords": ["soil", "test", "npk", "ph", "nutrient", "fertiliser", "fertilizer", "organic carbon", "mitti"]
+      "keywords": [
+        "soil",
+        "test",
+        "npk",
+        "ph",
+        "nutrient",
+        "fertiliser",
+        "fertilizer",
+        "organic carbon",
+        "mitti"
+      ],
+      "name_hi": "मृदा स्वास्थ्य कार्ड योजना",
+      "benefit_hi": "मुफ़्त मिट्टी जाँच रिपोर्ट, जिसमें नाइट्रोजन, फॉस्फोरस, पोटाश, pH, जैविक कार्बन, सल्फर और सूक्ष्म पोषक तत्व सहित 12 मानक शामिल हैं, साथ में फसलवार खाद की सलाह। हर दो साल में एक बार जारी होती है।",
+      "eligibility_hi": "सभी किसान, पूरी तरह मुफ़्त।",
+      "how_to_apply_hi": "मिट्टी का नमूना लेने के लिए ज़िला या ब्लॉक कृषि कार्यालय, या कृषि विज्ञान केंद्र से संपर्क करें। रिपोर्ट soilhealth.dac.gov.in से डाउनलोड की जा सकती है।",
+      "keywords_hi": [
+        "मिट्टी",
+        "मिट्टी जांच",
+        "मृदा",
+        "खाद",
+        "उर्वरक",
+        "पोषक तत्व",
+        "जांच"
+      ]
     },
     {
       "id": "pmksy",
@@ -52,7 +145,29 @@
       "eligibility": "All farmers with a assured water source. Priority to small, marginal, SC and ST farmers, and to water-stressed blocks.",
       "how_to_apply": "Apply through the state agriculture or horticulture department, or the PMKSY portal. Requires land records, a water source certificate and a bank account.",
       "portal": "https://pmksy.gov.in",
-      "keywords": ["irrigation", "drip", "sprinkler", "water", "micro irrigation", "sinchai", "subsidy", "water saving"]
+      "keywords": [
+        "irrigation",
+        "drip",
+        "sprinkler",
+        "water",
+        "micro irrigation",
+        "sinchai",
+        "subsidy",
+        "water saving"
+      ],
+      "name_hi": "पीएमकेएसवाई — हर बूँद अधिक फसल (प्रधानमंत्री कृषि सिंचाई योजना)",
+      "benefit_hi": "ड्रिप और स्प्रिंकलर सिंचाई पर सब्सिडी। छोटे और सीमांत किसानों को लागत का 55%, अन्य किसानों को 45%। कई राज्य इसमें अपनी ओर से और मदद जोड़ते हैं।",
+      "eligibility_hi": "जिन किसानों के पास पानी का पक्का स्रोत है। छोटे, सीमांत, अनुसूचित जाति और जनजाति के किसानों तथा पानी की कमी वाले ब्लॉकों को प्राथमिकता दी जाती है।",
+      "how_to_apply_hi": "राज्य कृषि या बागवानी विभाग, या PMKSY पोर्टल के ज़रिए आवेदन करें। ज़मीन के कागज़, जल स्रोत प्रमाण पत्र और बैंक खाता चाहिए।",
+      "keywords_hi": [
+        "सिंचाई",
+        "ड्रिप",
+        "टपक",
+        "स्प्रिंकलर",
+        "पानी",
+        "फव्वारा",
+        "सब्सिडी"
+      ]
     },
     {
       "id": "pm-kusum",
@@ -62,7 +177,29 @@
       "eligibility": "Individual farmers, groups of farmers, FPOs, panchayats and water user associations.",
       "how_to_apply": "Apply through the state nodal agency listed on the PM-KUSUM portal or the state renewable energy development agency.",
       "portal": "https://pmkusum.mnre.gov.in",
-      "keywords": ["solar", "pump", "electricity", "energy", "diesel", "power", "bijli", "renewable"]
+      "keywords": [
+        "solar",
+        "pump",
+        "electricity",
+        "energy",
+        "diesel",
+        "power",
+        "bijli",
+        "renewable"
+      ],
+      "name_hi": "पीएम-कुसुम (किसान ऊर्जा सुरक्षा एवं उत्थान महाभियान)",
+      "benefit_hi": "सौर ऊर्जा से चलने वाले पंप लगाने और मौजूदा पंपों को सौर ऊर्जा पर लाने के लिए सब्सिडी। केंद्र और राज्य मिलाकर लगभग 60% लागत देते हैं और 30% ऋण के रूप में मिलता है, यानी किसान को करीब 10% ही देना होता है। बची हुई बिजली ग्रिड को बेची जा सकती है।",
+      "eligibility_hi": "व्यक्तिगत किसान, किसान समूह, किसान उत्पादक संगठन (FPO), पंचायत और जल उपयोगकर्ता संघ।",
+      "how_to_apply_hi": "PM-KUSUM पोर्टल पर दी गई राज्य नोडल एजेंसी या राज्य नवीकरणीय ऊर्जा विकास एजेंसी के ज़रिए आवेदन करें।",
+      "keywords_hi": [
+        "सौर",
+        "सोलर",
+        "पंप",
+        "बिजली",
+        "ऊर्जा",
+        "डीजल",
+        "मोटर"
+      ]
     },
     {
       "id": "enam",
@@ -72,7 +209,31 @@
       "eligibility": "All farmers, traders and FPOs. Registration is free.",
       "how_to_apply": "Register at enam.gov.in or at the e-NAM counter of a participating APMC mandi, using Aadhaar and bank details.",
       "portal": "https://enam.gov.in",
-      "keywords": ["market", "mandi", "price", "sell", "trading", "apmc", "buyer", "bhav", "rate"]
+      "keywords": [
+        "market",
+        "mandi",
+        "price",
+        "sell",
+        "trading",
+        "apmc",
+        "buyer",
+        "bhav",
+        "rate"
+      ],
+      "name_hi": "ई-नाम (राष्ट्रीय कृषि बाज़ार)",
+      "benefit_hi": "एक हज़ार से ज़्यादा मंडियों को जोड़ने वाला ऑनलाइन व्यापार मंच, जिससे किसान अलग-अलग बाज़ारों के भाव देख सकते हैं और अपनी स्थानीय मंडी से बाहर भी बेच सकते हैं। इसमें गुणवत्ता जाँच की सुविधा और सीधा ऑनलाइन भुगतान भी शामिल है।",
+      "eligibility_hi": "सभी किसान, व्यापारी और FPO। पंजीकरण मुफ़्त है।",
+      "how_to_apply_hi": "enam.gov.in पर या किसी जुड़ी हुई APMC मंडी के ई-नाम काउंटर पर आधार और बैंक विवरण के साथ पंजीकरण करें।",
+      "keywords_hi": [
+        "मंडी",
+        "बाज़ार",
+        "बाजार",
+        "भाव",
+        "बेचना",
+        "व्यापार",
+        "दाम",
+        "रेट"
+      ]
     },
     {
       "id": "msp",
@@ -82,7 +243,26 @@
       "eligibility": "Farmers selling notified crops at designated procurement centres, subject to prescribed quality (Fair Average Quality) norms.",
       "how_to_apply": "Register on the state procurement portal before the season, then bring produce to a designated procurement centre with land records and a bank account.",
       "portal": "https://cacp.dacnet.nic.in",
-      "keywords": ["msp", "support price", "procurement", "fci", "nafed", "guaranteed price", "floor price"]
+      "keywords": [
+        "msp",
+        "support price",
+        "procurement",
+        "fci",
+        "nafed",
+        "guaranteed price",
+        "floor price"
+      ],
+      "name_hi": "एमएसपी (न्यूनतम समर्थन मूल्य) और सरकारी खरीद",
+      "benefit_hi": "22 फसलों के लिए सरकार द्वारा घोषित न्यूनतम भाव, तथा गन्ने के लिए उचित एवं लाभकारी मूल्य। FCI, नैफेड और राज्य एजेंसियाँ MSP पर खरीद करती हैं। पीएम-आशा के तहत दलहन और तिलहन के लिए भावांतर भुगतान की व्यवस्था भी है।",
+      "eligibility_hi": "निर्धारित खरीद केंद्रों पर अधिसूचित फसल बेचने वाले किसान, बशर्ते फसल तय गुणवत्ता (FAQ) मानकों पर खरी उतरे।",
+      "how_to_apply_hi": "सीज़न से पहले राज्य खरीद पोर्टल पर पंजीकरण करें, फिर ज़मीन के कागज़ और बैंक खाते के साथ निर्धारित खरीद केंद्र पर फसल लाएँ।",
+      "keywords_hi": [
+        "एमएसपी",
+        "समर्थन मूल्य",
+        "सरकारी भाव",
+        "खरीद",
+        "न्यूनतम मूल्य"
+      ]
     },
     {
       "id": "midh",
@@ -92,7 +272,33 @@
       "eligibility": "Farmers, FPOs, co-operatives and entrepreneurs taking up horticulture activities.",
       "how_to_apply": "Apply to the state horticulture mission or district horticulture officer with a project proposal, land records and bank details.",
       "portal": "https://midh.gov.in",
-      "keywords": ["horticulture", "orchard", "fruit", "polyhouse", "greenhouse", "cold storage", "plantation", "nursery", "mango", "banana", "grapes"]
+      "keywords": [
+        "horticulture",
+        "orchard",
+        "fruit",
+        "polyhouse",
+        "greenhouse",
+        "cold storage",
+        "plantation",
+        "nursery",
+        "mango",
+        "banana",
+        "grapes"
+      ],
+      "name_hi": "एमआईडीएच (एकीकृत बागवानी विकास मिशन)",
+      "benefit_hi": "बाग और वृक्षारोपण लगाने, पॉलीहाउस व शेड नेट जैसी संरक्षित खेती, कोल्ड स्टोरेज और पैक हाउस जैसी कटाई-उपरांत सुविधाओं, तथा नर्सरी विकास के लिए सहायता। आमतौर पर लागत का 40-50%, पहाड़ी और अनुसूचित क्षेत्रों में इससे अधिक।",
+      "eligibility_hi": "बागवानी करने वाले किसान, FPO, सहकारी समितियाँ और उद्यमी।",
+      "how_to_apply_hi": "राज्य बागवानी मिशन या ज़िला बागवानी अधिकारी को परियोजना प्रस्ताव, ज़मीन के कागज़ और बैंक विवरण के साथ आवेदन दें।",
+      "keywords_hi": [
+        "बागवानी",
+        "बाग",
+        "फल",
+        "पॉलीहाउस",
+        "कोल्ड स्टोरेज",
+        "नर्सरी",
+        "आम",
+        "केला"
+      ]
     },
     {
       "id": "fpo",
@@ -102,7 +308,28 @@
       "eligibility": "Groups of farmers, minimum 300 members in plains and 100 in hilly and north-eastern regions.",
       "how_to_apply": "Approach an implementing agency such as SFAC, NABARD or NCDC, or the state agriculture department.",
       "portal": "https://sfacindia.com",
-      "keywords": ["fpo", "farmer producer", "collective", "group", "cooperative", "bulk", "aggregation", "society"]
+      "keywords": [
+        "fpo",
+        "farmer producer",
+        "collective",
+        "group",
+        "cooperative",
+        "bulk",
+        "aggregation",
+        "society"
+      ],
+      "name_hi": "10,000 किसान उत्पादक संगठन (FPO) का गठन और प्रोत्साहन",
+      "benefit_hi": "प्रति FPO तीन साल में ₹18 लाख तक की आर्थिक मदद, प्रति सदस्य ₹2,000 तक की समान इक्विटी राशि (अधिकतम ₹15 लाख), और ₹2 करोड़ तक की ऋण गारंटी। इससे मिलकर सस्ते दाम पर खाद-बीज खरीदना और थोक में बेचना आसान होता है।",
+      "eligibility_hi": "किसानों के समूह — मैदानी इलाकों में कम से कम 300 सदस्य, तथा पहाड़ी और पूर्वोत्तर क्षेत्रों में 100 सदस्य।",
+      "how_to_apply_hi": "SFAC, नाबार्ड या NCDC जैसी क्रियान्वयन एजेंसी, या राज्य कृषि विभाग से संपर्क करें।",
+      "keywords_hi": [
+        "एफपीओ",
+        "किसान समूह",
+        "संगठन",
+        "सहकारी",
+        "समिति",
+        "मिलकर"
+      ]
     },
     {
       "id": "aif",
@@ -112,7 +339,28 @@
       "eligibility": "Farmers, FPOs, PACS, agri-entrepreneurs, startups, co-operatives and state agencies.",
       "how_to_apply": "Apply on agriinfra.dac.gov.in and select a participating lending institution.",
       "portal": "https://agriinfra.dac.gov.in",
-      "keywords": ["infrastructure", "warehouse", "cold chain", "storage", "processing", "post harvest", "godown", "grading"]
+      "keywords": [
+        "infrastructure",
+        "warehouse",
+        "cold chain",
+        "storage",
+        "processing",
+        "post harvest",
+        "godown",
+        "grading"
+      ],
+      "name_hi": "कृषि अवसंरचना कोष (AIF)",
+      "benefit_hi": "कटाई के बाद के ढाँचे — गोदाम, कोल्ड चेन, ग्रेडिंग व छँटाई इकाई, प्राथमिक प्रसंस्करण — के लिए ₹1 लाख करोड़ की वित्त सुविधा। ₹2 करोड़ तक के ऋण पर सात साल तक 3% ब्याज छूट, साथ में ऋण गारंटी।",
+      "eligibility_hi": "किसान, FPO, PACS, कृषि उद्यमी, स्टार्टअप, सहकारी समितियाँ और राज्य एजेंसियाँ।",
+      "how_to_apply_hi": "agriinfra.dac.gov.in पर आवेदन करें और कोई भागीदार ऋणदाता संस्था चुनें।",
+      "keywords_hi": [
+        "गोदाम",
+        "भंडारण",
+        "कोल्ड चेन",
+        "प्रसंस्करण",
+        "ढांचा",
+        "रखने"
+      ]
     },
     {
       "id": "natural-farming",
@@ -122,7 +370,28 @@
       "eligibility": "Farmers willing to adopt natural farming practices, preferably in clusters along river corridors and in identified districts.",
       "how_to_apply": "Enrol through the state agriculture department or a Krishi Vigyan Kendra; cluster-based enrolment is preferred.",
       "portal": "https://naturalfarming.dac.gov.in",
-      "keywords": ["natural farming", "organic", "chemical free", "zbnf", "jaivik", "bio input", "sustainable", "desi"]
+      "keywords": [
+        "natural farming",
+        "organic",
+        "chemical free",
+        "zbnf",
+        "jaivik",
+        "bio input",
+        "sustainable",
+        "desi"
+      ],
+      "name_hi": "राष्ट्रीय प्राकृतिक खेती मिशन (NMNF)",
+      "benefit_hi": "गाय आधारित सामग्री और खेत की जैव सामग्री पर आधारित रसायन-मुक्त खेती के लिए सहायता। तीन साल में लगभग ₹15,000 प्रति हेक्टेयर, साथ में जैव-संसाधन केंद्र, किसान प्रशिक्षण और प्रमाणन में सहयोग।",
+      "eligibility_hi": "प्राकृतिक खेती अपनाने के इच्छुक किसान, विशेषकर नदी किनारे के समूहों और चिन्हित ज़िलों में।",
+      "how_to_apply_hi": "राज्य कृषि विभाग या कृषि विज्ञान केंद्र के ज़रिए नामांकन करें; समूह आधारित नामांकन को प्राथमिकता दी जाती है।",
+      "keywords_hi": [
+        "प्राकृतिक खेती",
+        "जैविक",
+        "ऑर्गेनिक",
+        "रसायन मुक्त",
+        "देसी",
+        "गोबर"
+      ]
     }
   ]
 }

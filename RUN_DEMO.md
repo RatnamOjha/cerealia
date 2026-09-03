@@ -33,7 +33,14 @@ Opens <http://localhost:5173>
    Coconut is 72% of Kerala's sown area in the official data.
 7. **Click Punjab** — paddy scores 0.39 fitness with a 346 mm irrigation
    gap. This is the water-crisis finding; it is the strongest talking point.
-8. **Chat** — "How do I insure my crop against drought?" → retrieves PMFBY.
+8. **Chat in Hindi** — open the advisor (it opens in हिंदी by default) and tap
+   the 🎙 mic, then say:
+   *"सूखे से मेरी फसल बर्बाद हो गई, बीमा कैसे मिलेगा?"*
+   It transcribes, answers in Hindi with PMFBY, and **▶ सुनें** reads the answer
+   aloud in Hindi. Toggle to **EN** to show the same question in English.
+
+   If the room's wifi is unreliable, type the Hindi question instead — only
+   dictation needs the network. The Hindi answer and the read-aloud are local.
 
 ## If something breaks
 
@@ -42,7 +49,14 @@ Opens <http://localhost:5173>
 - **Port 8000 is used by another project on this machine** — that is why
   this one runs on 8010.
 - **Chatbot says "Local scheme database"** → expected without a Grok API
-  key. It still answers correctly; the fallback is deliberate.
+  key. It still answers correctly, in Hindi or English; the fallback is deliberate.
+- **Mic does nothing** → Chrome or Edge only, and the page needs microphone
+  permission. Safari will not do `hi-IN` dictation. Voice input also needs a
+  network connection (Chrome sends audio to Google); typing the Hindi question
+  works offline.
+- **Read-aloud sounds wrong** → the device needs a Hindi voice. This Mac has
+  **Lekha (hi_IN)** installed and Chrome also exposes **Google हिन्दी**, so it
+  is fine. A ⚠ next to सुनें means no Hindi voice was found.
 - **Map is blank** → hard-reload the browser; the GeoJSON is bundled
   locally so it cannot be a network problem.
 
@@ -62,3 +76,5 @@ Opens <http://localhost:5173>
 | India map | 4 MB → 85 KB, bundled offline |
 | Punjab paddy yield | 3.73 t/ha (vs Jharkhand 0.97 t/ha) |
 | Kerala coconut | 72% of state sown area |
+| Languages | Hindi + English, voice in and voice out |
+| Hindi coverage | All 12 schemes carry full Hindi text |

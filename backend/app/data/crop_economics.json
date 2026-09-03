@@ -10,7 +10,8 @@
       "water_mm": "seasonal crop water requirement in mm",
       "duration_days": "days from sowing to harvest",
       "risk_score": "1 (low) to 5 (high) - combines price volatility, perishability and market-access difficulty",
-      "cost_per_quintal": "INR per quintal, CACP A2+FL cost of production"
+      "cost_per_quintal": "INR per quintal, CACP A2+FL cost of production",
+      "display_hi": "Crop name in Hindi, shown when the interface is in Hindi"
     },
     "caveat": "These are national indicative figures for a demonstration model. Production deployment must substitute district-level Agmarknet price feeds and state cost-of-cultivation surveys.",
     "cost_model": "Field crops are costed per quintal using CACP A2+FL cost of production (2024-25), so cost scales with actual yield. Horticulture and plantation crops keep a per-hectare operating cost, since their spend is driven by labour, canopy management and capital rather than tonnage."
@@ -29,7 +30,8 @@
       "duration_days": 130,
       "risk_score": 1,
       "season": "Kharif",
-      "cost_per_quintal": 1533
+      "cost_per_quintal": 1533,
+      "display_hi": "धान (चावल)"
     },
     "maize": {
       "display": "Maize",
@@ -44,7 +46,8 @@
       "duration_days": 100,
       "risk_score": 1,
       "season": "Kharif/Rabi",
-      "cost_per_quintal": 1447
+      "cost_per_quintal": 1447,
+      "display_hi": "मक्का"
     },
     "chickpea": {
       "display": "Chickpea (Gram)",
@@ -59,7 +62,8 @@
       "duration_days": 110,
       "risk_score": 2,
       "season": "Rabi",
-      "cost_per_quintal": 3400
+      "cost_per_quintal": 3400,
+      "display_hi": "चना"
     },
     "kidneybeans": {
       "display": "Kidney Beans (Rajma)",
@@ -74,7 +78,8 @@
       "duration_days": 120,
       "risk_score": 3,
       "season": "Kharif",
-      "cost_per_quintal": 6000
+      "cost_per_quintal": 6000,
+      "display_hi": "राजमा"
     },
     "pigeonpeas": {
       "display": "Pigeon Peas (Tur)",
@@ -89,7 +94,8 @@
       "duration_days": 180,
       "risk_score": 2,
       "season": "Kharif",
-      "cost_per_quintal": 4761
+      "cost_per_quintal": 4761,
+      "display_hi": "अरहर (तूर)"
     },
     "mothbeans": {
       "display": "Moth Beans",
@@ -104,7 +110,8 @@
       "duration_days": 80,
       "risk_score": 2,
       "season": "Kharif",
-      "cost_per_quintal": 4000
+      "cost_per_quintal": 4000,
+      "display_hi": "मोठ"
     },
     "mungbean": {
       "display": "Mung Bean (Moong)",
@@ -119,7 +126,8 @@
       "duration_days": 70,
       "risk_score": 2,
       "season": "Kharif/Summer",
-      "cost_per_quintal": 6124
+      "cost_per_quintal": 6124,
+      "display_hi": "मूंग"
     },
     "blackgram": {
       "display": "Black Gram (Urad)",
@@ -134,7 +142,8 @@
       "duration_days": 90,
       "risk_score": 2,
       "season": "Kharif",
-      "cost_per_quintal": 4883
+      "cost_per_quintal": 4883,
+      "display_hi": "उड़द"
     },
     "lentil": {
       "display": "Lentil (Masur)",
@@ -149,7 +158,8 @@
       "duration_days": 120,
       "risk_score": 2,
       "season": "Rabi",
-      "cost_per_quintal": 3405
+      "cost_per_quintal": 3405,
+      "display_hi": "मसूर"
     },
     "cotton": {
       "display": "Cotton (Kapas)",
@@ -164,7 +174,8 @@
       "duration_days": 180,
       "risk_score": 3,
       "season": "Kharif",
-      "cost_per_quintal": 4747
+      "cost_per_quintal": 4747,
+      "display_hi": "कपास"
     },
     "jute": {
       "display": "Jute",
@@ -179,7 +190,8 @@
       "duration_days": 120,
       "risk_score": 3,
       "season": "Kharif",
-      "cost_per_quintal": 3556
+      "cost_per_quintal": 3556,
+      "display_hi": "जूट"
     },
     "coffee": {
       "display": "Coffee",
@@ -193,7 +205,8 @@
       "water_mm": 1800,
       "duration_days": 365,
       "risk_score": 4,
-      "season": "Perennial"
+      "season": "Perennial",
+      "display_hi": "कॉफ़ी"
     },
     "coconut": {
       "display": "Coconut",
@@ -208,7 +221,8 @@
       "duration_days": 365,
       "risk_score": 2,
       "season": "Perennial",
-      "cost_per_quintal": 7440
+      "cost_per_quintal": 7440,
+      "display_hi": "नारियल"
     },
     "banana": {
       "display": "Banana",
@@ -222,7 +236,8 @@
       "water_mm": 1800,
       "duration_days": 300,
       "risk_score": 4,
-      "season": "Perennial"
+      "season": "Perennial",
+      "display_hi": "केला"
     },
     "mango": {
       "display": "Mango",
@@ -236,7 +251,8 @@
       "water_mm": 900,
       "duration_days": 365,
       "risk_score": 3,
-      "season": "Perennial"
+      "season": "Perennial",
+      "display_hi": "आम"
     },
     "grapes": {
       "display": "Grapes",
@@ -250,7 +266,8 @@
       "water_mm": 700,
       "duration_days": 365,
       "risk_score": 5,
-      "season": "Perennial"
+      "season": "Perennial",
+      "display_hi": "अंगूर"
     },
     "apple": {
       "display": "Apple",
@@ -264,7 +281,8 @@
       "water_mm": 800,
       "duration_days": 365,
       "risk_score": 3,
-      "season": "Perennial"
+      "season": "Perennial",
+      "display_hi": "सेब"
     },
     "orange": {
       "display": "Orange",
@@ -278,7 +296,8 @@
       "water_mm": 950,
       "duration_days": 365,
       "risk_score": 3,
-      "season": "Perennial"
+      "season": "Perennial",
+      "display_hi": "संतरा"
     },
     "papaya": {
       "display": "Papaya",
@@ -292,7 +311,8 @@
       "water_mm": 1400,
       "duration_days": 300,
       "risk_score": 4,
-      "season": "Perennial"
+      "season": "Perennial",
+      "display_hi": "पपीता"
     },
     "pomegranate": {
       "display": "Pomegranate",
@@ -306,7 +326,8 @@
       "water_mm": 600,
       "duration_days": 365,
       "risk_score": 4,
-      "season": "Perennial"
+      "season": "Perennial",
+      "display_hi": "अनार"
     },
     "watermelon": {
       "display": "Watermelon",
@@ -320,7 +341,8 @@
       "water_mm": 500,
       "duration_days": 90,
       "risk_score": 4,
-      "season": "Summer"
+      "season": "Summer",
+      "display_hi": "तरबूज़"
     },
     "muskmelon": {
       "display": "Muskmelon",
@@ -334,7 +356,8 @@
       "water_mm": 450,
       "duration_days": 85,
       "risk_score": 4,
-      "season": "Summer"
+      "season": "Summer",
+      "display_hi": "खरबूजा"
     }
   }
 }

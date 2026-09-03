@@ -62,6 +62,8 @@ class ChatRequest(BaseModel):
     message: str = Field(..., min_length=1, max_length=2000)
     context_note: str | None = None
     history: list[dict[str, str]] | None = None
+    lang: str = Field("auto", pattern="^(auto|en|hi)$",
+                      description="Reply language; 'auto' detects Devanagari")
 
 
 @app.get("/api/health")
@@ -148,4 +150,5 @@ def schemes() -> dict[str, Any]:
 
 @app.post("/api/chat")
 def chat(req: ChatRequest) -> dict[str, Any]:
-    return chatbot.ask(req.message, context_note=req.context_note, history=req.history)
+    return chatbot.ask(req.message, context_note=req.context_note,
+                       history=req.history, lang=req.lang)
