@@ -1,4 +1,8 @@
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:8010'
+// In production the API is served from the same origin as the page, so a
+// relative path is correct and there is no CORS to configure. Only the dev
+// server needs to reach across to the separate backend port.
+const BASE =
+  import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? 'http://localhost:8010' : '')
 
 async function request(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {

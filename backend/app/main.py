@@ -8,6 +8,8 @@ from typing import Any
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
 from . import chatbot, speech
@@ -34,6 +36,10 @@ app.add_middleware(
 )
 
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
+
+# Built frontend, when deployed as a single service. Absent during local
+# development, where Vite serves the UI on its own port.
+FRONTEND_DIST = Path(__file__).resolve().parent.parent.parent / "frontend" / "dist"
 
 
 class SiteRequest(BaseModel):
@@ -174,7 +180,7 @@ def schemes() -> dict[str, Any]:
 
 
 @app.post("/api/chat")
-def chat(req: ChatRequest) -> dict[str, Any]:
+def chat_endpoint(req: ChatRequest) -> dict[str, Any]:
     history = [t.model_dump() for t in (req.history or [])]
     return chatbot.ask(req.message, context_note=req.context_note,
                        history=history, lang=req.lang, state_id=req.state_id)
@@ -198,3 +204,34 @@ async def speech_to_text(
         content_type=audio.content_type or "audio/webm",
         language=language,
     )
+
+
+# --- static frontend -------------------------------------------------------
+# Mounted last, so it can never shadow an /api route. Only present in a
+# deployed build; locally Vite serves the UI and this block is skipped.
+if FRONTEND_DIST.is_dir():
+    app.mount(
+        "/assets",
+        StaticFiles(directory=FRONTEND_DIST / "assets"),
+        name="assets",
+    )
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    def spa(full_path: str) -> FileResponse:
+        """Serve the single-page app, falling back to index.html for any route.
+
+        A client-side router owns every non-API path, so an unknown path there
+        is not a 404 -- it is a route the browser resolves once the app boots.
+
+        An unknown /api path is the opposite: it must stay a 404. Letting the
+        catch-all answer it returns HTML with a 200, so a typo'd endpoint or a
+        renamed route looks like a blank screen instead of an error.
+        """
+        if full_path.startswith("api/"):
+            raise HTTPException(status_code=404, detail=f"No such endpoint: /{full_path}")
+
+        candidate = (FRONTEND_DIST / full_path).resolve()
+        # Containment check: a crafted path must not escape the build directory.
+        if full_path and candidate.is_file() and FRONTEND_DIST.resolve() in candidate.parents:
+            return FileResponse(candidate)
+        return FileResponse(FRONTEND_DIST / "index.html")

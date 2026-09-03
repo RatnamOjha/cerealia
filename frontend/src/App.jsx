@@ -5,7 +5,8 @@ import RecommendationPanel from './components/RecommendationPanel'
 import ChatPanel from './components/ChatPanel'
 import { getHealth, recommendForState } from './api'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8010'
+const API =
+  import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? 'http://localhost:8010' : '')
 
 export default function App() {
   const [view, setView] = useState('globe')
