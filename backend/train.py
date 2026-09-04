@@ -141,13 +141,31 @@ def noise_curve(make_model, X, y, cv, sd, augmented: bool) -> dict:
     return {pct: round(float(np.mean(v)), 4) for pct, v in scores.items()}
 
 
+# Default sklearn trees grow until every leaf is pure. On augmented data that
+# means splitting until each jittered copy sits in its own leaf -- memorising
+# the noise we added on purpose. Left unregularised this produced a 281 MB
+# model with 1.2M nodes, which OOM-killed a 512 MB instance on first request.
+#
+# Stopping at 8 samples per leaf scores *better* under noise (95.7% vs 95.5%)
+# in a fifteenth of the space, because a leaf of 8 jittered neighbours is the
+# smoothed estimate we actually wanted.
+N_ESTIMATORS = 150
+MIN_SAMPLES_LEAF = 8
+
+# Hard ceiling on the saved model, enforced at the end of training. Generous
+# against the ~20 MB this produces, tight against the 512 MB the whole service
+# gets.
+MAX_MODEL_MB = 60
+
+
 def make_forest() -> Pipeline:
     # The scaler is redundant for trees but keeps the pipeline swappable, and
     # recommender.py reads feature_importances_ off the "clf" step by name.
     return Pipeline([
         ("scale", StandardScaler()),
         ("clf", RandomForestClassifier(
-            n_estimators=300, n_jobs=N_JOBS, random_state=SEED,
+            n_estimators=N_ESTIMATORS, min_samples_leaf=MIN_SAMPLES_LEAF,
+            n_jobs=N_JOBS, random_state=SEED,
         )),
     ])
 
@@ -158,7 +176,8 @@ def make_extra_trees() -> Pipeline:
     return Pipeline([
         ("scale", StandardScaler()),
         ("clf", ExtraTreesClassifier(
-            n_estimators=300, n_jobs=N_JOBS, random_state=SEED,
+            n_estimators=N_ESTIMATORS, min_samples_leaf=MIN_SAMPLES_LEAF,
+            n_jobs=N_JOBS, random_state=SEED,
         )),
     ])
 
@@ -357,10 +376,23 @@ def main() -> None:
 
     print("\n" + classification_report(y_test, y_pred, zero_division=0))
 
+    model_path = MODELS / "crop_suitability.joblib"
     joblib.dump(
         {"pipeline": pipe, "features": FEATURES, "classes": sorted(y.unique())},
-        MODELS / "crop_suitability.joblib",
+        model_path,
     )
+
+    # The instance this is deployed to has 512 MB for the model, sklearn, the
+    # interpreter and every request. An unregularised model silently grew to
+    # 281 MB once and took the service down on first request, with no error
+    # anywhere -- so fail the build here instead of at 3am in production.
+    model_mb = model_path.stat().st_size / 1e6
+    print(f"Model size        : {model_mb:.1f} MB")
+    if model_mb > MAX_MODEL_MB:
+        raise SystemExit(
+            f"Model is {model_mb:.0f} MB, over the {MAX_MODEL_MB} MB budget. "
+            "Raise MIN_SAMPLES_LEAF or lower N_ESTIMATORS."
+        )
 
     metrics = {
         "trained_at": time.strftime("%Y-%m-%dT%H:%M:%S"),

@@ -123,10 +123,14 @@ Browser (React + Vite)
   produces. The model is retrained on every image build, so the exact figure
   moves a little with the platform's BLAS; the live one is served at
   `/api/health`
-- Selected by benchmark, not assumption. At ±20% noise: extra trees 96.1%,
-  gradient boosting 95.6%, noise-augmented forest 95.4%, clean-trained forest
-  88.1%. Boosting also drops `feature_importances_`, which the explainability
+- Selected by benchmark, not assumption. At ±20% noise: extra trees 95.8%,
+  gradient boosting 95.6%, noise-augmented forest 94.6%, clean-trained forest
+  86.9%. Boosting also drops `feature_importances_`, which the explainability
   layer reads directly
+- Trees stop at 8 samples per leaf. Grown to purity they memorise the jitter
+  instead of learning from it — 281 MB of model that scored *worse* under noise
+  and exhausted the 512 MB instance on first request. `train.py` now fails the
+  build if the model exceeds 60 MB; it currently ships at 20 MB
 - **No SMOTE.** The dataset is exactly balanced at 100 rows per class, so
   resampling would inject synthetic noise without correcting any imbalance.
   `train.py` asserts the balance rather than assuming it.

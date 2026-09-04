@@ -1,5 +1,5 @@
 {
-  "trained_at": "2026-09-04T18:11:13",
+  "trained_at": "2026-09-04T18:19:58",
   "model": "ExtraTreesClassifier(extra_trees_noise_augmented)",
   "noise_augmented_training": true,
   "dataset": {
@@ -9,23 +9,23 @@
     "max_class_count": 100,
     "is_balanced": true
   },
-  "holdout_accuracy": 0.9932,
-  "holdout_accuracy_at_20pct_noise": 0.9545,
-  "macro_f1": 0.9932,
-  "cv_accuracy_mean": 0.9932,
-  "cv_accuracy_std": 0.002,
+  "holdout_accuracy": 0.9886,
+  "holdout_accuracy_at_20pct_noise": 0.9568,
+  "macro_f1": 0.9886,
+  "cv_accuracy_mean": 0.9873,
+  "cv_accuracy_std": 0.0042,
   "cv_folds": 5,
-  "misclassified_test_samples": 3,
+  "misclassified_test_samples": 5,
   "test_set_size": 440,
-  "train_seconds": 0.576,
+  "train_seconds": 0.193,
   "feature_importance": {
-    "rainfall": 0.2023,
-    "humidity": 0.1961,
-    "P": 0.144,
-    "N": 0.1323,
-    "K": 0.1249,
-    "temperature": 0.1153,
-    "ph": 0.0852
+    "humidity": 0.2016,
+    "rainfall": 0.1998,
+    "P": 0.152,
+    "K": 0.1402,
+    "N": 0.1337,
+    "temperature": 0.1039,
+    "ph": 0.0688
   },
   "smote_applied": false,
   "smote_rationale": "Dataset is exactly balanced (100 samples/class); resampling would add synthetic noise without addressing any imbalance.",
@@ -37,32 +37,32 @@
     "mean_within_class_feature_correlation": 0.0755,
     "interpretation": "No leakage: the score is arithmetically correct. But Gaussian Naive Bayes reaches nearly the same accuracy, and features are uncorrelated within each crop, which together indicate a synthetic dataset of well-separated classes rather than a strong model. Quote the noise-robust figure operationally."
   },
-  "headline_accuracy_to_quote": 0.9545,
+  "headline_accuracy_to_quote": 0.9568,
   "headline_basis": "hold-out accuracy at 20% simulated sensor error",
   "model_selection": {
     "selected": "extra_trees_noise_augmented",
     "selected_on": "cross-validated accuracy at 20% input noise",
     "candidates": {
       "forest": {
-        "0pct": 0.995,
-        "10pct": 0.9664,
-        "20pct": 0.8809,
-        "30pct": 0.7559,
-        "50pct": 0.5709
+        "0pct": 0.9945,
+        "10pct": 0.9591,
+        "20pct": 0.8691,
+        "30pct": 0.7527,
+        "50pct": 0.5623
       },
       "forest_noise_augmented": {
-        "0pct": 0.9927,
-        "10pct": 0.9841,
-        "20pct": 0.9536,
-        "30pct": 0.8755,
-        "50pct": 0.705
+        "0pct": 0.9923,
+        "10pct": 0.9836,
+        "20pct": 0.9464,
+        "30pct": 0.8595,
+        "50pct": 0.6695
       },
       "extra_trees_noise_augmented": {
-        "0pct": 0.9882,
-        "10pct": 0.9845,
-        "20pct": 0.9609,
-        "30pct": 0.8918,
-        "50pct": 0.7473
+        "0pct": 0.9864,
+        "10pct": 0.9855,
+        "20pct": 0.9582,
+        "30pct": 0.8923,
+        "50pct": 0.7364
       },
       "boosting_noise_augmented": {
         "0pct": 0.985,
@@ -74,10 +74,10 @@
     }
   },
   "accuracy_under_noise": {
-    "0pct": 0.9882,
-    "10pct": 0.9845,
-    "20pct": 0.9609,
-    "30pct": 0.8918,
-    "50pct": 0.7473
+    "0pct": 0.9864,
+    "10pct": 0.9855,
+    "20pct": 0.9582,
+    "30pct": 0.8923,
+    "50pct": 0.7364
   }
 }
