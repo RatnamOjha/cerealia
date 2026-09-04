@@ -27,6 +27,16 @@ OUT = ROOT / "docs" / "Cerealia_Project_Review.pptx"
 DATA = ROOT / "backend" / "app" / "data"
 
 METRICS = json.loads((ROOT / "backend" / "models" / "metrics.json").read_text())
+
+# The candidate comparison is only recorded when train.py runs with
+# --benchmark; a plain build-time run omits it. Fall back to the published
+# figure rather than raising, so the deck builds either way.
+BASELINE_20PCT = (
+    METRICS.get("model_selection", {})
+    .get("candidates", {})
+    .get("forest", {})
+    .get("20pct", 0.8809)
+)
 STATS = json.loads((DATA / "state_crop_stats.json").read_text())
 COVERAGE = STATS["_meta"]["coverage"]
 SCHEMES = json.loads((DATA / "schemes.json").read_text())["schemes"]
@@ -471,8 +481,7 @@ def build() -> None:
     para(tf, "The clean score is high because this dataset has well-separated class boundaries, so it "
              "is not real-world performance. Training on noise-augmented readings is what makes the "
              f"deployed model hold {METRICS['headline_accuracy_to_quote'] * 100:.0f}% at ±20% sensor "
-             f"error, against {METRICS['model_selection']['candidates']['forest']['20pct'] * 100:.0f}% "
-             "for a clean-trained forest.",
+             f"error, against {BASELINE_20PCT * 100:.0f}% for a clean-trained forest.",
          11.5, DIM, after=0, line=1.25)
     foot(s)
 

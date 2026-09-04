@@ -13,6 +13,8 @@ Out:  backend/models/crop_suitability.joblib
 """
 
 import json
+import os
+import sys
 import time
 from pathlib import Path
 
@@ -52,6 +54,21 @@ HEADLINE_NOISE_PCT = 20
 # training at exactly the evaluation level would be teaching to the test.
 NOISE_COPIES = 4
 AUG_NOISE_RANGE = (5, 30)
+
+# Never n_jobs=-1. Inside a container joblib cannot see physical cores, falls
+# back to the logical count, and forks one full Python process per core -- each
+# with numpy, sklearn and its own copy of the augmented data. That is what
+# OOM-killed the Render build.
+N_JOBS = int(os.getenv("TRAIN_N_JOBS") or 2)
+
+# The candidate benchmark is model selection: a thing you do while developing,
+# not on every image build. The build trains the model that selection already
+# chose, which is the second of work the Dockerfile budgets for.
+SELECTED_MODEL = os.getenv("TRAIN_MODEL") or "extra_trees_noise_augmented"
+RUN_BENCHMARK = (
+    "--benchmark" in sys.argv
+    or (os.getenv("TRAIN_BENCHMARK") or "").lower() in {"1", "true", "yes"}
+)
 
 
 def load_data() -> pd.DataFrame:
@@ -130,7 +147,7 @@ def make_forest() -> Pipeline:
     return Pipeline([
         ("scale", StandardScaler()),
         ("clf", RandomForestClassifier(
-            n_estimators=300, n_jobs=-1, random_state=SEED,
+            n_estimators=300, n_jobs=N_JOBS, random_state=SEED,
         )),
     ])
 
@@ -141,7 +158,7 @@ def make_extra_trees() -> Pipeline:
     return Pipeline([
         ("scale", StandardScaler()),
         ("clf", ExtraTreesClassifier(
-            n_estimators=300, n_jobs=-1, random_state=SEED,
+            n_estimators=300, n_jobs=N_JOBS, random_state=SEED,
         )),
     ])
 
@@ -216,7 +233,7 @@ def audit(df: pd.DataFrame, X, y, cv) -> dict:
     leakage = exact_dupes > 0 or feature_dupes > 0
     print(f"  Train-test leakage possible      : {'YES' if leakage else 'no'}")
 
-    nb = cross_val_score(GaussianNB(), X, y, cv=cv, n_jobs=-1).mean()
+    nb = cross_val_score(GaussianNB(), X, y, cv=cv, n_jobs=N_JOBS).mean()
     print(f"  Gaussian Naive Bayes accuracy    : {nb * 100:.2f}%")
 
     # Independent draws per feature are a data generator's fingerprint; in real
@@ -268,7 +285,16 @@ def main() -> None:
 
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=SEED)
     audit_result = audit(df, X, y, cv)
-    winner, curves = benchmark(X, y, cv, sd)
+
+    if RUN_BENCHMARK:
+        winner, curves = benchmark(X, y, cv, sd)
+    else:
+        # Image builds land here: train the model selection already chose,
+        # rather than re-running a four-candidate comparison in a container
+        # with no memory to spare. Re-run it with `python train.py --benchmark`.
+        winner, curves = SELECTED_MODEL, {}
+        print(f"\nSkipping benchmark; training {winner}. "
+              "Run with --benchmark to re-select.")
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=SEED, stratify=y
@@ -304,7 +330,7 @@ def main() -> None:
     )
     noisy_acc = accuracy_score(y_test, pipe.predict(noisy_test))
 
-    cv_scores = cross_val_score(factory(), X, y, cv=cv, scoring="accuracy", n_jobs=-1)
+    cv_scores = cross_val_score(factory(), X, y, cv=cv, scoring="accuracy", n_jobs=N_JOBS)
 
     clf = pipe.named_steps["clf"]
     has_importance = hasattr(clf, "feature_importances_")
@@ -336,7 +362,6 @@ def main() -> None:
         MODELS / "crop_suitability.joblib",
     )
 
-    winning_curve = curves[winner]
     metrics = {
         "trained_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "model": f"{type(clf).__name__}({winner})",
@@ -355,14 +380,24 @@ def main() -> None:
         "smote_applied": False,
         "smote_rationale": "Dataset is exactly balanced (100 samples/class); resampling would add synthetic noise without addressing any imbalance.",
         "audit": audit_result,
-        "model_selection": {
+        # The number to quote: this model, on data it never saw, read through
+        # instruments that are off by 20%. Always measured, benchmark or not,
+        # so the headline never depends on how training was invoked.
+        "headline_accuracy_to_quote": round(float(noisy_acc), 4),
+        "headline_basis": f"hold-out accuracy at {HEADLINE_NOISE_PCT}% simulated sensor error",
+    }
+
+    # Model selection only ran if asked. Recording it conditionally keeps a
+    # build-time run from silently overwriting the comparison with nothing.
+    if curves:
+        metrics["model_selection"] = {
             "selected": winner,
             "selected_on": f"cross-validated accuracy at {HEADLINE_NOISE_PCT}% input noise",
             "candidates": {k: {f"{p}pct": v for p, v in c.items()} for k, c in curves.items()},
-        },
-        "accuracy_under_noise": {f"{p}pct": v for p, v in winning_curve.items()},
-        "headline_accuracy_to_quote": winning_curve[HEADLINE_NOISE_PCT],
-    }
+        }
+        metrics["accuracy_under_noise"] = {
+            f"{p}pct": v for p, v in curves[winner].items()
+        }
     (MODELS / "metrics.json").write_text(json.dumps(metrics, indent=2))
 
     print(f"\nSaved -> {MODELS / 'crop_suitability.joblib'}")

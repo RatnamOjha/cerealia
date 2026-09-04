@@ -1,5 +1,5 @@
 {
-  "trained_at": "2026-09-03T21:15:05",
+  "trained_at": "2026-09-04T18:11:13",
   "model": "ExtraTreesClassifier(extra_trees_noise_augmented)",
   "noise_augmented_training": true,
   "dataset": {
@@ -17,7 +17,7 @@
   "cv_folds": 5,
   "misclassified_test_samples": 3,
   "test_set_size": 440,
-  "train_seconds": 0.305,
+  "train_seconds": 0.576,
   "feature_importance": {
     "rainfall": 0.2023,
     "humidity": 0.1961,
@@ -37,6 +37,8 @@
     "mean_within_class_feature_correlation": 0.0755,
     "interpretation": "No leakage: the score is arithmetically correct. But Gaussian Naive Bayes reaches nearly the same accuracy, and features are uncorrelated within each crop, which together indicate a synthetic dataset of well-separated classes rather than a strong model. Quote the noise-robust figure operationally."
   },
+  "headline_accuracy_to_quote": 0.9545,
+  "headline_basis": "hold-out accuracy at 20% simulated sensor error",
   "model_selection": {
     "selected": "extra_trees_noise_augmented",
     "selected_on": "cross-validated accuracy at 20% input noise",
@@ -77,6 +79,5 @@
     "20pct": 0.9609,
     "30pct": 0.8918,
     "50pct": 0.7473
-  },
-  "headline_accuracy_to_quote": 0.9609
+  }
 }
