@@ -463,6 +463,9 @@ def recommend(
     land_ha: float = 1.0,
     weights: dict[str, float] | None = None,
     state_id: str | None = None,
+    use_regional_prior: bool = True,
+    apply_fitness_gate: bool = True,
+    ranking_method: str = "weighted",
 ) -> dict[str, Any]:
     """Rank every crop for this site and return the top N with full reasoning.
 
@@ -473,7 +476,9 @@ def recommend(
     pipe = _bundle()["pipeline"]
     econ_all = _economics()
     w = {**DEFAULT_WEIGHTS, **(weights or {})}
-    prior = regional_prior(state_id)
+    if ranking_method not in {"weighted", "raw_profit", "classifier_probability"}:
+        raise ValueError(f"Unknown ranking method: {ranking_method}")
+    prior = regional_prior(state_id) if use_regional_prior else None
 
     proba = pipe.predict_proba(site.as_frame())[0]
     rf_proba = dict(zip(pipe.classes_, (float(p) for p in proba)))
@@ -498,7 +503,8 @@ def recommend(
         })
 
     excluded_by_region = len(econ_all) - len(scored)
-    viable = [s for s in scored if s["agro_fit"] >= FITNESS_GATE]
+    viable = ([s for s in scored if s["agro_fit"] >= FITNESS_GATE]
+              if apply_fitness_gate else list(scored))
     gated_out = len(scored) - len(viable)
     if len(viable) < MIN_RESULTS:
         # Sparse candidate set (e.g. a cold-arid site like Ladakh). Show the
@@ -527,13 +533,18 @@ def recommend(
         water = _water_assessment(econ, annual_rain)
         risk_info = resolve_risk(crop, econ, state_id)
         risk = risk_info["risk"]
-        score = (
-            w["fitness"] * s["fitness"]
-            + w["profit"] * n_profit[i]
-            - w["water"] * water["dependence_ratio"]
-            - w["risk"] * risk
-        )
         economics = _annual_economics(crop, econ, state_id)
+        if ranking_method == "raw_profit":
+            score = economics["net_profit_per_ha_year"]
+        elif ranking_method == "classifier_probability":
+            score = s["rf_proba"]
+        else:
+            score = (
+                w["fitness"] * s["fitness"]
+                + w["profit"] * n_profit[i]
+                - w["water"] * water["dependence_ratio"]
+                - w["risk"] * risk
+            )
         results.append({
             "crop": crop,
             "display": econ["display"],

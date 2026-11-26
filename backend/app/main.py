@@ -36,6 +36,7 @@ app.add_middleware(
 )
 
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
+RESEARCH_RESULTS = Path(__file__).resolve().parents[2] / "research" / "results"
 
 # Built frontend, when deployed as a single service. Absent during local
 # development, where Vite serves the UI on its own port.
@@ -215,6 +216,15 @@ if FRONTEND_DIST.is_dir():
         StaticFiles(directory=FRONTEND_DIST / "assets"),
         name="assets",
     )
+
+    # Precomputed, versioned research artifacts are read-only static files.
+    # The research suite is never run by the serving process.
+    if RESEARCH_RESULTS.is_dir():
+        app.mount(
+            "/research-artifacts",
+            StaticFiles(directory=RESEARCH_RESULTS),
+            name="research-artifacts",
+        )
 
     @app.get("/{full_path:path}", include_in_schema=False)
     def spa(full_path: str) -> FileResponse:

@@ -3,6 +3,7 @@ import GlobeView from './components/GlobeView'
 import IndiaMap from './components/IndiaMap'
 import RecommendationPanel from './components/RecommendationPanel'
 import ChatPanel from './components/ChatPanel'
+import ResearchDashboard from './components/ResearchDashboard'
 import { getHealth, recommendForState } from './api'
 
 const API =
@@ -71,6 +72,8 @@ export default function App() {
     return <GlobeView onEnter={() => setView('map')} />
   }
 
+  if (view === 'research') return <ResearchDashboard onBack={() => setView('map')} />
+
   return (
     <div className="app">
       <header className="topbar">
@@ -78,6 +81,7 @@ export default function App() {
           Cere<span>alia</span>
         </div>
         <nav className="topbar-meta">
+          <button className="research-nav" onClick={() => setView('research')}>Research</button>
           {health?.metrics && (
             <span className="metric-chip">
               model {(health.metrics.headline_accuracy_to_quote * 100).toFixed(0)}% @ ±20% sensor error
