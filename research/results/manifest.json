@@ -11,7 +11,7 @@
     "confusion_matrix_50pct.csv": "ed87083fc21fa0653dd60f5c68f4058e43bbba4300a227a8eca996ac7b9e0edb",
     "confusion_matrix_50pct_normalized.csv": "19fd51e54b562a369a6556ceaed89088ef49621878cd78cdc13acdf75c7d111d",
     "confusion_summary.csv": "4b771c09f66a63ceb61e886da6ee3a086b1f99abc03c8061e868d499390586ce",
-    "dashboard_summary.json": "a6b20d036d75a03267f9a7e18868eb87ec9e1769065e14a4923f5114e5274920",
+    "dashboard_summary.json": "e08e3f2e9b6e72464eb8c1bc0cc079a29050b34f847bca78edc77c742a75c87d",
     "figures/classifier_noise_accuracy.pdf": "4de0ba7e590bbd3335b6f74fc889a91c01d798a5b166a1408998dcbda2629d58",
     "figures/classifier_noise_accuracy.png": "209e843a396069cf32aaadc41091a4844a135fdf91f770a127c77b689d0ab2f9",
     "figures/classifier_repeated_split_variability.pdf": "a1e7725e8c72d393b1d30821dc49074cfc67c8523eed262c3d7fd0051279c530",
@@ -32,12 +32,12 @@
     "figures/regional_case_studies.png": "dd8ef94324835e4023b206eb8860ace80f064cb71736053d84dd1055f36e7551",
     "figures/weight_sensitivity_heatmap.pdf": "86832e9e9c9f3685c8b0bcde8ae2f0f92511e8c6b420c23aac372824b75d4245",
     "figures/weight_sensitivity_heatmap.png": "40d992c35e77dd123be412505f5a284e84b1586df30d72908c0f31225d0a4e32",
-    "integrity_checks.csv": "97e8309d7b031d2ab68c9e640f0e880eb46d659319ee1c75a6ca1e2bb75fa0c0",
+    "integrity_checks.csv": "5f2560e90daeb289a4b96499ce26a2ab9dacd3551bdca41551ed4dc89eef6051",
     "legacy_holdout_predictions.csv": "02289005cd7a608b583a8ee6ab071ab6a33f7fbf00d4ef7295d00b485d3ae22f",
     "legacy_predictions.csv": "3e3bba386b0d9f5799b5c8ef5ace7e109fcc618cbc344f199772d8012a0f97c4",
     "paired_tests.csv": "d02b07fdb9e3889eee8a9eda4cdcf2157b7f7c50806024f3906c5447b85dab82",
     "predictions.csv": "6da05407a024e37d92d4e24497e1fbb6fe0ad8f995363f7c8df7297c41df8a45",
-    "ranking_ablation_by_region.csv": "6a5312edc8dd0e588fd820f6d79fbfb35e81b86bf2e1d9eaaad31014cc269105",
+    "ranking_ablation_by_region.csv": "3d9b983ffbe027f7f0e34cd8cc8095bb65a6bd78b0e916cb96410180727b81a3",
     "ranking_ablation_candidates.csv": "5fbe39c00fa40ea3dc417459440f1add220767d10e6bc2b341d25477568f62aa",
     "ranking_ablation_summary.csv": "dcbd39bc80a61a543767820547878c1136024840a460ce5b93f07215e5d9de09",
     "ranking_stability.csv": "720d2399db2e475279070c63a7b89c5fd3da6c2616e9c90d588306bbc7684411",
@@ -55,6 +55,7 @@
     "prediction_rows": 66000,
     "ranking_ablation_rows": 324,
     "regional_profiles": 36,
+    "result_combinations": 150,
     "source_rows": 2200
   },
   "dataset_provenance": "Packaged Crop_recommendation.csv; repository does not contain a verified primary provenance citation. Regional agriculture data is packaged with its source description in backend/build_crop_stats.py.",
@@ -68,6 +69,8 @@
     "backend/app/data/state_profiles.json": "9cea966c2cd93a5a1f267577020006af72cc6174577a08fd6e56c0b7f3dc47e8"
   },
   "dependencies": {
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2",
     "numpy": "2.5.2",
     "pandas": "3.0.5",
     "python": "3.12.2",
@@ -75,13 +78,13 @@
     "scipy": "1.18.1"
   },
   "execution": {
-    "completed_at_utc": "2026-11-26T12:16:32.234444+00:00",
+    "completed_at_utc": "2026-11-26T13:19:57.004032+00:00",
     "cpu_count": 8,
     "machine": "arm64",
     "platform": "macOS-26.2-arm64-arm-64bit",
     "processor": "arm",
-    "runtime_seconds": 76.45,
-    "started_at_utc": "2026-11-26T12:15:15.780488+00:00"
+    "runtime_seconds": 91.24,
+    "started_at_utc": "2026-11-26T13:18:25.759101+00:00"
   },
   "feature_order": [
     "N",
@@ -92,7 +95,7 @@
     "ph",
     "rainfall"
   ],
-  "git_commit_sha": "7f2edd4d2751d687873e0cba80af2365a5e5c250",
+  "git_commit_sha": "0bcd8b37e31c6ded4edcda10d341633d53dd12fa",
   "limitations": [
     "No untouched external crop dataset available in repository.",
     "Legacy candidate selection benchmark used all source rows before final holdout was defined.",
@@ -191,7 +194,7 @@
   ],
   "preprocessing": "StandardScaler fitted within each model pipeline on training data only in the strict protocol; legacy run follows train.py full-dataset noise-scale behavior.",
   "protocol_version": "cerealia-research-v1.0",
-  "run_id": "20261126T121632Z-7f2edd4d",
+  "run_id": "20261126T131956Z-0bcd8b37",
   "seeds": [
     42,
     43,

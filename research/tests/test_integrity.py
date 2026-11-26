@@ -171,7 +171,7 @@ class ResearchIntegrity(unittest.TestCase):
                 summary = state_rows[state_rows.configuration == config].iloc[0]
                 group = candidates[(candidates.state_id == state_id) &
                                    (candidates.configuration == config)].sort_values("rank")
-                self.assertEqual(group.rank.tolist(), list(range(1, len(group) + 1)))
+                self.assertEqual(group["rank"].tolist(), list(range(1, len(group) + 1)))
                 self.assertEqual(len(group), int(summary.eligible_candidates))
                 self.assertEqual(group.iloc[0].candidate_crop, summary.top1)
                 self.assertEqual("|".join(group.candidate_crop.iloc[:3]), summary.top3)

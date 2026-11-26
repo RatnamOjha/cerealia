@@ -268,7 +268,7 @@ LA,Ladakh,Full Cerealia,primary,,apple,apple,apple,0.0397,6.6,0.6,-0.0279,554000
 LA,Ladakh,Raw estimated net-profit ranking,additional,,apple,apple,apple,0.0397,6.6,0.6,554000.0,554000.0,724.0,0.905,,0.6,0.6,,curated estimate,curated estimate,1,True,1
 LA,Ladakh,Classifier probability only,additional,,apple,apple,apple,0.0397,6.6,0.6,0.0005,554000.0,724.0,0.905,,0.6,0.6,,curated estimate,curated estimate,1,True,1
 LA,Ladakh,Full without regional prior,additional,,mango,mango|pomegranate|orange,mango|pomegranate|orange|coconut|papaya|mothbeans,0.4078,40.8,1.0,0.2706,203250.0,824.0,0.916,0.306,0.6,0.453,,national statistics,measured volatility + market risk,8,False,8
-LA,Ladakh,Full without fitness gate,additional,,apple,apple,apple,0.0397,6.6,0.6,-0.0279,554000.0,724.0,0.905,,0.6,0.6,,curated estimate,curated estimate,1,False,1
+LA,Ladakh,Full without fitness gate,additional,,apple,apple,apple,0.0397,6.6,0.6,-0.0279,554000.0,724.0,0.905,,0.6,0.6,,curated estimate,curated estimate,1,True,1
 DL,Delhi,Fitness only,primary,,maize,maize|rice|watermelon,maize|rice|watermelon|mango,0.3872,64.5,0.6,0.3872,17030.0,8.0,0.015,0.28,0.2,0.24,,national statistics,measured volatility + market risk,4,False,4
 DL,Delhi,Return term only,primary,,watermelon,watermelon|mango|maize,watermelon|mango|maize|rice,0.2065,34.4,0.6,1.0,210000.0,0.0,0.0,,0.8,0.8,,curated estimate,curated estimate,4,False,4
 DL,Delhi,Fitness + return,primary,,watermelon,watermelon|mango|maize,watermelon|mango|maize|rice,0.2065,34.4,0.6,0.3929,210000.0,0.0,0.0,,0.8,0.8,,curated estimate,curated estimate,4,False,4
