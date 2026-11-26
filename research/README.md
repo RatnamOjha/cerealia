@@ -4,7 +4,7 @@ This suite evaluates the committed classifier and calls `backend/train.py` facto
 
 ## Reproduce
 
-From the repository root, install the exact research pins in `research/requirements.txt` into Python 3.12.2 and run:
+From the repository root, install the exact research pins in `research/requirements.txt` into Python 3.12.x and run:
 
 ```bash
 python research/run_all.py --seeds 42 43 44 45 46

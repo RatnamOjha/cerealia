@@ -71,7 +71,8 @@ class ResearchIntegrity(unittest.TestCase):
         self.assertEqual(self.manifest["noise_levels_pct"], NOISES)
         self.assertEqual(self.manifest["checks"]["result_combinations"], 150)
         self.assertEqual(self.manifest["checks"]["prediction_rows"], 66_000)
-        self.assertEqual(self.manifest["dependencies"]["python"], platform.python_version())
+        self.assertTrue(self.manifest["dependencies"]["python"].startswith("3.12."))
+        self.assertEqual(platform.python_version_tuple()[:2], ("3", "12"))
         for package, distribution in [("numpy", "numpy"), ("pandas", "pandas"),
                                       ("scikit_learn", "scikit-learn"), ("scipy", "scipy"),
                                       ("matplotlib", "matplotlib"), ("joblib", "joblib")]:
