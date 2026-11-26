@@ -4,14 +4,17 @@ This suite evaluates the committed classifier and calls `backend/train.py` facto
 
 ## Reproduce
 
-From the repository root, install `research/requirements.txt` into an isolated Python environment and run:
+From the repository root, install the exact research pins in `research/requirements.txt` into Python 3.12.2 and run:
 
 ```bash
 python research/run_all.py --seeds 42 43 44 45 46
 python -m unittest discover -s research/tests
+python research/verify_reproducibility.py
 ```
 
 The first run writes versioned results into `research/results/`. It records the source Git SHA, dataset hashes, library versions, seeds, run time and hardware. Main experiments use five fixed stratified folds; each fold has matched original train/test observations, training-only feature scales and training-only augmentation. Noise is Gaussian with SD equal to the requested percentage of each training feature's SD, shared across models.
+
+Protocol v1 accepts exactly the five seeds `42 43 44 45 46`. Other seed lists fail fast rather than silently changing the documented experiment count.
 
 ## Legacy versus stricter protocol
 
@@ -21,11 +24,13 @@ The first run writes versioned results into `research/results/`. It records the 
 
 The primary five-way ablation holds candidate eligibility, regional prior, fitness gate, source data and production normalization fixed. The return-only term includes agro-climatic fitness and regional evidence in its existing expected-return calculation. Additional raw-profit and classifier-probability rankings retain the gate and regional prior; the no-prior and no-gate comparisons are explicitly separate because they change candidate eligibility. Historical cultivation share is descriptive only: the same historical records inform the production prior. Profit and irrigation measures are modelled estimates, not observed income or water savings.
 
-Ranking input perturbations are independent of coefficient preference sensitivity. Gaussian sensor perturbations use fixed seeds and percentages of the source dataset feature SD; rankings continue through production code.
+Ranking input perturbations are independent of coefficient preference sensitivity. Gaussian perturbations are applied independently to the seven state-profile averages using fixed seeds and percentages of the classifier dataset feature SD. This is a controlled sensitivity check, not a sensor error model: it does not represent correlated soil/weather changes, instrument calibration, time variation, or field measurement streams. Rankings continue through production code.
 
 ## Data and limits
 
-The classifier dataset is the repository's 2,200-row, 22-class `Crop_recommendation.csv`; it appears synthetic and has no external untouched evaluation set in this repository. Region/yield/risk artifacts derive from the packaged Government of India crop statistics and curated crop economic data. Sparse/missing yield and area values fall back through the existing production engine and are identified by source fields. No external dataset is available for validation.
+The classifier dataset is the repository's 2,200-row, 22-class `Crop_recommendation.csv`; it appears synthetic and has no external untouched evaluation set in this repository. Region/yield/risk artifacts derive from the packaged Government of India crop statistics and curated crop economic data. Area-share missingness is retained as missing, not converted to zero: 10 of 36 Full Cerealia top recommendations have no matched state area-share value in this run. Sparse/missing regional yield and area values fall back through the existing production engine and are identified by source fields. No external dataset is available for validation.
+
+To verify reproducibility under the pins, run `python research/verify_reproducibility.py`. It repeats protocol v1 into a temporary output directory and compares hashes for numeric artifacts with the committed run. Timestamped manifests and PDF metadata are excluded from byte-for-byte comparison.
 
 ## Artifacts
 

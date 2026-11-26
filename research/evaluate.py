@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import platform
 import sys
 import time
@@ -27,7 +28,7 @@ from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parents[1]
 BACKEND = ROOT / "backend"
-OUT = Path(__file__).resolve().parent / "results"
+OUT = Path(os.environ.get("CEREALIA_RESEARCH_RESULTS_DIR", Path(__file__).resolve().parent / "results"))
 sys.path.insert(0, str(BACKEND))
 import train as production_train  # noqa: E402
 from app import recommender  # noqa: E402
@@ -265,7 +266,7 @@ def rank_record(state, cfg, result, variant, multiplier=None):
             "yield_source": top.get("economics",{}).get("yield_source"),
             "risk_source": top.get("risk",{}).get("source"),
             "eligible_candidates": result["gate"]["crops_considered"],
-            "fitness_gate_fallback": result["gate"]["excluded_poor_agro_fit"] > 0 and result["gate"]["crops_considered"] < recommender.MIN_RESULTS,
+            "fitness_gate_fallback": result["gate"]["fitness_gate_fallback_activated"],
             "candidate_count": len(result["all_scores"])}
 
 
@@ -303,7 +304,7 @@ def ranking_experiments(pipe):
                     "yield_source":crop["economics"]["yield_source"],
                     "risk_source":crop["risk"]["source"],
                     "eligible_candidates":res["gate"]["crops_considered"],
-                    "fitness_gate_fallback":res["gate"]["excluded_poor_agro_fit"] > 0 and res["gate"]["crops_considered"] < recommender.MIN_RESULTS})
+                    "fitness_gate_fallback":res["gate"]["fitness_gate_fallback_activated"]})
             all_results[state_id][config] = res
         extras = [
             ("Raw estimated net-profit ranking", {}, True, True, "raw_profit"),
@@ -452,6 +453,8 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--seeds",nargs="+",type=int,default=SEEDS)
     args=ap.parse_args()
+    if args.seeds != [42, 43, 44, 45, 46]:
+        ap.error("protocol v1 requires exactly --seeds 42 43 44 45 46")
     SEEDS=args.seeds
     t0=time.time(); OUT.mkdir(parents=True,exist_ok=True)
     df=production_train.load_data(); data_path=production_train.DATA
@@ -482,6 +485,7 @@ def main():
     json_dump(OUT/"regional_case_studies.json",case)
     checks={"source_rows":len(df),"class_count":int(df.label.nunique()),
       "holdout_rows_each_seed":int(len(df)/5),"prediction_rows":len(preds),
+      "result_combinations":len(runs),
       "expected_prediction_rows":len(SEEDS)*len(MODELS)*len(NOISES)*int(len(df)/5),
       "all_confusion_matrices_sum_440":all(x["samples"]==len(df)/5 for x in cm_summary),
       "regional_profiles":len(recommender.list_states()),"ranking_ablation_rows":len(rank_raw),
@@ -498,7 +502,7 @@ def main():
           "random_forest":production_train.make_forest().named_steps["clf"].get_params(),
           "hist_gradient_boosting":production_train.make_boosting().named_steps["clf"].get_params(),
           "gaussian_nb":"sklearn GaussianNB defaults","augmentation":{"copies":production_train.NOISE_COPIES,"range_pct":production_train.AUG_NOISE_RANGE}},
-      "dependencies":{"python":platform.python_version(),"numpy":np.__version__,"pandas":pd.__version__,"scikit_learn":sklearn.__version__,"scipy":scipy.__version__},
+      "dependencies":{"python":platform.python_version(),"numpy":np.__version__,"pandas":pd.__version__,"scikit_learn":sklearn.__version__,"scipy":scipy.__version__,"matplotlib":__import__("matplotlib").__version__,"joblib":joblib.__version__},
       "feature_order":FEATURES,"preprocessing":"StandardScaler fitted within each model pipeline on training data only in the strict protocol; legacy run follows train.py full-dataset noise-scale behavior.",
       "dataset_provenance":"Packaged Crop_recommendation.csv; repository does not contain a verified primary provenance citation. Regional agriculture data is packaged with its source description in backend/build_crop_stats.py.",
       "seeds":SEEDS,"noise_levels_pct":NOISES,"models":MODELS,

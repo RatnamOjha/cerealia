@@ -506,10 +506,12 @@ def recommend(
     viable = ([s for s in scored if s["agro_fit"] >= FITNESS_GATE]
               if apply_fitness_gate else list(scored))
     gated_out = len(scored) - len(viable)
+    fitness_gate_fallback_activated = False
     if len(viable) < MIN_RESULTS:
         # Sparse candidate set (e.g. a cold-arid site like Ladakh). Show the
         # least-bad options rather than an empty screen, and let the low
         # confidence figures speak for themselves.
+        fitness_gate_fallback_activated = True
         viable = sorted(scored, key=lambda s: s["agro_fit"], reverse=True)[:MIN_RESULTS]
 
     annual_rain = site.annual_rain
@@ -601,6 +603,7 @@ def recommend(
             "excluded_not_cultivated_in_region": excluded_by_region,
             "excluded_poor_agro_fit": gated_out,
             "crops_considered": len(viable),
+            "fitness_gate_fallback_activated": fitness_gate_fallback_activated,
             "regional_prior_applied": prior is not None,
             "crops_with_measured_yield": measured,
         },
