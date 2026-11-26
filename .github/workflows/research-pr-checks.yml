@@ -12,7 +12,9 @@ permissions:
 
 jobs:
   research-integrity:
-    runs-on: ubuntu-latest
+    # The recorded experiment was run on macOS/ARM64. Match that architecture
+    # for byte-for-byte classifier reproducibility; serving/build checks stay Linux.
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

@@ -30,7 +30,7 @@ Ranking input perturbations are independent of coefficient preference sensitivit
 
 The classifier dataset is the repository's 2,200-row, 22-class `Crop_recommendation.csv`; it appears synthetic and has no external untouched evaluation set in this repository. Region/yield/risk artifacts derive from the packaged Government of India crop statistics and curated crop economic data. Area-share missingness is retained as missing, not converted to zero: 10 of 36 Full Cerealia top recommendations have no matched state area-share value in this run. Sparse/missing regional yield and area values fall back through the existing production engine and are identified by source fields. No external dataset is available for validation.
 
-To verify reproducibility under the pins, run `python research/verify_reproducibility.py`. It repeats protocol v1 into a temporary output directory and compares hashes for numeric artifacts with the committed run. Timestamped manifests and PDF metadata are excluded from byte-for-byte comparison.
+To verify reproducibility under the pins, run `python research/verify_reproducibility.py`. It repeats protocol v1 into a temporary output directory and compares hashes for numeric artifacts with the committed run. Timestamped manifests and PDF metadata are excluded from byte-for-byte comparison. The Actions reproduction job uses macOS ARM64 to match the platform used for the recorded run; API, Vite, frontend, and Docker checks run on Linux.
 
 ## Artifacts
 
