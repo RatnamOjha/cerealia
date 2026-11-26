@@ -31,6 +31,7 @@ COPY backend/requirements.txt ./backend/requirements.txt
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
 COPY --chown=app:app backend/ ./backend/
+COPY --chown=app:app research/results/ ./research/results/
 COPY --chown=app:app --from=web /web/dist ./frontend/dist
 
 # Train at build time. It takes about a second and keeps a 5 MB binary out of

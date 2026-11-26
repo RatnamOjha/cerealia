@@ -36,6 +36,7 @@ app.add_middleware(
 )
 
 MODELS_DIR = Path(__file__).resolve().parent.parent / "models"
+RESEARCH_RESULTS = Path(__file__).resolve().parents[2] / "research" / "results"
 
 # Built frontend, when deployed as a single service. Absent during local
 # development, where Vite serves the UI on its own port.
@@ -209,6 +210,15 @@ async def speech_to_text(
 # --- static frontend -------------------------------------------------------
 # Mounted last, so it can never shadow an /api route. Only present in a
 # deployed build; locally Vite serves the UI and this block is skipped.
+# Precomputed research artifacts are mounted before the SPA catch-all so they
+# work from both Vite's development proxy and the production server.
+if RESEARCH_RESULTS.is_dir():
+    app.mount(
+        "/research-artifacts",
+        StaticFiles(directory=RESEARCH_RESULTS),
+        name="research-artifacts",
+    )
+
 if FRONTEND_DIST.is_dir():
     app.mount(
         "/assets",

@@ -1,0 +1,721 @@
+state_id,state_name,noise_pct_sd,seed,base_top1,perturbed_top1,top1_changed,top3_jaccard,top6_jaccard
+AP,Andhra Pradesh,5,42,papaya,papaya,False,0.5,1.0
+AP,Andhra Pradesh,5,43,papaya,papaya,False,1.0,1.0
+AP,Andhra Pradesh,5,44,papaya,papaya,False,1.0,1.0
+AP,Andhra Pradesh,5,45,papaya,papaya,False,0.5,1.0
+AP,Andhra Pradesh,5,46,papaya,papaya,False,1.0,1.0
+AR,Arunachal Pradesh,5,42,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,5,43,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,5,44,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,5,45,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,5,46,rice,rice,False,1.0,1.0
+AS,Assam,5,42,jute,jute,False,1.0,0.7142857142857143
+AS,Assam,5,43,jute,jute,False,1.0,0.7142857142857143
+AS,Assam,5,44,jute,jute,False,1.0,1.0
+AS,Assam,5,45,jute,jute,False,1.0,1.0
+AS,Assam,5,46,jute,jute,False,1.0,0.7142857142857143
+BR,Bihar,5,42,maize,maize,False,1.0,1.0
+BR,Bihar,5,43,maize,maize,False,1.0,1.0
+BR,Bihar,5,44,maize,maize,False,1.0,1.0
+BR,Bihar,5,45,maize,maize,False,1.0,1.0
+BR,Bihar,5,46,maize,maize,False,1.0,1.0
+CT,Chhattisgarh,5,42,mango,mango,False,1.0,1.0
+CT,Chhattisgarh,5,43,mango,mango,False,1.0,1.0
+CT,Chhattisgarh,5,44,mango,banana,True,1.0,1.0
+CT,Chhattisgarh,5,45,mango,mango,False,1.0,1.0
+CT,Chhattisgarh,5,46,mango,mango,False,1.0,1.0
+GA,Goa,5,42,rice,rice,False,1.0,1.0
+GA,Goa,5,43,rice,rice,False,1.0,1.0
+GA,Goa,5,44,rice,rice,False,1.0,1.0
+GA,Goa,5,45,rice,rice,False,1.0,1.0
+GA,Goa,5,46,rice,rice,False,1.0,1.0
+GJ,Gujarat,5,42,papaya,papaya,False,1.0,0.7142857142857143
+GJ,Gujarat,5,43,papaya,papaya,False,1.0,1.0
+GJ,Gujarat,5,44,papaya,papaya,False,1.0,1.0
+GJ,Gujarat,5,45,papaya,papaya,False,1.0,0.7142857142857143
+GJ,Gujarat,5,46,papaya,papaya,False,1.0,0.7142857142857143
+HR,Haryana,5,42,watermelon,watermelon,False,0.5,1.0
+HR,Haryana,5,43,watermelon,watermelon,False,1.0,1.0
+HR,Haryana,5,44,watermelon,watermelon,False,1.0,1.0
+HR,Haryana,5,45,watermelon,watermelon,False,1.0,1.0
+HR,Haryana,5,46,watermelon,watermelon,False,1.0,1.0
+HP,Himachal Pradesh,5,42,maize,maize,False,1.0,1.0
+HP,Himachal Pradesh,5,43,maize,maize,False,1.0,1.0
+HP,Himachal Pradesh,5,44,maize,maize,False,1.0,1.0
+HP,Himachal Pradesh,5,45,maize,maize,False,1.0,1.0
+HP,Himachal Pradesh,5,46,maize,maize,False,1.0,1.0
+JH,Jharkhand,5,42,mango,mango,False,1.0,1.0
+JH,Jharkhand,5,43,mango,mango,False,1.0,1.0
+JH,Jharkhand,5,44,mango,mango,False,1.0,1.0
+JH,Jharkhand,5,45,mango,mango,False,1.0,1.0
+JH,Jharkhand,5,46,mango,mango,False,1.0,1.0
+KA,Karnataka,5,42,maize,maize,False,1.0,1.0
+KA,Karnataka,5,43,maize,maize,False,1.0,1.0
+KA,Karnataka,5,44,maize,maize,False,1.0,1.0
+KA,Karnataka,5,45,maize,maize,False,1.0,1.0
+KA,Karnataka,5,46,maize,maize,False,1.0,1.0
+KL,Kerala,5,42,rice,rice,False,1.0,1.0
+KL,Kerala,5,43,rice,rice,False,1.0,1.0
+KL,Kerala,5,44,rice,rice,False,1.0,1.0
+KL,Kerala,5,45,rice,rice,False,1.0,1.0
+KL,Kerala,5,46,rice,rice,False,1.0,1.0
+MP,Madhya Pradesh,5,42,orange,orange,False,1.0,0.7142857142857143
+MP,Madhya Pradesh,5,43,orange,orange,False,1.0,0.7142857142857143
+MP,Madhya Pradesh,5,44,orange,orange,False,1.0,1.0
+MP,Madhya Pradesh,5,45,orange,orange,False,1.0,0.7142857142857143
+MP,Madhya Pradesh,5,46,orange,orange,False,1.0,1.0
+MH,Maharashtra,5,42,mango,mango,False,1.0,1.0
+MH,Maharashtra,5,43,mango,mango,False,1.0,1.0
+MH,Maharashtra,5,44,mango,mango,False,1.0,1.0
+MH,Maharashtra,5,45,mango,mango,False,1.0,1.0
+MH,Maharashtra,5,46,mango,mango,False,1.0,1.0
+MN,Manipur,5,42,banana,banana,False,0.5,1.0
+MN,Manipur,5,43,banana,banana,False,1.0,1.0
+MN,Manipur,5,44,banana,banana,False,1.0,0.7142857142857143
+MN,Manipur,5,45,banana,banana,False,0.5,0.7142857142857143
+MN,Manipur,5,46,banana,banana,False,0.5,1.0
+ML,Meghalaya,5,42,rice,rice,False,0.5,1.0
+ML,Meghalaya,5,43,rice,rice,False,1.0,1.0
+ML,Meghalaya,5,44,rice,rice,False,1.0,1.0
+ML,Meghalaya,5,45,rice,rice,False,1.0,1.0
+ML,Meghalaya,5,46,rice,rice,False,0.5,1.0
+MZ,Mizoram,5,42,rice,rice,False,1.0,1.0
+MZ,Mizoram,5,43,rice,rice,False,1.0,1.0
+MZ,Mizoram,5,44,rice,rice,False,1.0,1.0
+MZ,Mizoram,5,45,rice,rice,False,1.0,1.0
+MZ,Mizoram,5,46,rice,rice,False,1.0,1.0
+NL,Nagaland,5,42,rice,papaya,True,1.0,1.0
+NL,Nagaland,5,43,rice,rice,False,1.0,1.0
+NL,Nagaland,5,44,rice,rice,False,1.0,1.0
+NL,Nagaland,5,45,rice,papaya,True,1.0,1.0
+NL,Nagaland,5,46,rice,papaya,True,1.0,1.0
+OR,Odisha,5,42,papaya,papaya,False,0.5,0.7142857142857143
+OR,Odisha,5,43,papaya,papaya,False,1.0,1.0
+OR,Odisha,5,44,papaya,papaya,False,1.0,1.0
+OR,Odisha,5,45,papaya,papaya,False,0.5,0.7142857142857143
+OR,Odisha,5,46,papaya,mango,True,0.5,0.7142857142857143
+PB,Punjab,5,42,maize,maize,False,1.0,0.7142857142857143
+PB,Punjab,5,43,maize,maize,False,1.0,1.0
+PB,Punjab,5,44,maize,maize,False,1.0,1.0
+PB,Punjab,5,45,maize,maize,False,1.0,1.0
+PB,Punjab,5,46,maize,maize,False,1.0,1.0
+RJ,Rajasthan,5,42,watermelon,watermelon,False,1.0,0.7142857142857143
+RJ,Rajasthan,5,43,watermelon,watermelon,False,1.0,1.0
+RJ,Rajasthan,5,44,watermelon,watermelon,False,1.0,0.7142857142857143
+RJ,Rajasthan,5,45,watermelon,watermelon,False,1.0,0.7142857142857143
+RJ,Rajasthan,5,46,watermelon,watermelon,False,1.0,1.0
+SK,Sikkim,5,42,rice,rice,False,1.0,1.0
+SK,Sikkim,5,43,rice,rice,False,1.0,1.0
+SK,Sikkim,5,44,rice,rice,False,1.0,1.0
+SK,Sikkim,5,45,rice,rice,False,1.0,1.0
+SK,Sikkim,5,46,rice,rice,False,1.0,1.0
+TN,Tamil Nadu,5,42,maize,maize,False,1.0,1.0
+TN,Tamil Nadu,5,43,maize,maize,False,1.0,1.0
+TN,Tamil Nadu,5,44,maize,maize,False,1.0,0.7142857142857143
+TN,Tamil Nadu,5,45,maize,maize,False,1.0,1.0
+TN,Tamil Nadu,5,46,maize,maize,False,1.0,1.0
+TG,Telangana,5,42,maize,maize,False,1.0,0.7142857142857143
+TG,Telangana,5,43,maize,maize,False,1.0,1.0
+TG,Telangana,5,44,maize,maize,False,1.0,1.0
+TG,Telangana,5,45,maize,maize,False,1.0,0.7142857142857143
+TG,Telangana,5,46,maize,maize,False,1.0,1.0
+TR,Tripura,5,42,banana,banana,False,1.0,1.0
+TR,Tripura,5,43,banana,rice,True,1.0,1.0
+TR,Tripura,5,44,banana,rice,True,1.0,1.0
+TR,Tripura,5,45,banana,banana,False,1.0,1.0
+TR,Tripura,5,46,banana,banana,False,1.0,1.0
+UP,Uttar Pradesh,5,42,maize,maize,False,1.0,1.0
+UP,Uttar Pradesh,5,43,maize,maize,False,1.0,1.0
+UP,Uttar Pradesh,5,44,maize,maize,False,1.0,0.7142857142857143
+UP,Uttar Pradesh,5,45,maize,maize,False,1.0,1.0
+UP,Uttar Pradesh,5,46,maize,maize,False,1.0,1.0
+UT,Uttarakhand,5,42,maize,maize,False,1.0,1.0
+UT,Uttarakhand,5,43,maize,maize,False,1.0,1.0
+UT,Uttarakhand,5,44,maize,maize,False,1.0,1.0
+UT,Uttarakhand,5,45,maize,maize,False,1.0,1.0
+UT,Uttarakhand,5,46,maize,maize,False,1.0,1.0
+WB,West Bengal,5,42,jute,jute,False,1.0,1.0
+WB,West Bengal,5,43,jute,jute,False,1.0,1.0
+WB,West Bengal,5,44,jute,jute,False,1.0,1.0
+WB,West Bengal,5,45,jute,jute,False,1.0,1.0
+WB,West Bengal,5,46,jute,jute,False,1.0,1.0
+JK,Jammu and Kashmir,5,42,maize,maize,False,1.0,0.7142857142857143
+JK,Jammu and Kashmir,5,43,maize,maize,False,1.0,1.0
+JK,Jammu and Kashmir,5,44,maize,maize,False,1.0,1.0
+JK,Jammu and Kashmir,5,45,maize,maize,False,1.0,0.7142857142857143
+JK,Jammu and Kashmir,5,46,maize,maize,False,1.0,1.0
+LA,Ladakh,5,42,apple,apple,False,1.0,1.0
+LA,Ladakh,5,43,apple,apple,False,1.0,1.0
+LA,Ladakh,5,44,apple,apple,False,1.0,1.0
+LA,Ladakh,5,45,apple,apple,False,1.0,1.0
+LA,Ladakh,5,46,apple,apple,False,1.0,1.0
+DL,Delhi,5,42,watermelon,watermelon,False,1.0,1.0
+DL,Delhi,5,43,watermelon,watermelon,False,1.0,1.0
+DL,Delhi,5,44,watermelon,watermelon,False,1.0,1.0
+DL,Delhi,5,45,watermelon,watermelon,False,1.0,1.0
+DL,Delhi,5,46,watermelon,watermelon,False,1.0,1.0
+PY,Puducherry,5,42,banana,banana,False,1.0,1.0
+PY,Puducherry,5,43,banana,banana,False,1.0,1.0
+PY,Puducherry,5,44,banana,banana,False,1.0,1.0
+PY,Puducherry,5,45,banana,banana,False,1.0,1.0
+PY,Puducherry,5,46,banana,banana,False,1.0,1.0
+AN,Andaman and Nicobar Islands,5,42,banana,banana,False,1.0,1.0
+AN,Andaman and Nicobar Islands,5,43,banana,banana,False,1.0,1.0
+AN,Andaman and Nicobar Islands,5,44,banana,banana,False,1.0,1.0
+AN,Andaman and Nicobar Islands,5,45,banana,banana,False,1.0,1.0
+AN,Andaman and Nicobar Islands,5,46,banana,rice,True,1.0,1.0
+CH,Chandigarh,5,42,maize,maize,False,1.0,1.0
+CH,Chandigarh,5,43,maize,maize,False,1.0,1.0
+CH,Chandigarh,5,44,maize,maize,False,1.0,1.0
+CH,Chandigarh,5,45,maize,maize,False,1.0,1.0
+CH,Chandigarh,5,46,maize,maize,False,1.0,1.0
+DN,Dadra and Nagar Haveli and Daman and Diu,5,42,mango,mango,False,1.0,1.0
+DN,Dadra and Nagar Haveli and Daman and Diu,5,43,mango,mango,False,1.0,0.7142857142857143
+DN,Dadra and Nagar Haveli and Daman and Diu,5,44,mango,mango,False,1.0,0.7142857142857143
+DN,Dadra and Nagar Haveli and Daman and Diu,5,45,mango,mango,False,1.0,1.0
+DN,Dadra and Nagar Haveli and Daman and Diu,5,46,mango,mango,False,1.0,1.0
+LD,Lakshadweep,5,42,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,5,43,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,5,44,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,5,45,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,5,46,papaya,papaya,False,1.0,1.0
+AP,Andhra Pradesh,10,42,papaya,papaya,False,0.5,1.0
+AP,Andhra Pradesh,10,43,papaya,papaya,False,1.0,0.7142857142857143
+AP,Andhra Pradesh,10,44,papaya,papaya,False,1.0,1.0
+AP,Andhra Pradesh,10,45,papaya,papaya,False,0.5,0.7142857142857143
+AP,Andhra Pradesh,10,46,papaya,papaya,False,0.5,0.7142857142857143
+AR,Arunachal Pradesh,10,42,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,10,43,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,10,44,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,10,45,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,10,46,rice,rice,False,1.0,1.0
+AS,Assam,10,42,jute,jute,False,1.0,0.7142857142857143
+AS,Assam,10,43,jute,jute,False,1.0,0.7142857142857143
+AS,Assam,10,44,jute,jute,False,0.5,1.0
+AS,Assam,10,45,jute,jute,False,1.0,1.0
+AS,Assam,10,46,jute,jute,False,1.0,0.7142857142857143
+BR,Bihar,10,42,maize,maize,False,1.0,0.5
+BR,Bihar,10,43,maize,maize,False,1.0,1.0
+BR,Bihar,10,44,maize,maize,False,1.0,1.0
+BR,Bihar,10,45,maize,maize,False,1.0,0.7142857142857143
+BR,Bihar,10,46,maize,maize,False,1.0,0.7142857142857143
+CT,Chhattisgarh,10,42,mango,mango,False,1.0,1.0
+CT,Chhattisgarh,10,43,mango,banana,True,0.5,1.0
+CT,Chhattisgarh,10,44,mango,banana,True,1.0,1.0
+CT,Chhattisgarh,10,45,mango,mango,False,1.0,1.0
+CT,Chhattisgarh,10,46,mango,mango,False,0.5,1.0
+GA,Goa,10,42,rice,rice,False,0.5,1.0
+GA,Goa,10,43,rice,rice,False,1.0,0.8333333333333334
+GA,Goa,10,44,rice,rice,False,1.0,0.8333333333333334
+GA,Goa,10,45,rice,rice,False,1.0,1.0
+GA,Goa,10,46,rice,rice,False,1.0,1.0
+GJ,Gujarat,10,42,papaya,papaya,False,0.5,0.5
+GJ,Gujarat,10,43,papaya,papaya,False,0.5,1.0
+GJ,Gujarat,10,44,papaya,papaya,False,0.5,1.0
+GJ,Gujarat,10,45,papaya,papaya,False,0.5,0.5
+GJ,Gujarat,10,46,papaya,papaya,False,0.5,1.0
+HR,Haryana,10,42,watermelon,watermelon,False,1.0,0.7142857142857143
+HR,Haryana,10,43,watermelon,watermelon,False,1.0,1.0
+HR,Haryana,10,44,watermelon,lentil,True,1.0,1.0
+HR,Haryana,10,45,watermelon,watermelon,False,1.0,1.0
+HR,Haryana,10,46,watermelon,watermelon,False,1.0,1.0
+HP,Himachal Pradesh,10,42,maize,maize,False,1.0,1.0
+HP,Himachal Pradesh,10,43,maize,maize,False,1.0,1.0
+HP,Himachal Pradesh,10,44,maize,maize,False,1.0,1.0
+HP,Himachal Pradesh,10,45,maize,maize,False,1.0,1.0
+HP,Himachal Pradesh,10,46,maize,maize,False,0.5,1.0
+JH,Jharkhand,10,42,mango,mango,False,1.0,1.0
+JH,Jharkhand,10,43,mango,mango,False,1.0,1.0
+JH,Jharkhand,10,44,mango,mango,False,1.0,1.0
+JH,Jharkhand,10,45,mango,mango,False,1.0,0.7142857142857143
+JH,Jharkhand,10,46,mango,mango,False,1.0,1.0
+KA,Karnataka,10,42,maize,maize,False,0.5,1.0
+KA,Karnataka,10,43,maize,maize,False,0.5,1.0
+KA,Karnataka,10,44,maize,maize,False,0.5,0.7142857142857143
+KA,Karnataka,10,45,maize,maize,False,0.5,0.7142857142857143
+KA,Karnataka,10,46,maize,maize,False,0.5,0.7142857142857143
+KL,Kerala,10,42,rice,rice,False,1.0,1.0
+KL,Kerala,10,43,rice,rice,False,1.0,0.7142857142857143
+KL,Kerala,10,44,rice,rice,False,0.5,1.0
+KL,Kerala,10,45,rice,rice,False,1.0,0.7142857142857143
+KL,Kerala,10,46,rice,rice,False,0.5,1.0
+MP,Madhya Pradesh,10,42,orange,maize,True,0.5,0.7142857142857143
+MP,Madhya Pradesh,10,43,orange,maize,True,1.0,1.0
+MP,Madhya Pradesh,10,44,orange,orange,False,0.5,0.7142857142857143
+MP,Madhya Pradesh,10,45,orange,orange,False,0.5,0.7142857142857143
+MP,Madhya Pradesh,10,46,orange,orange,False,1.0,0.7142857142857143
+MH,Maharashtra,10,42,mango,mango,False,0.2,0.7142857142857143
+MH,Maharashtra,10,43,mango,pomegranate,True,1.0,1.0
+MH,Maharashtra,10,44,mango,mango,False,0.5,0.7142857142857143
+MH,Maharashtra,10,45,mango,mango,False,0.5,0.7142857142857143
+MH,Maharashtra,10,46,mango,pomegranate,True,1.0,0.7142857142857143
+MN,Manipur,10,42,banana,maize,True,0.2,1.0
+MN,Manipur,10,43,banana,banana,False,1.0,0.7142857142857143
+MN,Manipur,10,44,banana,banana,False,1.0,0.7142857142857143
+MN,Manipur,10,45,banana,maize,True,0.5,1.0
+MN,Manipur,10,46,banana,rice,True,1.0,1.0
+ML,Meghalaya,10,42,rice,rice,False,0.5,0.7142857142857143
+ML,Meghalaya,10,43,rice,rice,False,1.0,1.0
+ML,Meghalaya,10,44,rice,rice,False,1.0,1.0
+ML,Meghalaya,10,45,rice,rice,False,1.0,1.0
+ML,Meghalaya,10,46,rice,rice,False,1.0,1.0
+MZ,Mizoram,10,42,rice,rice,False,1.0,1.0
+MZ,Mizoram,10,43,rice,rice,False,0.5,0.7142857142857143
+MZ,Mizoram,10,44,rice,rice,False,1.0,1.0
+MZ,Mizoram,10,45,rice,rice,False,1.0,1.0
+MZ,Mizoram,10,46,rice,rice,False,1.0,1.0
+NL,Nagaland,10,42,rice,papaya,True,1.0,0.7142857142857143
+NL,Nagaland,10,43,rice,papaya,True,1.0,1.0
+NL,Nagaland,10,44,rice,rice,False,1.0,1.0
+NL,Nagaland,10,45,rice,papaya,True,1.0,1.0
+NL,Nagaland,10,46,rice,rice,False,0.5,1.0
+OR,Odisha,10,42,papaya,mango,True,1.0,1.0
+OR,Odisha,10,43,papaya,papaya,False,1.0,1.0
+OR,Odisha,10,44,papaya,papaya,False,1.0,0.7142857142857143
+OR,Odisha,10,45,papaya,papaya,False,1.0,0.7142857142857143
+OR,Odisha,10,46,papaya,papaya,False,0.5,1.0
+PB,Punjab,10,42,maize,maize,False,1.0,1.0
+PB,Punjab,10,43,maize,maize,False,1.0,0.7142857142857143
+PB,Punjab,10,44,maize,maize,False,1.0,1.0
+PB,Punjab,10,45,maize,maize,False,1.0,1.0
+PB,Punjab,10,46,maize,maize,False,1.0,1.0
+RJ,Rajasthan,10,42,watermelon,watermelon,False,1.0,1.0
+RJ,Rajasthan,10,43,watermelon,watermelon,False,0.5,0.7142857142857143
+RJ,Rajasthan,10,44,watermelon,watermelon,False,0.5,0.5
+RJ,Rajasthan,10,45,watermelon,pomegranate,True,1.0,1.0
+RJ,Rajasthan,10,46,watermelon,watermelon,False,0.5,0.7142857142857143
+SK,Sikkim,10,42,rice,rice,False,1.0,1.0
+SK,Sikkim,10,43,rice,banana,True,1.0,1.0
+SK,Sikkim,10,44,rice,rice,False,1.0,1.0
+SK,Sikkim,10,45,rice,banana,True,1.0,1.0
+SK,Sikkim,10,46,rice,rice,False,1.0,1.0
+TN,Tamil Nadu,10,42,maize,maize,False,0.5,0.7142857142857143
+TN,Tamil Nadu,10,43,maize,maize,False,0.5,0.5
+TN,Tamil Nadu,10,44,maize,maize,False,0.5,1.0
+TN,Tamil Nadu,10,45,maize,maize,False,0.5,0.7142857142857143
+TN,Tamil Nadu,10,46,maize,maize,False,1.0,1.0
+TG,Telangana,10,42,maize,maize,False,1.0,1.0
+TG,Telangana,10,43,maize,maize,False,1.0,1.0
+TG,Telangana,10,44,maize,maize,False,1.0,1.0
+TG,Telangana,10,45,maize,maize,False,1.0,1.0
+TG,Telangana,10,46,maize,maize,False,1.0,0.7142857142857143
+TR,Tripura,10,42,banana,banana,False,1.0,1.0
+TR,Tripura,10,43,banana,banana,False,1.0,0.7142857142857143
+TR,Tripura,10,44,banana,banana,False,1.0,0.7142857142857143
+TR,Tripura,10,45,banana,banana,False,1.0,1.0
+TR,Tripura,10,46,banana,rice,True,1.0,1.0
+UP,Uttar Pradesh,10,42,maize,maize,False,1.0,0.7142857142857143
+UP,Uttar Pradesh,10,43,maize,maize,False,1.0,0.7142857142857143
+UP,Uttar Pradesh,10,44,maize,maize,False,1.0,0.7142857142857143
+UP,Uttar Pradesh,10,45,maize,maize,False,0.5,0.7142857142857143
+UP,Uttar Pradesh,10,46,maize,maize,False,1.0,1.0
+UT,Uttarakhand,10,42,maize,maize,False,1.0,0.7142857142857143
+UT,Uttarakhand,10,43,maize,maize,False,1.0,1.0
+UT,Uttarakhand,10,44,maize,maize,False,1.0,1.0
+UT,Uttarakhand,10,45,maize,maize,False,1.0,1.0
+UT,Uttarakhand,10,46,maize,maize,False,0.5,0.7142857142857143
+WB,West Bengal,10,42,jute,jute,False,1.0,1.0
+WB,West Bengal,10,43,jute,jute,False,1.0,0.7142857142857143
+WB,West Bengal,10,44,jute,jute,False,1.0,0.7142857142857143
+WB,West Bengal,10,45,jute,jute,False,1.0,1.0
+WB,West Bengal,10,46,jute,jute,False,1.0,1.0
+JK,Jammu and Kashmir,10,42,maize,maize,False,1.0,1.0
+JK,Jammu and Kashmir,10,43,maize,maize,False,1.0,1.0
+JK,Jammu and Kashmir,10,44,maize,maize,False,1.0,1.0
+JK,Jammu and Kashmir,10,45,maize,maize,False,1.0,1.0
+JK,Jammu and Kashmir,10,46,maize,maize,False,1.0,1.0
+LA,Ladakh,10,42,apple,apple,False,1.0,1.0
+LA,Ladakh,10,43,apple,apple,False,1.0,1.0
+LA,Ladakh,10,44,apple,apple,False,1.0,1.0
+LA,Ladakh,10,45,apple,apple,False,1.0,1.0
+LA,Ladakh,10,46,apple,apple,False,1.0,1.0
+DL,Delhi,10,42,watermelon,watermelon,False,0.5,0.75
+DL,Delhi,10,43,watermelon,watermelon,False,0.5,0.75
+DL,Delhi,10,44,watermelon,watermelon,False,0.5,0.75
+DL,Delhi,10,45,watermelon,watermelon,False,1.0,1.0
+DL,Delhi,10,46,watermelon,watermelon,False,1.0,1.0
+PY,Puducherry,10,42,banana,banana,False,1.0,1.0
+PY,Puducherry,10,43,banana,banana,False,1.0,1.0
+PY,Puducherry,10,44,banana,banana,False,1.0,1.0
+PY,Puducherry,10,45,banana,banana,False,1.0,1.0
+PY,Puducherry,10,46,banana,banana,False,1.0,1.0
+AN,Andaman and Nicobar Islands,10,42,banana,rice,True,0.5,1.0
+AN,Andaman and Nicobar Islands,10,43,banana,banana,False,0.5,0.7142857142857143
+AN,Andaman and Nicobar Islands,10,44,banana,banana,False,1.0,1.0
+AN,Andaman and Nicobar Islands,10,45,banana,banana,False,1.0,0.7142857142857143
+AN,Andaman and Nicobar Islands,10,46,banana,banana,False,1.0,1.0
+CH,Chandigarh,10,42,maize,maize,False,0.5,0.7142857142857143
+CH,Chandigarh,10,43,maize,maize,False,1.0,1.0
+CH,Chandigarh,10,44,maize,maize,False,0.5,0.7142857142857143
+CH,Chandigarh,10,45,maize,maize,False,0.5,0.7142857142857143
+CH,Chandigarh,10,46,maize,maize,False,1.0,1.0
+DN,Dadra and Nagar Haveli and Daman and Diu,10,42,mango,mango,False,1.0,0.7142857142857143
+DN,Dadra and Nagar Haveli and Daman and Diu,10,43,mango,coconut,True,0.5,0.5714285714285714
+DN,Dadra and Nagar Haveli and Daman and Diu,10,44,mango,mango,False,1.0,1.0
+DN,Dadra and Nagar Haveli and Daman and Diu,10,45,mango,mango,False,1.0,1.0
+DN,Dadra and Nagar Haveli and Daman and Diu,10,46,mango,mango,False,1.0,1.0
+LD,Lakshadweep,10,42,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,10,43,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,10,44,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,10,45,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,10,46,papaya,papaya,False,1.0,1.0
+AP,Andhra Pradesh,20,42,papaya,papaya,False,1.0,0.7142857142857143
+AP,Andhra Pradesh,20,43,papaya,papaya,False,0.5,1.0
+AP,Andhra Pradesh,20,44,papaya,papaya,False,0.5,0.5
+AP,Andhra Pradesh,20,45,papaya,papaya,False,0.5,0.7142857142857143
+AP,Andhra Pradesh,20,46,papaya,papaya,False,0.5,0.3333333333333333
+AR,Arunachal Pradesh,20,42,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,20,43,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,20,44,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,20,45,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,20,46,rice,papaya,True,1.0,1.0
+AS,Assam,20,42,jute,jute,False,0.5,1.0
+AS,Assam,20,43,jute,jute,False,0.5,0.7142857142857143
+AS,Assam,20,44,jute,jute,False,0.5,1.0
+AS,Assam,20,45,jute,rice,True,1.0,1.0
+AS,Assam,20,46,jute,jute,False,0.5,0.7142857142857143
+BR,Bihar,20,42,maize,maize,False,1.0,1.0
+BR,Bihar,20,43,maize,maize,False,0.5,0.5
+BR,Bihar,20,44,maize,maize,False,0.5,0.7142857142857143
+BR,Bihar,20,45,maize,papaya,True,1.0,1.0
+BR,Bihar,20,46,maize,maize,False,0.5,0.3333333333333333
+CT,Chhattisgarh,20,42,mango,banana,True,0.5,1.0
+CT,Chhattisgarh,20,43,mango,papaya,True,0.5,1.0
+CT,Chhattisgarh,20,44,mango,banana,True,1.0,1.0
+CT,Chhattisgarh,20,45,mango,banana,True,0.5,1.0
+CT,Chhattisgarh,20,46,mango,mango,False,1.0,0.7142857142857143
+GA,Goa,20,42,rice,rice,False,1.0,0.8333333333333334
+GA,Goa,20,43,rice,rice,False,1.0,0.8333333333333334
+GA,Goa,20,44,rice,rice,False,1.0,0.8333333333333334
+GA,Goa,20,45,rice,rice,False,0.5,1.0
+GA,Goa,20,46,rice,rice,False,0.5,0.8333333333333334
+GJ,Gujarat,20,42,papaya,papaya,False,0.5,1.0
+GJ,Gujarat,20,43,papaya,papaya,False,0.5,0.7142857142857143
+GJ,Gujarat,20,44,papaya,papaya,False,0.5,0.5
+GJ,Gujarat,20,45,papaya,papaya,False,1.0,0.7142857142857143
+GJ,Gujarat,20,46,papaya,papaya,False,0.5,0.5
+HR,Haryana,20,42,watermelon,lentil,True,0.5,1.0
+HR,Haryana,20,43,watermelon,cotton,True,0.2,0.7142857142857143
+HR,Haryana,20,44,watermelon,muskmelon,True,0.2,0.7142857142857143
+HR,Haryana,20,45,watermelon,maize,True,0.2,0.5
+HR,Haryana,20,46,watermelon,cotton,True,0.5,0.7142857142857143
+HP,Himachal Pradesh,20,42,maize,maize,False,1.0,1.0
+HP,Himachal Pradesh,20,43,maize,maize,False,0.5,0.7142857142857143
+HP,Himachal Pradesh,20,44,maize,maize,False,0.2,0.5
+HP,Himachal Pradesh,20,45,maize,orange,True,0.5,0.7142857142857143
+HP,Himachal Pradesh,20,46,maize,maize,False,0.5,0.7142857142857143
+JH,Jharkhand,20,42,mango,mango,False,1.0,1.0
+JH,Jharkhand,20,43,mango,mango,False,1.0,1.0
+JH,Jharkhand,20,44,mango,maize,True,1.0,0.7142857142857143
+JH,Jharkhand,20,45,mango,mango,False,1.0,1.0
+JH,Jharkhand,20,46,mango,mango,False,1.0,0.7142857142857143
+KA,Karnataka,20,42,maize,maize,False,0.5,0.7142857142857143
+KA,Karnataka,20,43,maize,maize,False,0.5,0.7142857142857143
+KA,Karnataka,20,44,maize,maize,False,0.5,0.3333333333333333
+KA,Karnataka,20,45,maize,maize,False,0.5,0.7142857142857143
+KA,Karnataka,20,46,maize,maize,False,0.5,0.3333333333333333
+KL,Kerala,20,42,rice,rice,False,1.0,0.7142857142857143
+KL,Kerala,20,43,rice,rice,False,0.5,0.7142857142857143
+KL,Kerala,20,44,rice,rice,False,0.5,0.7142857142857143
+KL,Kerala,20,45,rice,rice,False,1.0,0.7142857142857143
+KL,Kerala,20,46,rice,rice,False,1.0,0.7142857142857143
+MP,Madhya Pradesh,20,42,orange,maize,True,0.5,0.7142857142857143
+MP,Madhya Pradesh,20,43,orange,orange,False,1.0,0.7142857142857143
+MP,Madhya Pradesh,20,44,orange,maize,True,0.5,0.5
+MP,Madhya Pradesh,20,45,orange,orange,False,1.0,0.7142857142857143
+MP,Madhya Pradesh,20,46,orange,maize,True,0.2,0.5
+MH,Maharashtra,20,42,mango,mango,False,0.2,0.7142857142857143
+MH,Maharashtra,20,43,mango,pomegranate,True,0.5,0.7142857142857143
+MH,Maharashtra,20,44,mango,maize,True,0.2,0.3333333333333333
+MH,Maharashtra,20,45,mango,orange,True,0.5,1.0
+MH,Maharashtra,20,46,mango,mango,False,0.2,0.5
+MN,Manipur,20,42,banana,banana,False,0.5,0.7142857142857143
+MN,Manipur,20,43,banana,papaya,True,0.5,0.5
+MN,Manipur,20,44,banana,banana,False,0.5,0.7142857142857143
+MN,Manipur,20,45,banana,papaya,True,1.0,0.7142857142857143
+MN,Manipur,20,46,banana,maize,True,0.5,1.0
+ML,Meghalaya,20,42,rice,rice,False,0.5,0.7142857142857143
+ML,Meghalaya,20,43,rice,rice,False,0.5,1.0
+ML,Meghalaya,20,44,rice,rice,False,0.5,1.0
+ML,Meghalaya,20,45,rice,rice,False,0.5,1.0
+ML,Meghalaya,20,46,rice,rice,False,0.5,1.0
+MZ,Mizoram,20,42,rice,rice,False,0.5,1.0
+MZ,Mizoram,20,43,rice,rice,False,1.0,1.0
+MZ,Mizoram,20,44,rice,rice,False,1.0,0.7142857142857143
+MZ,Mizoram,20,45,rice,rice,False,0.5,0.7142857142857143
+MZ,Mizoram,20,46,rice,rice,False,1.0,1.0
+NL,Nagaland,20,42,rice,papaya,True,1.0,1.0
+NL,Nagaland,20,43,rice,papaya,True,0.5,1.0
+NL,Nagaland,20,44,rice,papaya,True,1.0,1.0
+NL,Nagaland,20,45,rice,papaya,True,1.0,1.0
+NL,Nagaland,20,46,rice,papaya,True,0.5,1.0
+OR,Odisha,20,42,papaya,papaya,False,1.0,0.7142857142857143
+OR,Odisha,20,43,papaya,papaya,False,0.2,0.7142857142857143
+OR,Odisha,20,44,papaya,mango,True,1.0,0.7142857142857143
+OR,Odisha,20,45,papaya,papaya,False,1.0,1.0
+OR,Odisha,20,46,papaya,mango,True,1.0,0.5
+PB,Punjab,20,42,maize,maize,False,1.0,0.7142857142857143
+PB,Punjab,20,43,maize,maize,False,0.5,0.5
+PB,Punjab,20,44,maize,maize,False,1.0,0.7142857142857143
+PB,Punjab,20,45,maize,maize,False,0.5,0.5
+PB,Punjab,20,46,maize,maize,False,0.5,0.7142857142857143
+RJ,Rajasthan,20,42,watermelon,watermelon,False,1.0,0.7142857142857143
+RJ,Rajasthan,20,43,watermelon,watermelon,False,0.5,0.5
+RJ,Rajasthan,20,44,watermelon,muskmelon,True,0.2,0.2
+RJ,Rajasthan,20,45,watermelon,watermelon,False,0.2,0.3333333333333333
+RJ,Rajasthan,20,46,watermelon,muskmelon,True,0.2,0.3333333333333333
+SK,Sikkim,20,42,rice,banana,True,1.0,1.0
+SK,Sikkim,20,43,rice,rice,False,1.0,1.0
+SK,Sikkim,20,44,rice,banana,True,1.0,1.0
+SK,Sikkim,20,45,rice,banana,True,1.0,1.0
+SK,Sikkim,20,46,rice,banana,True,1.0,1.0
+TN,Tamil Nadu,20,42,maize,maize,False,0.5,0.3333333333333333
+TN,Tamil Nadu,20,43,maize,maize,False,1.0,1.0
+TN,Tamil Nadu,20,44,maize,maize,False,0.5,0.5
+TN,Tamil Nadu,20,45,maize,maize,False,0.5,1.0
+TN,Tamil Nadu,20,46,maize,maize,False,0.5,0.5
+TG,Telangana,20,42,maize,maize,False,0.5,1.0
+TG,Telangana,20,43,maize,maize,False,1.0,0.7142857142857143
+TG,Telangana,20,44,maize,maize,False,0.5,0.5
+TG,Telangana,20,45,maize,mango,True,1.0,0.7142857142857143
+TG,Telangana,20,46,maize,maize,False,1.0,0.5
+TR,Tripura,20,42,banana,banana,False,1.0,0.7142857142857143
+TR,Tripura,20,43,banana,banana,False,1.0,0.7142857142857143
+TR,Tripura,20,44,banana,banana,False,1.0,0.7142857142857143
+TR,Tripura,20,45,banana,banana,False,1.0,0.7142857142857143
+TR,Tripura,20,46,banana,banana,False,0.5,0.7142857142857143
+UP,Uttar Pradesh,20,42,maize,maize,False,0.5,0.5
+UP,Uttar Pradesh,20,43,maize,maize,False,1.0,1.0
+UP,Uttar Pradesh,20,44,maize,lentil,True,0.5,0.7142857142857143
+UP,Uttar Pradesh,20,45,maize,mango,True,0.5,0.7142857142857143
+UP,Uttar Pradesh,20,46,maize,maize,False,0.2,0.5
+UT,Uttarakhand,20,42,maize,maize,False,1.0,1.0
+UT,Uttarakhand,20,43,maize,maize,False,0.5,0.7142857142857143
+UT,Uttarakhand,20,44,maize,maize,False,0.5,1.0
+UT,Uttarakhand,20,45,maize,orange,True,1.0,0.8333333333333334
+UT,Uttarakhand,20,46,maize,maize,False,0.5,1.0
+WB,West Bengal,20,42,jute,jute,False,1.0,0.7142857142857143
+WB,West Bengal,20,43,jute,jute,False,1.0,0.7142857142857143
+WB,West Bengal,20,44,jute,jute,False,0.5,0.7142857142857143
+WB,West Bengal,20,45,jute,jute,False,0.5,0.7142857142857143
+WB,West Bengal,20,46,jute,jute,False,0.5,0.7142857142857143
+JK,Jammu and Kashmir,20,42,maize,maize,False,1.0,1.0
+JK,Jammu and Kashmir,20,43,maize,maize,False,0.5,0.7142857142857143
+JK,Jammu and Kashmir,20,44,maize,maize,False,0.5,0.7142857142857143
+JK,Jammu and Kashmir,20,45,maize,maize,False,0.5,0.375
+JK,Jammu and Kashmir,20,46,maize,maize,False,0.5,0.7142857142857143
+LA,Ladakh,20,42,apple,apple,False,1.0,1.0
+LA,Ladakh,20,43,apple,apple,False,1.0,1.0
+LA,Ladakh,20,44,apple,apple,False,1.0,1.0
+LA,Ladakh,20,45,apple,apple,False,1.0,1.0
+LA,Ladakh,20,46,apple,apple,False,1.0,1.0
+DL,Delhi,20,42,watermelon,watermelon,False,0.5,0.75
+DL,Delhi,20,43,watermelon,mango,True,0.5,0.75
+DL,Delhi,20,44,watermelon,watermelon,False,0.5,0.75
+DL,Delhi,20,45,watermelon,watermelon,False,0.5,0.8
+DL,Delhi,20,46,watermelon,watermelon,False,1.0,1.0
+PY,Puducherry,20,42,banana,banana,False,1.0,1.0
+PY,Puducherry,20,43,banana,banana,False,0.5,0.7142857142857143
+PY,Puducherry,20,44,banana,banana,False,0.5,0.5
+PY,Puducherry,20,45,banana,banana,False,1.0,1.0
+PY,Puducherry,20,46,banana,papaya,True,1.0,0.7142857142857143
+AN,Andaman and Nicobar Islands,20,42,banana,banana,False,1.0,0.7142857142857143
+AN,Andaman and Nicobar Islands,20,43,banana,rice,True,1.0,0.7142857142857143
+AN,Andaman and Nicobar Islands,20,44,banana,banana,False,1.0,0.7142857142857143
+AN,Andaman and Nicobar Islands,20,45,banana,banana,False,0.5,0.8333333333333334
+AN,Andaman and Nicobar Islands,20,46,banana,banana,False,1.0,0.7142857142857143
+CH,Chandigarh,20,42,maize,maize,False,0.5,0.7142857142857143
+CH,Chandigarh,20,43,maize,maize,False,0.5,1.0
+CH,Chandigarh,20,44,maize,maize,False,0.5,0.7142857142857143
+CH,Chandigarh,20,45,maize,maize,False,1.0,1.0
+CH,Chandigarh,20,46,maize,maize,False,0.5,0.7142857142857143
+DN,Dadra and Nagar Haveli and Daman and Diu,20,42,mango,coconut,True,0.5,0.5714285714285714
+DN,Dadra and Nagar Haveli and Daman and Diu,20,43,mango,pigeonpeas,True,0.5,0.7142857142857143
+DN,Dadra and Nagar Haveli and Daman and Diu,20,44,mango,pigeonpeas,True,0.5,0.7142857142857143
+DN,Dadra and Nagar Haveli and Daman and Diu,20,45,mango,mango,False,0.5,0.7142857142857143
+DN,Dadra and Nagar Haveli and Daman and Diu,20,46,mango,mango,False,1.0,1.0
+LD,Lakshadweep,20,42,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,20,43,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,20,44,papaya,banana,True,1.0,1.0
+LD,Lakshadweep,20,45,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,20,46,papaya,papaya,False,1.0,1.0
+AP,Andhra Pradesh,30,42,papaya,papaya,False,0.5,0.7142857142857143
+AP,Andhra Pradesh,30,43,papaya,papaya,False,0.5,0.5
+AP,Andhra Pradesh,30,44,papaya,papaya,False,0.5,0.7142857142857143
+AP,Andhra Pradesh,30,45,papaya,papaya,False,0.5,0.5
+AP,Andhra Pradesh,30,46,papaya,papaya,False,0.5,0.7142857142857143
+AR,Arunachal Pradesh,30,42,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,30,43,rice,papaya,True,0.5,0.8
+AR,Arunachal Pradesh,30,44,rice,papaya,True,1.0,1.0
+AR,Arunachal Pradesh,30,45,rice,rice,False,1.0,1.0
+AR,Arunachal Pradesh,30,46,rice,orange,True,0.5,0.8333333333333334
+AS,Assam,30,42,jute,jute,False,1.0,0.7142857142857143
+AS,Assam,30,43,jute,jute,False,1.0,0.5
+AS,Assam,30,44,jute,jute,False,0.5,0.5
+AS,Assam,30,45,jute,jute,False,0.5,0.7142857142857143
+AS,Assam,30,46,jute,jute,False,1.0,0.5
+BR,Bihar,30,42,maize,maize,False,1.0,0.5
+BR,Bihar,30,43,maize,maize,False,1.0,0.5
+BR,Bihar,30,44,maize,maize,False,0.5,0.3333333333333333
+BR,Bihar,30,45,maize,maize,False,0.5,0.5
+BR,Bihar,30,46,maize,maize,False,1.0,0.5
+CT,Chhattisgarh,30,42,mango,mango,False,1.0,0.7142857142857143
+CT,Chhattisgarh,30,43,mango,mango,False,0.5,0.7142857142857143
+CT,Chhattisgarh,30,44,mango,banana,True,0.5,0.7142857142857143
+CT,Chhattisgarh,30,45,mango,mango,False,0.5,0.7142857142857143
+CT,Chhattisgarh,30,46,mango,mango,False,1.0,0.7142857142857143
+GA,Goa,30,42,rice,rice,False,1.0,0.8333333333333334
+GA,Goa,30,43,rice,rice,False,0.5,1.0
+GA,Goa,30,44,rice,rice,False,1.0,1.0
+GA,Goa,30,45,rice,rice,False,1.0,0.8333333333333334
+GA,Goa,30,46,rice,rice,False,0.2,1.0
+GJ,Gujarat,30,42,papaya,papaya,False,0.5,0.7142857142857143
+GJ,Gujarat,30,43,papaya,mango,True,0.5,0.3333333333333333
+GJ,Gujarat,30,44,papaya,papaya,False,0.2,0.5
+GJ,Gujarat,30,45,papaya,papaya,False,0.5,0.7142857142857143
+GJ,Gujarat,30,46,papaya,papaya,False,0.5,0.5
+HR,Haryana,30,42,watermelon,lentil,True,0.5,1.0
+HR,Haryana,30,43,watermelon,muskmelon,True,0.2,0.3333333333333333
+HR,Haryana,30,44,watermelon,lentil,True,0.5,0.5
+HR,Haryana,30,45,watermelon,lentil,True,0.5,0.7142857142857143
+HR,Haryana,30,46,watermelon,muskmelon,True,0.5,0.5
+HP,Himachal Pradesh,30,42,maize,maize,False,0.5,0.7142857142857143
+HP,Himachal Pradesh,30,43,maize,maize,False,1.0,0.7142857142857143
+HP,Himachal Pradesh,30,44,maize,maize,False,0.5,0.7142857142857143
+HP,Himachal Pradesh,30,45,maize,maize,False,0.5,0.5
+HP,Himachal Pradesh,30,46,maize,maize,False,0.5,0.7142857142857143
+JH,Jharkhand,30,42,mango,mango,False,1.0,1.0
+JH,Jharkhand,30,43,mango,mango,False,1.0,0.7142857142857143
+JH,Jharkhand,30,44,mango,maize,True,1.0,1.0
+JH,Jharkhand,30,45,mango,mango,False,1.0,0.7142857142857143
+JH,Jharkhand,30,46,mango,mango,False,1.0,1.0
+KA,Karnataka,30,42,maize,maize,False,1.0,0.5
+KA,Karnataka,30,43,maize,maize,False,0.2,0.5
+KA,Karnataka,30,44,maize,maize,False,0.5,0.5
+KA,Karnataka,30,45,maize,maize,False,0.5,0.3333333333333333
+KA,Karnataka,30,46,maize,maize,False,0.5,0.7142857142857143
+KL,Kerala,30,42,rice,rice,False,0.5,1.0
+KL,Kerala,30,43,rice,rice,False,1.0,0.7142857142857143
+KL,Kerala,30,44,rice,rice,False,0.5,0.7142857142857143
+KL,Kerala,30,45,rice,rice,False,1.0,0.7142857142857143
+KL,Kerala,30,46,rice,rice,False,1.0,1.0
+MP,Madhya Pradesh,30,42,orange,papaya,True,0.5,0.7142857142857143
+MP,Madhya Pradesh,30,43,orange,orange,False,0.5,0.5
+MP,Madhya Pradesh,30,44,orange,maize,True,0.5,0.7142857142857143
+MP,Madhya Pradesh,30,45,orange,maize,True,0.2,0.5
+MP,Madhya Pradesh,30,46,orange,orange,False,0.5,0.5
+MH,Maharashtra,30,42,mango,mango,False,0.2,0.7142857142857143
+MH,Maharashtra,30,43,mango,pomegranate,True,0.5,0.5
+MH,Maharashtra,30,44,mango,banana,True,0.0,0.5
+MH,Maharashtra,30,45,mango,maize,True,0.2,0.5
+MH,Maharashtra,30,46,mango,pomegranate,True,0.5,1.0
+MN,Manipur,30,42,banana,maize,True,0.5,1.0
+MN,Manipur,30,43,banana,maize,True,0.2,1.0
+MN,Manipur,30,44,banana,maize,True,0.5,0.7142857142857143
+MN,Manipur,30,45,banana,maize,True,0.5,1.0
+MN,Manipur,30,46,banana,maize,True,0.2,1.0
+ML,Meghalaya,30,42,rice,rice,False,0.2,1.0
+ML,Meghalaya,30,43,rice,rice,False,0.5,1.0
+ML,Meghalaya,30,44,rice,rice,False,0.5,0.7142857142857143
+ML,Meghalaya,30,45,rice,rice,False,1.0,1.0
+ML,Meghalaya,30,46,rice,rice,False,0.5,0.7142857142857143
+MZ,Mizoram,30,42,rice,rice,False,1.0,0.7142857142857143
+MZ,Mizoram,30,43,rice,rice,False,0.5,0.7142857142857143
+MZ,Mizoram,30,44,rice,rice,False,1.0,0.7142857142857143
+MZ,Mizoram,30,45,rice,rice,False,0.5,1.0
+MZ,Mizoram,30,46,rice,rice,False,1.0,0.7142857142857143
+NL,Nagaland,30,42,rice,papaya,True,0.5,1.0
+NL,Nagaland,30,43,rice,papaya,True,0.2,0.7142857142857143
+NL,Nagaland,30,44,rice,papaya,True,1.0,1.0
+NL,Nagaland,30,45,rice,papaya,True,1.0,0.7142857142857143
+NL,Nagaland,30,46,rice,papaya,True,0.5,0.7142857142857143
+OR,Odisha,30,42,papaya,mango,True,1.0,0.7142857142857143
+OR,Odisha,30,43,papaya,mango,True,1.0,0.7142857142857143
+OR,Odisha,30,44,papaya,banana,True,0.5,0.3333333333333333
+OR,Odisha,30,45,papaya,papaya,False,1.0,0.7142857142857143
+OR,Odisha,30,46,papaya,mango,True,1.0,0.7142857142857143
+PB,Punjab,30,42,maize,maize,False,0.5,1.0
+PB,Punjab,30,43,maize,orange,True,0.5,0.5
+PB,Punjab,30,44,maize,maize,False,0.5,0.7142857142857143
+PB,Punjab,30,45,maize,maize,False,0.5,0.7142857142857143
+PB,Punjab,30,46,maize,maize,False,0.5,0.7142857142857143
+RJ,Rajasthan,30,42,watermelon,mothbeans,True,0.5,0.5
+RJ,Rajasthan,30,43,watermelon,muskmelon,True,0.5,0.7142857142857143
+RJ,Rajasthan,30,44,watermelon,muskmelon,True,0.5,0.5
+RJ,Rajasthan,30,45,watermelon,mothbeans,True,0.5,0.7142857142857143
+RJ,Rajasthan,30,46,watermelon,muskmelon,True,0.5,0.7142857142857143
+SK,Sikkim,30,42,rice,rice,False,1.0,1.0
+SK,Sikkim,30,43,rice,rice,False,0.5,0.75
+SK,Sikkim,30,44,rice,banana,True,1.0,0.8
+SK,Sikkim,30,45,rice,banana,True,1.0,1.0
+SK,Sikkim,30,46,rice,orange,True,0.5,0.8
+TN,Tamil Nadu,30,42,maize,maize,False,0.5,0.7142857142857143
+TN,Tamil Nadu,30,43,maize,blackgram,True,1.0,0.5
+TN,Tamil Nadu,30,44,maize,maize,False,0.5,1.0
+TN,Tamil Nadu,30,45,maize,maize,False,0.5,0.5
+TN,Tamil Nadu,30,46,maize,maize,False,1.0,0.5
+TG,Telangana,30,42,maize,papaya,True,0.5,1.0
+TG,Telangana,30,43,maize,mango,True,1.0,0.5
+TG,Telangana,30,44,maize,maize,False,0.5,1.0
+TG,Telangana,30,45,maize,maize,False,0.5,0.5
+TG,Telangana,30,46,maize,papaya,True,1.0,0.5
+TR,Tripura,30,42,banana,rice,True,1.0,1.0
+TR,Tripura,30,43,banana,papaya,True,0.5,1.0
+TR,Tripura,30,44,banana,banana,False,1.0,0.5
+TR,Tripura,30,45,banana,banana,False,1.0,0.7142857142857143
+TR,Tripura,30,46,banana,banana,False,1.0,1.0
+UP,Uttar Pradesh,30,42,maize,maize,False,0.5,0.7142857142857143
+UP,Uttar Pradesh,30,43,maize,watermelon,True,0.2,0.7142857142857143
+UP,Uttar Pradesh,30,44,maize,maize,False,0.2,0.7142857142857143
+UP,Uttar Pradesh,30,45,maize,maize,False,0.5,0.5
+UP,Uttar Pradesh,30,46,maize,maize,False,0.2,0.7142857142857143
+UT,Uttarakhand,30,42,maize,maize,False,0.5,0.7142857142857143
+UT,Uttarakhand,30,43,maize,maize,False,0.5,0.7142857142857143
+UT,Uttarakhand,30,44,maize,maize,False,0.2,0.7142857142857143
+UT,Uttarakhand,30,45,maize,maize,False,0.5,1.0
+UT,Uttarakhand,30,46,maize,maize,False,0.5,0.7142857142857143
+WB,West Bengal,30,42,jute,jute,False,1.0,1.0
+WB,West Bengal,30,43,jute,jute,False,1.0,1.0
+WB,West Bengal,30,44,jute,jute,False,0.5,0.7142857142857143
+WB,West Bengal,30,45,jute,jute,False,1.0,0.7142857142857143
+WB,West Bengal,30,46,jute,jute,False,0.5,1.0
+JK,Jammu and Kashmir,30,42,maize,maize,False,0.5,0.7142857142857143
+JK,Jammu and Kashmir,30,43,maize,maize,False,1.0,0.7142857142857143
+JK,Jammu and Kashmir,30,44,maize,maize,False,0.5,0.5
+JK,Jammu and Kashmir,30,45,maize,maize,False,0.5,0.7142857142857143
+JK,Jammu and Kashmir,30,46,maize,maize,False,0.5,0.5
+LA,Ladakh,30,42,apple,apple,False,1.0,1.0
+LA,Ladakh,30,43,apple,apple,False,1.0,1.0
+LA,Ladakh,30,44,apple,apple,False,1.0,1.0
+LA,Ladakh,30,45,apple,apple,False,1.0,1.0
+LA,Ladakh,30,46,apple,apple,False,1.0,1.0
+DL,Delhi,30,42,watermelon,watermelon,False,0.5,0.75
+DL,Delhi,30,43,watermelon,watermelon,False,0.5,0.8
+DL,Delhi,30,44,watermelon,watermelon,False,1.0,1.0
+DL,Delhi,30,45,watermelon,watermelon,False,0.5,0.75
+DL,Delhi,30,46,watermelon,watermelon,False,1.0,1.0
+PY,Puducherry,30,42,banana,banana,False,1.0,0.7142857142857143
+PY,Puducherry,30,43,banana,mango,True,1.0,0.7142857142857143
+PY,Puducherry,30,44,banana,banana,False,1.0,1.0
+PY,Puducherry,30,45,banana,banana,False,1.0,0.7142857142857143
+PY,Puducherry,30,46,banana,banana,False,1.0,1.0
+AN,Andaman and Nicobar Islands,30,42,banana,rice,True,1.0,0.7142857142857143
+AN,Andaman and Nicobar Islands,30,43,banana,banana,False,0.5,0.7142857142857143
+AN,Andaman and Nicobar Islands,30,44,banana,banana,False,1.0,0.7142857142857143
+AN,Andaman and Nicobar Islands,30,45,banana,rice,True,1.0,0.7142857142857143
+AN,Andaman and Nicobar Islands,30,46,banana,rice,True,0.5,1.0
+CH,Chandigarh,30,42,maize,maize,False,0.5,0.7142857142857143
+CH,Chandigarh,30,43,maize,mango,True,0.5,1.0
+CH,Chandigarh,30,44,maize,maize,False,0.5,1.0
+CH,Chandigarh,30,45,maize,lentil,True,0.5,0.7142857142857143
+CH,Chandigarh,30,46,maize,maize,False,1.0,1.0
+DN,Dadra and Nagar Haveli and Daman and Diu,30,42,mango,pigeonpeas,True,0.5,0.7142857142857143
+DN,Dadra and Nagar Haveli and Daman and Diu,30,43,mango,mango,False,0.5,1.0
+DN,Dadra and Nagar Haveli and Daman and Diu,30,44,mango,mango,False,0.5,1.0
+DN,Dadra and Nagar Haveli and Daman and Diu,30,45,mango,pigeonpeas,True,0.5,0.5714285714285714
+DN,Dadra and Nagar Haveli and Daman and Diu,30,46,mango,mango,False,0.5,1.0
+LD,Lakshadweep,30,42,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,30,43,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,30,44,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,30,45,papaya,papaya,False,1.0,1.0
+LD,Lakshadweep,30,46,papaya,papaya,False,1.0,1.0
