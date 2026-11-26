@@ -1,0 +1,377 @@
+{
+  "legacy": {
+    "clean_holdout_accuracy": 0.9886363636363636,
+    "noise20_cv_accuracy": 0.9582,
+    "noise20_holdout_accuracy": 0.9568181818181818
+  },
+  "ranking_ablation": [
+    {
+      "configuration": "Fitness + return",
+      "mean_eligible_candidates": 8.722222222222221,
+      "mean_eligible_candidates_delta_vs_full": 0.0,
+      "mean_eligible_candidates_relative_change_vs_full_pct": 0.0,
+      "mean_estimated_profit": 339117.6388888889,
+      "mean_estimated_profit_delta_vs_full": 120190.02777777775,
+      "mean_estimated_profit_relative_change_vs_full_pct": 54.89943784056474,
+      "mean_fitness": 0.47380555555555554,
+      "mean_fitness_delta_vs_full": -0.055436111111111186,
+      "mean_fitness_relative_change_vs_full_pct": -10.474630892209516,
+      "mean_historical_area_share": 0.24192125,
+      "mean_historical_area_share_delta_vs_full": -0.032932211538461514,
+      "mean_historical_area_share_relative_change_vs_full_pct": -11.981734322764991,
+      "mean_risk": 0.4255555555555556,
+      "mean_risk_delta_vs_full": 0.0416111111111111,
+      "mean_risk_relative_change_vs_full_pct": 10.837794819852405,
+      "mean_water_dependence": 0.1826111111111111,
+      "mean_water_dependence_delta_vs_full": 0.06027777777777778,
+      "mean_water_dependence_relative_change_vs_full_pct": 49.27338782924614,
+      "regions": 36,
+      "regions_missing_historical_area_share": 12,
+      "regions_using_curated_yield": 4,
+      "variant": "primary"
+    },
+    {
+      "configuration": "Fitness + return + water",
+      "mean_eligible_candidates": 8.722222222222221,
+      "mean_eligible_candidates_delta_vs_full": 0.0,
+      "mean_eligible_candidates_relative_change_vs_full_pct": 0.0,
+      "mean_estimated_profit": 256348.41666666666,
+      "mean_estimated_profit_delta_vs_full": 37420.80555555553,
+      "mean_estimated_profit_relative_change_vs_full_pct": 17.092775719625223,
+      "mean_fitness": 0.5033472222222222,
+      "mean_fitness_delta_vs_full": -0.025894444444444553,
+      "mean_fitness_relative_change_vs_full_pct": -4.892744860308533,
+      "mean_historical_area_share": 0.24803,
+      "mean_historical_area_share_delta_vs_full": -0.026823461538461518,
+      "mean_historical_area_share_relative_change_vs_full_pct": -9.759186363642717,
+      "mean_risk": 0.40369444444444447,
+      "mean_risk_delta_vs_full": 0.01974999999999999,
+      "mean_risk_relative_change_vs_full_pct": 5.143973375777742,
+      "mean_water_dependence": 0.13733333333333334,
+      "mean_water_dependence_delta_vs_full": 0.015,
+      "mean_water_dependence_relative_change_vs_full_pct": 12.261580381471388,
+      "regions": 36,
+      "regions_missing_historical_area_share": 11,
+      "regions_using_curated_yield": 4,
+      "variant": "primary"
+    },
+    {
+      "configuration": "Fitness only",
+      "mean_eligible_candidates": 8.722222222222221,
+      "mean_eligible_candidates_delta_vs_full": 0.0,
+      "mean_eligible_candidates_relative_change_vs_full_pct": 0.0,
+      "mean_estimated_profit": 43591.27777777778,
+      "mean_estimated_profit_delta_vs_full": -175336.33333333334,
+      "mean_estimated_profit_relative_change_vs_full_pct": -80.08872542090904,
+      "mean_fitness": 0.6200333333333333,
+      "mean_fitness_delta_vs_full": 0.0907916666666666,
+      "mean_fitness_relative_change_vs_full_pct": 17.15504889070839,
+      "mean_historical_area_share": 0.40683454545454545,
+      "mean_historical_area_share_delta_vs_full": 0.13198108391608393,
+      "mean_historical_area_share_relative_change_vs_full_pct": 48.018709015827774,
+      "mean_risk": 0.2649722222222222,
+      "mean_risk_delta_vs_full": -0.11897222222222226,
+      "mean_risk_relative_change_vs_full_pct": -30.9868325857329,
+      "mean_water_dependence": 0.06669444444444445,
+      "mean_water_dependence_delta_vs_full": -0.05563888888888889,
+      "mean_water_dependence_relative_change_vs_full_pct": -45.48138056312443,
+      "regions": 36,
+      "regions_missing_historical_area_share": 3,
+      "regions_using_curated_yield": 1,
+      "variant": "primary"
+    },
+    {
+      "configuration": "Full Cerealia",
+      "mean_eligible_candidates": 8.722222222222221,
+      "mean_eligible_candidates_delta_vs_full": 0.0,
+      "mean_eligible_candidates_relative_change_vs_full_pct": 0.0,
+      "mean_estimated_profit": 218927.61111111112,
+      "mean_estimated_profit_delta_vs_full": 0.0,
+      "mean_estimated_profit_relative_change_vs_full_pct": 0.0,
+      "mean_fitness": 0.5292416666666667,
+      "mean_fitness_delta_vs_full": 0.0,
+      "mean_fitness_relative_change_vs_full_pct": 0.0,
+      "mean_historical_area_share": 0.2748534615384615,
+      "mean_historical_area_share_delta_vs_full": 0.0,
+      "mean_historical_area_share_relative_change_vs_full_pct": 0.0,
+      "mean_risk": 0.3839444444444445,
+      "mean_risk_delta_vs_full": 0.0,
+      "mean_risk_relative_change_vs_full_pct": 0.0,
+      "mean_water_dependence": 0.12233333333333334,
+      "mean_water_dependence_delta_vs_full": 0.0,
+      "mean_water_dependence_relative_change_vs_full_pct": 0.0,
+      "regions": 36,
+      "regions_missing_historical_area_share": 10,
+      "regions_using_curated_yield": 4,
+      "variant": "primary"
+    },
+    {
+      "configuration": "Return term only",
+      "mean_eligible_candidates": 8.722222222222221,
+      "mean_eligible_candidates_delta_vs_full": 0.0,
+      "mean_eligible_candidates_relative_change_vs_full_pct": 0.0,
+      "mean_estimated_profit": 577181.3888888889,
+      "mean_estimated_profit_delta_vs_full": 358253.77777777775,
+      "mean_estimated_profit_relative_change_vs_full_pct": 163.64029002991094,
+      "mean_fitness": 0.2841472222222222,
+      "mean_fitness_delta_vs_full": -0.2450944444444445,
+      "mean_fitness_relative_change_vs_full_pct": -46.31049667501195,
+      "mean_historical_area_share": 0.011353333333333333,
+      "mean_historical_area_share_delta_vs_full": -0.2635001282051282,
+      "mean_historical_area_share_relative_change_vs_full_pct": -95.8693140447334,
+      "mean_risk": 0.5238055555555555,
+      "mean_risk_delta_vs_full": 0.13986111111111105,
+      "mean_risk_relative_change_vs_full_pct": 36.427434524670794,
+      "mean_water_dependence": 0.2272777777777778,
+      "mean_water_dependence_delta_vs_full": 0.10494444444444447,
+      "mean_water_dependence_relative_change_vs_full_pct": 85.78564940962762,
+      "regions": 36,
+      "regions_missing_historical_area_share": 24,
+      "regions_using_curated_yield": 4,
+      "variant": "primary"
+    }
+  ],
+  "run_id": "20261126T121632Z-7f2edd4d",
+  "strict_classifier": [
+    {
+      "mean_accuracy": 0.9863636363636363,
+      "mean_macro_f1": 0.9863184875315814,
+      "model": "Extra Trees (augmentation)",
+      "noise_pct": 0,
+      "sample_sd_accuracy": 0.001607060866333073,
+      "sample_sd_macro_f1": 0.0016733440224913374
+    },
+    {
+      "mean_accuracy": 0.9809090909090908,
+      "mean_macro_f1": 0.9809030759825582,
+      "model": "Extra Trees (augmentation)",
+      "noise_pct": 10,
+      "sample_sd_accuracy": 0.0020327890704543547,
+      "sample_sd_macro_f1": 0.001976179647430249
+    },
+    {
+      "mean_accuracy": 0.9563636363636363,
+      "mean_macro_f1": 0.9563181147434143,
+      "model": "Extra Trees (augmentation)",
+      "noise_pct": 20,
+      "sample_sd_accuracy": 0.0010163945352271336,
+      "sample_sd_macro_f1": 0.0010185576394103777
+    },
+    {
+      "mean_accuracy": 0.8904545454545454,
+      "mean_macro_f1": 0.8896116677482999,
+      "model": "Extra Trees (augmentation)",
+      "noise_pct": 30,
+      "sample_sd_accuracy": 0.014319985456384826,
+      "sample_sd_macro_f1": 0.014156617048343685
+    },
+    {
+      "mean_accuracy": 0.7368181818181818,
+      "mean_macro_f1": 0.7326206712969453,
+      "model": "Extra Trees (augmentation)",
+      "noise_pct": 50,
+      "sample_sd_accuracy": 0.020033546246399112,
+      "sample_sd_macro_f1": 0.02090817530821966
+    },
+    {
+      "mean_accuracy": 0.9886363636363636,
+      "mean_macro_f1": 0.9885750921320999,
+      "model": "Extra Trees (no augmentation)",
+      "noise_pct": 0,
+      "sample_sd_accuracy": 0.00508197267613591,
+      "sample_sd_macro_f1": 0.0051338802638601225
+    },
+    {
+      "mean_accuracy": 0.9800000000000001,
+      "mean_macro_f1": 0.9800467287421017,
+      "model": "Extra Trees (no augmentation)",
+      "noise_pct": 10,
+      "sample_sd_accuracy": 0.00492715531560879,
+      "sample_sd_macro_f1": 0.004887005794599152
+    },
+    {
+      "mean_accuracy": 0.9245454545454546,
+      "mean_macro_f1": 0.9241648700477354,
+      "model": "Extra Trees (no augmentation)",
+      "noise_pct": 20,
+      "sample_sd_accuracy": 0.010214638661020091,
+      "sample_sd_macro_f1": 0.010266539636608575
+    },
+    {
+      "mean_accuracy": 0.8304545454545454,
+      "mean_macro_f1": 0.8291931365301327,
+      "model": "Extra Trees (no augmentation)",
+      "noise_pct": 30,
+      "sample_sd_accuracy": 0.010239891205517047,
+      "sample_sd_macro_f1": 0.009890855370265152
+    },
+    {
+      "mean_accuracy": 0.6504545454545454,
+      "mean_macro_f1": 0.6452206119075463,
+      "model": "Extra Trees (no augmentation)",
+      "noise_pct": 50,
+      "sample_sd_accuracy": 0.018139154490213576,
+      "sample_sd_macro_f1": 0.020476205346907604
+    },
+    {
+      "mean_accuracy": 0.9940909090909091,
+      "mean_macro_f1": 0.994072350172001,
+      "model": "Gaussian Naive Bayes",
+      "noise_pct": 0,
+      "sample_sd_accuracy": 0.0012448239943299412,
+      "sample_sd_macro_f1": 0.001255363870446748
+    },
+    {
+      "mean_accuracy": 0.9813636363636364,
+      "mean_macro_f1": 0.98133118814699,
+      "model": "Gaussian Naive Bayes",
+      "noise_pct": 10,
+      "sample_sd_accuracy": 0.0068935231309559895,
+      "sample_sd_macro_f1": 0.006864780283395124
+    },
+    {
+      "mean_accuracy": 0.885909090909091,
+      "mean_macro_f1": 0.8850988256937521,
+      "model": "Gaussian Naive Bayes",
+      "noise_pct": 20,
+      "sample_sd_accuracy": 0.01217554112361712,
+      "sample_sd_macro_f1": 0.013897066262420111
+    },
+    {
+      "mean_accuracy": 0.7445454545454545,
+      "mean_macro_f1": 0.741391341824035,
+      "model": "Gaussian Naive Bayes",
+      "noise_pct": 30,
+      "sample_sd_accuracy": 0.013503137070466315,
+      "sample_sd_macro_f1": 0.015663739214338473
+    },
+    {
+      "mean_accuracy": 0.5113636363636364,
+      "mean_macro_f1": 0.501216161630939,
+      "model": "Gaussian Naive Bayes",
+      "noise_pct": 50,
+      "sample_sd_accuracy": 0.020643070596119275,
+      "sample_sd_macro_f1": 0.020638258826032707
+    },
+    {
+      "mean_accuracy": 0.9877272727272727,
+      "mean_macro_f1": 0.9877034744724389,
+      "model": "HistGradientBoosting (augmentation)",
+      "noise_pct": 0,
+      "sample_sd_accuracy": 0.004128614119223877,
+      "sample_sd_macro_f1": 0.004155512969380538
+    },
+    {
+      "mean_accuracy": 0.9763636363636363,
+      "mean_macro_f1": 0.9763275353367588,
+      "model": "HistGradientBoosting (augmentation)",
+      "noise_pct": 10,
+      "sample_sd_accuracy": 0.006140570948230113,
+      "sample_sd_macro_f1": 0.006162927030860198
+    },
+    {
+      "mean_accuracy": 0.9413636363636364,
+      "mean_macro_f1": 0.9412959641789586,
+      "model": "HistGradientBoosting (augmentation)",
+      "noise_pct": 20,
+      "sample_sd_accuracy": 0.004371678195834395,
+      "sample_sd_macro_f1": 0.004296861441414135
+    },
+    {
+      "mean_accuracy": 0.8704545454545455,
+      "mean_macro_f1": 0.8700166158097262,
+      "model": "HistGradientBoosting (augmentation)",
+      "noise_pct": 30,
+      "sample_sd_accuracy": 0.012956538921581098,
+      "sample_sd_macro_f1": 0.012580885020074678
+    },
+    {
+      "mean_accuracy": 0.6890909090909091,
+      "mean_macro_f1": 0.6861634759649278,
+      "model": "HistGradientBoosting (augmentation)",
+      "noise_pct": 50,
+      "sample_sd_accuracy": 0.019244511936378626,
+      "sample_sd_macro_f1": 0.020151960594707106
+    },
+    {
+      "mean_accuracy": 0.9922727272727272,
+      "mean_macro_f1": 0.992344929614793,
+      "model": "Random Forest (augmentation)",
+      "noise_pct": 0,
+      "sample_sd_accuracy": 0.006547663768585411,
+      "sample_sd_macro_f1": 0.006424645662563045
+    },
+    {
+      "mean_accuracy": 0.984090909090909,
+      "mean_macro_f1": 0.9841610053900294,
+      "model": "Random Forest (augmentation)",
+      "noise_pct": 10,
+      "sample_sd_accuracy": 0.004821182598999234,
+      "sample_sd_macro_f1": 0.004711906600826595
+    },
+    {
+      "mean_accuracy": 0.9422727272727272,
+      "mean_macro_f1": 0.9422287786286869,
+      "model": "Random Forest (augmentation)",
+      "noise_pct": 20,
+      "sample_sd_accuracy": 0.006347381838076751,
+      "sample_sd_macro_f1": 0.00629249401334933
+    },
+    {
+      "mean_accuracy": 0.8577272727272727,
+      "mean_macro_f1": 0.8568699754134895,
+      "model": "Random Forest (augmentation)",
+      "noise_pct": 30,
+      "sample_sd_accuracy": 0.013880392258729508,
+      "sample_sd_macro_f1": 0.013809656830693776
+    },
+    {
+      "mean_accuracy": 0.6672727272727272,
+      "mean_macro_f1": 0.6642742192983302,
+      "model": "Random Forest (augmentation)",
+      "noise_pct": 50,
+      "sample_sd_accuracy": 0.03656195918580037,
+      "sample_sd_macro_f1": 0.034729421243487754
+    },
+    {
+      "mean_accuracy": 0.9936363636363638,
+      "mean_macro_f1": 0.9936134455915061,
+      "model": "Random Forest (no augmentation)",
+      "noise_pct": 0,
+      "sample_sd_accuracy": 0.0029632738205466157,
+      "sample_sd_macro_f1": 0.0029854459329882784
+    },
+    {
+      "mean_accuracy": 0.9568181818181818,
+      "mean_macro_f1": 0.9565346098393427,
+      "model": "Random Forest (no augmentation)",
+      "noise_pct": 10,
+      "sample_sd_accuracy": 0.008503766788122556,
+      "sample_sd_macro_f1": 0.008461266901792405
+    },
+    {
+      "mean_accuracy": 0.8604545454545456,
+      "mean_macro_f1": 0.8586703691761086,
+      "model": "Random Forest (no augmentation)",
+      "noise_pct": 20,
+      "sample_sd_accuracy": 0.009453015610493378,
+      "sample_sd_macro_f1": 0.010107093187565565
+    },
+    {
+      "mean_accuracy": 0.7495454545454545,
+      "mean_macro_f1": 0.7448962127221119,
+      "model": "Random Forest (no augmentation)",
+      "noise_pct": 30,
+      "sample_sd_accuracy": 0.01799621172257195,
+      "sample_sd_macro_f1": 0.019403759163537954
+    },
+    {
+      "mean_accuracy": 0.5468181818181819,
+      "mean_macro_f1": 0.5355461756286607,
+      "model": "Random Forest (no augmentation)",
+      "noise_pct": 50,
+      "sample_sd_accuracy": 0.033425320733176236,
+      "sample_sd_macro_f1": 0.0337220672788737
+    }
+  ]
+}

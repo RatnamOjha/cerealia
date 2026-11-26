@@ -1,0 +1,179 @@
+{
+  "legacy_reference_metrics": {
+    "accuracy_under_noise": {
+      "0pct": 0.9864,
+      "10pct": 0.9855,
+      "20pct": 0.9582,
+      "30pct": 0.8923,
+      "50pct": 0.7364
+    },
+    "audit": {
+      "duplicate_feature_vectors": 0,
+      "exact_duplicate_rows": 0,
+      "interpretation": "No leakage: the score is arithmetically correct. But Gaussian Naive Bayes reaches nearly the same accuracy, and features are uncorrelated within each crop, which together indicate a synthetic dataset of well-separated classes rather than a strong model. Quote the noise-robust figure operationally.",
+      "leakage_detected": false,
+      "mean_within_class_feature_correlation": 0.0755,
+      "naive_bayes_accuracy": 0.9945
+    },
+    "cv_accuracy_mean": 0.9873,
+    "cv_accuracy_std": 0.0042,
+    "cv_folds": 5,
+    "dataset": {
+      "is_balanced": true,
+      "max_class_count": 100,
+      "min_class_count": 100,
+      "n_classes": 22,
+      "n_rows": 2200
+    },
+    "feature_importance": {
+      "K": 0.1402,
+      "N": 0.1337,
+      "P": 0.152,
+      "humidity": 0.2016,
+      "ph": 0.0688,
+      "rainfall": 0.1998,
+      "temperature": 0.1039
+    },
+    "headline_accuracy_to_quote": 0.9568,
+    "headline_basis": "hold-out accuracy at 20% simulated sensor error",
+    "holdout_accuracy": 0.9886,
+    "holdout_accuracy_at_20pct_noise": 0.9568,
+    "macro_f1": 0.9886,
+    "misclassified_test_samples": 5,
+    "model": "ExtraTreesClassifier(extra_trees_noise_augmented)",
+    "model_selection": {
+      "candidates": {
+        "boosting_noise_augmented": {
+          "0pct": 0.985,
+          "10pct": 0.9795,
+          "20pct": 0.9555,
+          "30pct": 0.8682,
+          "50pct": 0.7005
+        },
+        "extra_trees_noise_augmented": {
+          "0pct": 0.9864,
+          "10pct": 0.9855,
+          "20pct": 0.9582,
+          "30pct": 0.8923,
+          "50pct": 0.7364
+        },
+        "forest": {
+          "0pct": 0.9945,
+          "10pct": 0.9591,
+          "20pct": 0.8691,
+          "30pct": 0.7527,
+          "50pct": 0.5623
+        },
+        "forest_noise_augmented": {
+          "0pct": 0.9923,
+          "10pct": 0.9836,
+          "20pct": 0.9464,
+          "30pct": 0.8595,
+          "50pct": 0.6695
+        }
+      },
+      "selected": "extra_trees_noise_augmented",
+      "selected_on": "cross-validated accuracy at 20% input noise"
+    },
+    "noise_augmented_training": true,
+    "smote_applied": false,
+    "smote_rationale": "Dataset is exactly balanced (100 samples/class); resampling would add synthetic noise without addressing any imbalance.",
+    "test_set_size": 440,
+    "train_seconds": 0.193,
+    "trained_at": "2026-09-04T18:19:58"
+  },
+  "legacy_reproduction": {
+    "augmentation": {
+      "copies": 4,
+      "pct_range": [
+        5,
+        30
+      ],
+      "seed": 42
+    },
+    "dataset_sha256": "54a5a6e5408668e668667efc50de2fc867c1b875e0431b4f54dd331b0a109a4e",
+    "five_fold_benchmark_accuracy_20pct_noise": 0.9582,
+    "five_fold_clean_accuracy_mean": 0.9872727272727273,
+    "five_fold_clean_accuracy_sd_population": 0.004215281134316231,
+    "global_sd_used_before_split": [
+      36.90894257695227,
+      32.97838509495386,
+      50.636418345000635,
+      5.062597617195944,
+      22.25875105745574,
+      0.7737617731081714,
+      54.945896562329025
+    ],
+    "holdout_accuracy": 0.9886363636363636,
+    "holdout_accuracy_20pct_noise": 0.9568181818181818,
+    "holdout_macro_f1": 0.9886221288339389,
+    "holdout_seed": 42,
+    "protocol": "legacy_repository",
+    "selection_benchmark_scope": "all rows before final holdout; not independent of model selection",
+    "test_noise_seed": 7
+  },
+  "strict_protocol": {
+    "class_order": [
+      "apple",
+      "banana",
+      "blackgram",
+      "chickpea",
+      "coconut",
+      "coffee",
+      "cotton",
+      "grapes",
+      "jute",
+      "kidneybeans",
+      "lentil",
+      "maize",
+      "mango",
+      "mothbeans",
+      "mungbean",
+      "muskmelon",
+      "orange",
+      "papaya",
+      "pigeonpeas",
+      "pomegranate",
+      "rice",
+      "watermelon"
+    ],
+    "description": "5 stratified folds with fixed seeds; training-only feature SD; training-only augmentation; matched noisy test inputs across six models; original observations remain test units.",
+    "model_count": 6,
+    "noise_pct": [
+      0,
+      10,
+      20,
+      30,
+      50
+    ],
+    "production_extra_trees_parameters": {
+      "bootstrap": false,
+      "ccp_alpha": 0.0,
+      "class_weight": null,
+      "criterion": "gini",
+      "max_depth": null,
+      "max_features": "sqrt",
+      "max_leaf_nodes": null,
+      "max_samples": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 8,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "n_estimators": 150,
+      "n_jobs": 2,
+      "oob_score": false,
+      "random_state": 42,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "result_combinations": 150,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ]
+  }
+}
